@@ -1,0 +1,179 @@
+@font-face {
+  font-family: "TT Fors";
+  src: url(../fonts/tt_fors/TTForsTrialBold.ttf);
+}
+@font-face {
+  font-family: "TT Fors Medium";
+  src: url(../fonts/tt_fors/Medium.ttf);
+}
+:root{
+  --textcolor:#000000;
+  --color-1: #ffcdb5;
+  --color0:#ff9767;
+  --color1:#f87538;
+  --bg-color1:#f8753862;
+  --color2:#d36135;
+  --color3:#bf3b0b;
+  --color4: #852a08;
+  --bg-color-transparent: rgba(255, 140, 32, 0.2);
+}
+* {
+
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "TT Fors" !important;
+  color: var(--textcolor);
+}
+
+
+.h-10{
+  height: 10% !important;
+}
+.h-20{
+  height: 20% !important;
+}
+.h-30{
+  height: 30% !important;
+}
+.h-40{
+  height: 40% !important;
+}
+.h-60{
+  height: 60% !important;
+}
+.h-70{
+  height: 70% !important;
+}
+.h-80{
+  height: 80% !important;
+}
+.h-90{
+  height: 90% !important;
+}
+
+.w-10{
+  width: 10% !important;
+}
+.w-20{
+  width: 20% !important;
+}
+.w-30{
+  width: 30% !important;
+}
+.w-40{
+  width: 40% !important;
+}
+.w-60{
+  width: 60% !important;
+}
+.w-70{
+  width: 70% !important;
+}
+.w-80{
+  width: 80% !important;
+}
+.w-90{
+  width: 90% !important;
+}
+
+.signup-btn{
+  background-color: var(--color0);
+}
+.signup-btn a{
+  color:var(--textcolor);
+}
+
+.navBtn {
+  border-radius: 15px;
+  transition: 0.5s;
+}
+
+.navBtn:hover {
+  background-color: rgba(169, 169, 169, 0.348);
+}
+
+.bg-color1{
+  margin: 10px;
+  border-radius: 15px;  
+  backdrop-filter: blur(5px);
+  background-color: var(--bg-color1);
+}
+.bg-color2{
+  background-color: var(--color2);
+}
+.bg-color3{
+  background-color: var(--color3);
+}
+
+#container-register{
+background: var(--bg-color-transparent);
+border-radius: 10px;
+}
+
+#text-register a{
+  text-decoration: none;
+  color: var(--textcolor);
+  transition: 1s;
+}
+#text-register span{
+color: var(--color1);
+}
+#article1{
+position: relative;
+transition: all .3s ease;
+}
+#article1 img:first-child{
+box-shadow: 0 60px 60px
+-60px rgba(0, 0, 0, 0.5);
+border-radius: 10px;
+object-fit: cover;
+width: 100%;
+height: 100%;
+}
+
+#article1 img:last-child{
+position: absolute;
+width: 411px;
+border-radius: 10px;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+transform: translateY(20%);
+transition: all .3s;
+opacity: 0;
+}
+
+#article1:hover{
+transform: perspective(250px)
+rotateX(5deg)
+translateY(-5%)
+translateZ(0);
+}
+#article1::before{
+content: '';
+position: absolute;
+border-radius: 10px;
+bottom: 0;
+width: 100%;
+height: 100%;
+background-image: linear-gradient(
+  to bottom,
+  transparent 10%,
+  rgba(0,0,0,0.5) 50%,
+  rgba(0,0,0) 95%
+);
+opacity: 0;
+transition: all .3s ease;
+}
+#article1:hover::before{
+opacity: 1;
+}
+#article1:hover img:last-child{
+opacity: 1;
+transform: translateY(0%);
+box-shadow: 0 60px 60px
+-60px rgba(0, 0, 0, 0.5);
+}
+

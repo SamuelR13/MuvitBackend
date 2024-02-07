@@ -1,0 +1,94 @@
+{
+    "header":{
+        "home":"Home",
+        "users":"Users",
+        "drivers":"Drivers",
+        "login":"Login",
+        "signup":"Sign Up"
+    },
+    "headerImg":{
+        "dropdown-main-img":"img/SVG/english.svg",
+        "dropdown-position1-img":"img/SVG/español.svg",
+        "dropdown-position2-img":"img/SVG/français.svg"
+    },
+    "headerText":{
+        "dropdown-main-text":"English",
+        "dropdown-position1-text":"Español",
+        "dropdown-position2-text":"Français"
+    },
+    "main":{
+        "main-text":"With <span>MUVIT</span>, moving is easier than ever!",
+        "secundary-text":"Order you service <span>now</span>",
+        "serviceDetails": "Services Details",
+        "serviceType": "Services Type",
+        "type": "Basic",
+        "sizes": "Size",
+        "assistant": "Assistants",
+        "distance": "Distance",
+        "prices": "Price",
+        "welcome": "!Welcome! LogIn as Driver.",
+        "login": "LogIn"
+
+    },
+    "selection-block":{
+        "sizeSelection":"Select the size of truck you need",
+        "howMany":"How many assistants do you need?",
+        "help": "Help me",
+        "prices":"Prices"
+        
+    }, 
+    "info-carousel":{
+        "titleS": "Size S",
+        "titleM": "Size M",
+        "titleXL": "Size XL",
+        "assistants": "Total of assistants",
+        "paragraph-truck": "Our small truck, designed to make your relocation quick and hassle-free.",
+        "little": "<span>1</span> little room",
+        "package": "6-8 Package",
+        "household": "2 Household appliances",
+        "living-room": "1 Living room"
+    },
+    "first-card":{
+        "first-paragraph": "Welcome to our moving service, where we streamline the process to make your home transition a hassle-free experience! With us, the management of your move is handled quickly and efficiently.",
+        "first-title": "Move with us <span>Effortlessly</span>.",
+        "learn1": "Learn more"
+    },
+    "second-card":{
+        "second-paragraph": "Discover the benefits of choosing our moving service. Enjoy a stress-free relocation with our dedicated team, managing every aspect from packing to transportation and unpacking. Save time and energy by entrusting your move to us, where efficiency meets the safety of your belongings.",
+        "second-title": "Some of the <span>Advantages</span> of moving with us.",
+        "learn2": "Learn more"
+        
+    },"third-card":{
+        "third-paragraph": "<p>Start making money with hauling services, all with a simple registration and with a service that fits your resources.</p>",
+        "third-title": "Become in a <span>Muvit</span> driver.",
+        "learn3": "Learn more"
+       
+    },
+    "fourth-card":{
+        "fourth-paragraph": "With Muvit, you have the opportunity to perform at a personalized pace, adapting to the time availability of each individual. time availability of each individual. This flexible approach enables employees to manage their responsibilities efficiently, thus fostering a work environment that values autonomy and productivity. and thus fostering a work environment that values autonomy and productivity.",
+        "fourth-title": "Start enjoying our <span>benefits</span>.",
+        "learn4": "Learn more"
+       
+    },
+    "translate-footer":{
+        "company": "Company",
+        "meetUs": "MeetUs",
+        "aboutUs": "About us",
+        "offerings": "Our offerings",
+        "newRooms": "Newsroom",
+        "inventors": "Inventors",
+        "servicesUs": "Our services",
+        "contractUs": "Contract us",
+        "workUS": "Work with us",
+        "request": "Request your service now",
+        "investOur": "Research our Company",
+        "contactUs" : "Contact us",
+        "socialMedia" : "Our social networks"
+    }, 
+    "users":{
+
+    },
+    "drivers":{
+
+    }
+}

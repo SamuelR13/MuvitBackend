@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+  href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css"
+  rel="stylesheet"
+/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="js/hook/bootstrapService.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.149.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.149.0/examples/jsm/"
+      }
+    }
+  </script>
+  
+  <title>MUVIT</title>
+</head>
+
+<body>
+  <header class="d-flex justify-content-center z-3">
+    <nav class="navbar navbar-expand-lg bg-color1 position-fixed w-50 p-3 z-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MUVIT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-between alig-items-center collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ">
+
+            <div class="navBtn">
+              <a class="nav-link" href="#mainInfoUser" data-section="header" data-value="users">Users</a>
+            </div>
+            <div class="navBtn">
+              <a class="nav-link" href="#mainInfoDriver" data-section="header" data-value="drivers">Drivers</a>
+            </div>
+          </div>
+          <div class="navbar-nav d-flex justify-content-center align-items-center gap-3">
+            <div class="navBtn">
+              <div id="dropdown-list">
+                <li class="nav-item dropdown d-flex">
+                  <img data-section="headerImg" data-value="dropdown-main-img" id="dropdown-main-img"
+                    src="img/SVG/english.svg" alt="usa-flag">
+                  <a data-section="headerText" data-value="dropdown-main-text" id="dropdown-main-text"
+                    class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" data-section="header" data-value="lenguage" data-lenguage="English">
+                    English
+                  </a>
+                  <ul id="dropdown-menu" class="dropdown-menu">
+                    <li>
+                      <div class="d-flex justify-content-center alig-items-center dropdown-position"
+                        data-lenguage="Español">
+                        <div class="w-40 d-flex justify-content-center alig-items-center">
+                          <img data-section="headerImg" data-value="dropdown-position1-img" id="dropdown-position1-img"
+                            src="img/SVG/español.svg" alt="spanis-flag">
+                        </div>
+                        <div class="d-fle w-60">
+                          <a data-section="headerText" data-value="dropdown-position1-text" id="dropdown-position1-text"
+                            class="dropdown-item" href="#" data-lenguage="Spanish">
+                            Español</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="d-flex justify-content-center alig-items-center dropdown-position"
+                        data-lenguage="Français">
+                        <div class="w-40 d-flex justify-content-center alig-items-center ">
+                          <img data-section="headerImg" data-value="dropdown-position2-img" id="dropdown-position2-img"
+                            src="img/SVG/français.svg" alt="france-flag">
+                        </div>
+                        <div class="d-fle w-60">
+                          <a data-section="headerText" data-value="dropdown-position2-text" id="dropdown-position2-text"
+                            class="dropdown-item" href="#" data-lenguage="Français">
+                            Français</a>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </div>
+            </div>
+            <div id="btnLogReg" class="d-flex">
+              <div class="navBtn">
+                <a class="nav-link" href="login.html" data-section="header" data-value="login">Log In</a>
+              </div>
+              <div class="navBtn">
+                <button class="signup-btn" data-section="header" data-value="signup">
+                  Sign Up
+                </button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="scroll-container d-flex flex-column w-auto h-auto justify-content-center align-items-center">
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Te ayudaremos a escoger el camion del tamaño adecuado para ti</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <section class="main scroll-area z-0 ">
+      <div class="d-flex align-items-center h-80 w-100 flex-column ">
+        <div
+          class="main-container w-100 h-100 d-flex  justify-content-center align-items-center position-relative flex-column" id="translateUserArea">
+          <div class="h-10 w-100">
+            <div class="h-10 W-100 d-flex justify-content-center align-items-center text-center my-4 flex-column my-5">
+              <h1 data-section="main" data-value="main-text" id="main-text">With <span>MUVIT</span>, moving is easier
+                than ever! </h1>
+            </div>
+          </div>
+          <div id="main-user-area" class="w-90 h-90 d-flex justify-content-between alig-items-center" >
+            <div class="h-90 w-40 d-flex flex-column justify-content-center gap-5">
+              <div class="h-10 W-100 d-flex justify-content-center align-items-center text-center flex-column" >
+                <h1 data-section="main" data-value="secundary-text" id="secundary-text">Order your service
+                  <span>now</span></h1>
+              </div>
+              <div id="main-service" class="h-90 w-100 d-flex flex-column position-relative ">
+                <div id="service-container-btns"
+                  class="h-10 w-100 d-flex justify-content-center align-items-center gap-3 position-absolute">
+                  <div id="basic-btn" class=" h-70 w-30 d-flex justify-content-center align-items-center">
+                    <button class="service-btn">
+                      <span>Basic</span>
+                    </button>
+                  </div>
+                  <div id="premium-btn" class=" h-70 w-30 d-flex justify-content-center align-items-center">
+                    <button class="service-btn">
+                      <span>Premium</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="h-90 w-100 d-flex flex-column justify-content-center align-items-center gap-2" id="selection-block" >
+                  <div class="h-40 w-90 d-flex justify-content-center align-items-center flex-column gap-0">
+                    <div class="h-40 w-100 d-flex justify-content-center align-items-end text-center" >
+                      <p class="size-selecter my-0" data-section="selection-block" data-value="sizeSelection" >Select the size of truck you need</p>
+                    </div>
+                    <div class="h-60 w-100 d-flex justify-content-between align-items-center gap-2">
+                      <div class="btn-active">                      
+                        <button class="button-1 h-90 w-100 d-flex justify-content-center align-items-center" type="button" data-bs-slide="prev" data-bs-target="#carouselExampleIndicators">
+                          prev
+                      </button>
+                    </div>
+                    <div id="show-size" class="size h-40 w-80 d-flex justify-content-center align-items-center text-center rounded-2">
+                      S
+                    </div>
+                    <div class="btn-active">
+                      <button class="button-1 h-90 w-100 d-flex justify-content-center align-items-center" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        next
+                      </button>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="h-40 w-90 d-flex justify-content-center align-items-center flex-column">
+                    <div class="h-40 w-100 d-flex justify-content-center align-items-end text-center">
+                      <p class="size-selecter my-0" data-section="selection-block" data-value="howMany">How many assistant do you need?</p>
+
+                    </div>
+                    <div class="h-60 w-100 d-flex justify-content-center align-items-center">
+                      <div class="h-60 w-100 d-flex justify-content-between align-items-center gap-2">
+                        <div>                      
+                          <button id="menos" class="button-1 h-90 w-100 d-flex justify-content-center align-items-center" type="button" >
+                            -
+                        </button>
+                      </div>
+                      <div id="assit-num" class="size h-60 w-80 d-flex justify-content-center align-items-center text-center rounded-2">
+                        0
+                      </div>
+                      <div>
+                        <button id="mas" class="button-1 h-90 w-100 d-flex justify-content-center align-items-center" type="button" >
+                          + 
+                        </button>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="h-10 w-100 d-flex justify-content-evenly" >
+                  <div id="help-btn" class=" h-70 w-30 d-flex justify-content-center align-items-center">
+                    <button type="button" class="button-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                     <span data-section="selection-block" data-value="help">Help</span>
+                    </button>
+                  </div>
+                  <div id="prices-btn" class=" h-70 w-30 d-flex justify-content-center align-items-center">
+                    <button class="button1 w-100 h-100">
+                      <span data-section="selection-block" data-value="prices">PRICES</span>
+                    </button>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="main-info" class="h-90 w-60 d-flex justify-content-center align-items-center">
+              <div class="h-90 w-90">
+                <div id="carouselExampleIndicators" class="carousel slide h-100 w-100" id="info-carousel">
+                  <div class="carousel-indicators h-10">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                  <div class="carousel-inner h-90 w-100" id="info-carousel">
+                    <div class="carousel-item active h-100 w-100" data-id="S">
+                      <div class="container h-100 w-100 d-flex justify-content-center align-items-center flex-column">
+                        <div class="row h-80 w-100">
+                        <div class="h-100 w-50 d-flex flex-column d-flex justify-content-center align-items-center text-center container-description">
+                          <div class="size-info">
+                            <p data-section="info-carousel" class="title-sizes" data-value="titleS">Size S</p>
+                          </div>
+                          <div class="text-container">
+                            <p data-section="info-carousel" data-value="paragraph-truck">
+                            Our small truck, designed to make your relocation quick and hassle-free.</p>
+                            
+                            <i class='bx bxs-bed'><span class="ms-3" data-section="info-carousel" data-value="little"><span class="numeros">1</span> little room</span></i> 
+                            <i class='bx bxs-package'><span class="ms-3" data-section="info-carousel" data-value="package"><span class="numeros">6-8</span> packages</span></i> 
+                            <i class='bx bxs-washer' ><span class="ms-3" data-section="info-carousel" data-value="household"><span class="numeros">2</span> household appliances</span></i>
+                            <i class='bx bx-chair' ><span class="ms-3" data-section="info-carousel" data-value="living-room"><span class="numeros">1</span> living room</span></i>
+                            </div>
+                        </div>
+                        <div id="model" class=" h-100 w-50 d-flex d-flex justify-content-center align-items-center">
+                        </div>
+                        </div>
+                        <div class="row h-20 w-100 d-flex justify-content-center align-items-center text-center">
+                          <div class="size-info h-100 w-40 d-flex justify-content-center align-items-center">
+                            <p data-section="info-carousel" data-value="assistants">Assistants</p>
+                          </div>
+                          <div id="assis-info" class=" size-info h-100 w-60 d-flex justify-content-start align-items-center gap-2">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="carousel-item h-100 w-100" data-id="M">
+                      <div class="container h-100 w-100 d-flex justify-content-center align-items-center flex-column">
+                        <div class="row h-80 w-100">
+                        <div class="h-100 w-50 d-flex flex-column d-flex justify-content-center align-items-center text-center container-description">
+                          <div class="size-info">
+                            <p data-section="info-carousel" class="title-sizes" data-value="titleM" >Size M</p>
+                          </div>
+                          <div class="text-container">
+                            <p data-section="info-carousel" data-value="paragraph-truck2">The medium-sized truck features a spacious interior that allows you to accommodate furniture and boxes of various dimensions.</p>
+                            <i class='bx bxs-bed'><span class="ms-3" data-section="info-carousel" data-value="rooms"><span class="numeros">1-2</span> Rooms</span></i> 
+                            <i class='bx bxs-package'><span class="ms-3" data-section="info-carousel" data-value="packages2"><span class="numeros">6-9</span> Packages</span></i> 
+                            <i class='bx bxs-washer' ><span class="ms-3" data-section="info-carousel" data-value="Household2"><span class="numeros">4</span> Household appliances</span></i>
+                            <i class='bx bx-chair' ><span class="ms-3" data-section="info-carousel" data-value="living2"><span class="numeros">1-2</span> Living room</span></i>
+                          </div>
+                        </div>
+                        <div id="model2" class=" h-100 w-50 d-flex d-flex justify-content-center align-items-center">
+                        </div>
+                        </div>
+                        <div class="row h-20 w-100 d-flex justify-content-between align-items-center text-center">
+                          <div class="size-info h-100 w-40 d-flex justify-content-center align-items-center">
+                            <p data-section="info-carousel" data-value="assistant2"> Assistants</p>
+                          </div>
+                          <div id="assis-info1" class=" size-info h-100 w-60 d-flex justify-content-start align-items-center gap-2">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="carousel-item h-100 w-100" data-id="XL">
+                      <div class="container h-100 w-100 d-flex justify-content-center align-items-center flex-column">
+                        <div class="row h-80 w-100">
+                        <div class=" h-100 w-50 d-flex flex-column d-flex justify-content-center align-items-center text-center container-description" >
+                          <div class="size-info">
+                            <p data-section="info-carousel" class="title-sizes" data-value="titleXL">Size XL</p>
+                          </div>
+                          <div class="text-container">
+                            <p data-section="info-carousel" data-value="paragraph-truck3">The large truck features an expansive interior that allows you to accommodate bulky furniture and numerous boxes.</p>
+                            <i class='bx bxs-bed'><span class="ms-3" data-section="info-carousel" data-value="room3"><span class="numeros">3-5</span> Room</span></i> 
+                            <i class='bx bxs-package'><span class="ms-3" data-section="info-carousel" data-value="package3"><span class="numeros">10-18</span> Packages</span></i> 
+                            <i class='bx bxs-washer' ><span class="ms-3" data-section="info-carousel" data-value="household3"><span class="numeros">8</span> Household appliances</span></i>
+                            <i class='bx bx-chair' ><span class="ms-3" data-section="info-carousel" data-value="living3"><span class="numeros">3-5</span> Living room</span></i>
+                          </div>
+                        </div>
+                        <div id="model3" class=" h-100 w-50 d-flex d-flex justify-content-center align-items-center">
+                        </div>
+                        </div>
+                        <div class="row h-20 w-100 d-flex justify-content-between align-items-center text-center">
+                          <div class="size-info h-100 w-40 d-flex justify-content-center align-items-center">
+                            <p data-section="info-carousel" data-value="assistants3">Assistants</p>
+                          </div>
+                          <div id="assis-info2" class=" size-info h-100 w-60 d-flex justify-content-start align-items-center gap-2">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="main-user-area2" class="w-90 h-90 d-flex justify-content-center alig-items-center d-none">
+            <div class="h-20 w-20 d-flex justify-content-center align-items-center" >
+              <button id="back" class="button-1">Back</button>
+            </div>
+            <div class="h-80 w-50 my-5 d-flex justify-content-center align-items-center">
+              <div id="mapa" style=" width: 100%; height: 100%; border-radius: 20px;">
+              </div>
+            </div>
+            <div class="h-20 w-20 d-flex justify-content-center align-items-center">
+              <button id="save" class="button-1">Next</button>
+            </div>
+          </div>  
+          <div id="main-user-area3" class="w-90 h-90 d-flex justify-content-center alig-items-center d-none">
+            <div class="w-100 h-100 d-flex justify-content-start align-items-center flex-column my-5">
+              <div class="h-10 w-100 d-flex justify-content-between align-items-center flex-column ">
+                <h2 data-section="main" data-value="serviceDetails">Service Details</h2>
+              </div>
+
+              <div id="details-container" class="h-70 w-30 d-flex flex-column justify-content-center align-items-center gap-3">
+                <div class="h-10 w-100 d-flex justify-content-between align-items-center" >
+                  <div class="h-100 w-100 d-flex justify-content-center align-items-center ">
+                    <div class="h-100 w-30 d-flex justify-content-start align-items-center ">
+                      <p class="service-information my-0" data-section="main" data-value="serviceType">Service Type</p>
+                    </div>
+                    <div class="h-100 w-30 d-flex justify-content-center align-items-center " data-section="main" data-value="type"> 
+                      Basic
+                    </div>
+                  </div>
+                </div>
+                <div class="h-10 w-100 d-flex justify-content-center align-items-center text-center" >
+                    <div class="h-100 w-30 d-flex justify-content-start align-items-center ">
+                      <p class="service-information my-0" data-section="main" data-value="sizes">Size</p>
+                    </div>
+                    <div id="sizeInfo" class="h-100 w-30 d-flex justify-content-center align-items-center "> 
+                      Basic
+                    </div>
+                </div>
+                <div class="h-10 w-100 d-flex justify-content-center align-items-center text-center" >
+                    <div class="h-100 w-30 d-flex justify-content-start align-items-center ">
+                      <p class="service-information my-0" data-section="main" data-value="assistant">Assistants</p>
+                    </div>
+                    <div id="assistantsInfo" class="h-100 w-30 d-flex justify-content-center align-items-center "> 
+                      Basic
+                    </div>
+                </div>
+                <div class="h-10 w-100 d-flex justify-content-center align-items-center text-center" >
+                    <div class="h-100 w-30 d-flex justify-content-start align-items-center ">
+                      <p class="service-information my-0" data-section="main" data-value="distance">Distance</p>
+                    </div>
+                    <div id="distanceInfo" class="h-100 w-30 d-flex justify-content-center align-items-center "> 
+                      Basic
+                    </div>
+                </div>
+                <div class="h-10 w-100 d-flex justify-content-center align-items-center text-center" >
+                    <div class="h-100 w-30 d-flex justify-content-start align-items-center ">
+                      <p class="service-information my-0" data-section="main" data-value="prices">Price</p>
+                    </div>
+                    <div id="priceInfo" class="h-100 w-30 d-flex justify-content-center align-items-center "> 
+                      Basic
+                    </div>
+                </div>
+                <div class="h-10 w-100 d-flex justify-content-center align-items-center text-center" >
+                  <div class="h-100 w-30 d-flex justify-content-center align-items-center ">
+                    <button id="cancel-service" class="button-3">Cancel</button>
+                  </div>
+                  <div id="priceInfo" class="h-100 w-30 d-flex justify-content-center align-items-center "> 
+                    <button id="muvit" class="button-1">MUVIT!</button>
+                  </div>
+              </div>
+              </div>
+            </div>
+
+          </div>
+          <div id="main-driver-area" class="w-90 h-90 d-flex justify-content-center alig-items-center d-none">
+            <div class="h-90 w-40 d-flex justify-content-center align-items-center flex-column text-center">
+              <h1 data-section="main" data-value="welcome">!Welcome! Login as a driver.</h1>
+              <button class="button-1"><a href="login.html" data-section="main" data-value="login">Log In
+              </a></button>
+            </div> 
+          </div>
+          <div
+            class="img-container w-30 h-20 d-flex justify-content-center align-items-center position-absolute gap-2 ">
+            <div class="w-25 h-100 img-container-user">
+              <a id="user-btn" href=""><img height="100%" width="100%" src="img/imgMain/userMain.jpg" alt=""></a>
+            </div>
+            <div class="w-25 h-100 img-container-driver">
+              <a id="driver-btn" href=""><img height="100%" width="100%" src="img/imgMain/driverMain.jpg" alt=""></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section id="mainInfoUser" class="sectionUsers scroll-area z-0 w-90 rounded-top-4 ">
+      <div class="container h-100 w-75 d-flex flex-column justify-content-evenly align-items-center ">
+        <div class="d-flex justify-content-center alig-items-center w-75 " >
+          <div class="d-flex gap-4">
+
+            <div class="photo1">
+              <img src="img/imgUsers/user1.jpeg" alt="">
+            </div>
+            <div class="d-flex flex-column text-center align-items-center w-100 h-100 gap-3">
+              <div class="h-40 d-flex text-center justify-content-center align-items-center">
+                <h1 data-section="first-card" data-value="first-title" id="card1-info">
+                  Move with us <span>Effortlessly</span>.
+                </h1>
+              </div>
+              <div class="d-flex w-75 h-40 text-center justify-content-center align-items-start">
+                <p data-section="first-card" data-value="first-paragraph">
+                  Welcome to our moving service, where we streamline the process to make your home transition a
+                  hassle-free experience! With us, the management of your move is handled quickly and efficiently.
+                </p>
+              </div>
+              <div class="w-100 h-20 justify-content-start">
+                <button type="button" class="btn" data-section="first-card" data-value="learn1">Learn more</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center alig-items-center w-75" id="second-card">
+          <div class="d-flex gap-4 ">
+            <div class="d-flex flex-column text-center align-items-center w-100 h-100 gap-3">
+              <div class="h-40 d-flex text-center justify-content-center align-items-center">
+                <h1 data-section="second-card" data-value="second-title" id="card1-info">
+                  Some of the <span>Advantages</span> of moving with us.
+                </h1>
+              </div>
+              <div class="d-flex w-75 h-40 text-center justify-content-center align-items-center">
+                <p data-section="second-card" data-value="second-paragraph">
+                  Discover the benefits of choosing our moving service. Enjoy a stress-free relocation with our
+                  dedicated team, managing every aspect from packing to transportation and unpacking. Save time and
+                  energy by entrusting your move to us, where efficiency meets the safety of your belongings.
+                </p>
+              </div>
+              <div class="w-100 h-20 justify-content-start">
+                <button type="button" class="btn" data-section="second-card" data-value="learn2">Learn more</button>
+              </div>
+
+            </div>
+            <div class="photo1">
+              <img src="img/imgUsers/user2.jpeg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="mainInfoDriver" class="sectionUsers scroll-area z-0 w-90 rounded-bottom-4">
+      <div class="container vh-100 w-75 d-flex flex-column justify-content-evenly align-items-center ">
+        <div class="d-flex justify-content-center alig-items-center w-75" id="third-card">
+          <div class="d-flex gap-4">
+
+            <div class="photo1">
+              <img src="img/imgDrivers/td-looking.jpeg" alt="">
+            </div>
+            <div class="d-flex flex-column text-center align-items-center w-100 h-100 gap-3">
+              <div class="h-40 d-flex text-center justify-content-center align-items-center">
+                <h1 class="fs-1" data-section="third-card" data-value="third-title">Become in a <span>Muvit</span> driver.</h1>
+              </div>
+              <div class="d-flex w-75 h-40 text-center justify-content-center align-items-start">
+                <p data-section="third-card" data-value="third-paragraph">Start making money with hauling services, all with a simple registration and with a service that
+                  fits your resources</p>
+
+              </div>
+              <div class="w-100 h-20 justify-content-start">
+                <button type="button" class="btn" data-section="third-card" data-value="learn3">Learn more</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center alig-items-center w-75 " id="fourth-card">
+          <div class="d-flex gap-4 ">
+            <div class="d-flex flex-column text-center align-items-center w-100 h-100 gap-3">
+              <div class="h-40 d-flex text-center justify-content-center align-items-center">
+                <h1 class="fs-1" data-section="fourth-card" data-value="fourth-title" >Start enjoying our <span>benefits</span>.</h1>
+              </div>
+              <div class="d-flex flex-column h-40 text-center justify-content-center align-items-center">
+                <p data-section="fourth-card" data-value="fourth-paragraph">With Muvit, you have the opportunity to perform at a personalized pace, adapting to the time availability of each individual.
+                  time availability of each individual.
+                This flexible approach enables employees to manage their responsibilities efficiently, thus fostering a work environment that values autonomy and productivity.
+                  and thus fostering a work environment that values autonomy and productivity.</p>
+              </div>
+              <div class="w-100 h-20 justify-content-start">
+                <button type="button" class="btn" data-section="fourth-card" data-value="learn4">Learn more</button>
+              </div>
+
+            </div>
+            <div class="photo1">
+              <img src="img/imgDrivers/t-smiling.jpeg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="d-flex bg-color1 container-fluid" id="translate-footer">
+      <div class="card container bg-transparent no-border" style="width: 18rem;">
+        <div class="card-body bg-transparent">
+          <div class="ml-6">
+            <h5 class="card-title" data-section="translate-footer" data-value="company">Company</h5>
+            <h6 class="card-subtitle mb-2 text-muted" data-section="translate-footer" data-value="meetUs">Meet us</h6>
+          </div>
+          <ul class="">
+            <li class="list-group-item"><a href="#" data-section="translate-footer" data-value="aboutUs">About Us</a></li>
+            <li class="list-group-item"><a href="#" data-section="translate-footer" data-value="offerings">Our offerings</a></li>
+            <li class="list-group-item"><a href="#" data-section="translate-footer" data-value="newRooms">News room</a></li>
+            <li class="list-group-item"><a href="#" data-section="translate-footer" data-value="inventors">Investors</a></li>
+
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="card container bg-transparent no-border" style="width: 18rem;">
+        <div class="card-body bg-transparent">
+          <div class="ml-6">
+            <h5 class="card-title" data-section="translate-footer" data-value="servicesUs">Services</h5>
+            <h6 class="card-subtitle mb-2 text-muted" data-section="translate-footer" data-value="contractUs">Contract us</h6>
+          </div>
+          <ul class="">
+            <li class="list-group-item" data-section="translate-footer" data-value="workUS"><a href="#">Work with us</a></li>
+            <li class="list-group-item"><a href="#" data-section="translate-footer" data-value="request">Request your service now</a></li>
+            <li class="list-group-item"><a href="#" data-section="translate-footer" data-value="investOur">Invest in our company</a></li>
+          </ul>
+        </div>
+        </div>
+        <div class="card container bg-transparent no-border" style="width: 18rem;">
+          <div class="card-body bg-transparent">
+            <div class="d-flex justify-content-center align-items-center flex-column">
+              <h5 class="card-title" data-section="translate-footer" data-value="contactUs">Contact us</h5>
+              <h6 class="card-subtitle mb-2 text-muted" data-section="translate-footer" data-value="socialMedia">Our social media</h6>
+            </div>
+            <div class="d-flex justify-content-evenly fs-3 mt-3">
+              <i class='bx bxl-facebook-square bx-tada-hover'></i>
+              <i class='bx bxl-whatsapp bx-tada-hover' ></i>
+              <i class='bx bxl-instagram bx-tada-hover' ></i>
+            </div>
+            
+  
+          </div>
+    </footer>
+  </main>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.2.0/mapbox-gl-directions.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script type="module" src="js/app.js"></script>
+  <script src="js/loginUsers.js"></script>
+</body>
+
+</html>

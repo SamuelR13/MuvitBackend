@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/register-users.css">
+    <title></title>
+</head>
+<body class="vh-100 vw-100">
+  <header class="d-flex justify-content-center">
+    <nav
+      class="navbar navbar-expand-lg bg-color1 position-fixed w-50 p-3"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">MUVIT</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="d-flex justify-content-between alig-items-center collapse navbar-collapse"
+          id="navbarNavAltMarkup"
+        >
+          <div class="navbar-nav "></div>
+          <div class="navbar-nav">
+            <div
+              class="navBtn"
+            >
+            <div id="dropdown-list">
+              <li  class="nav-item dropdown d-flex">
+                  <img data-section="headerImg" data-value="dropdown-main-img" id="dropdown-main-img" src="img/SVG/english.svg" alt="usa-flag">
+                  <a data-section="headerText" data-value="dropdown-main-text" id="dropdown-main-text"class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-section="header" data-value="lenguage" data-lenguage="English">
+                    English
+                  </a>
+                <ul id="dropdown-menu"class="dropdown-menu">
+                  <li>
+                    <div class="d-flex justify-content-center alig-items-center dropdown-position" data-lenguage="Español">
+                      <div class="w-40 d-flex justify-content-center alig-items-center" >
+                        <img data-section="headerImg" data-value="dropdown-position1-img" id="dropdown-position1-img" src="img/SVG/español.svg" alt="spanis-flag">
+                      </div>
+                      <div class="d-fle w-60">
+                        <a data-section="headerText" data-value="dropdown-position1-text" id="dropdown-position1-text" class="dropdown-item" href="#" data-lenguage="Spanish">
+                          Español</a>
+                      </div>                            
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex justify-content-center alig-items-center dropdown-position" data-lenguage="Français">
+                      <div class="w-40 d-flex justify-content-center alig-items-center ">
+                        <img data-section="headerImg" data-value="dropdown-position2-img" id="dropdown-position2-img" src="img/SVG/français.svg" alt="france-flag">
+                      </div>
+                      <div class="d-fle w-60">
+                        <a data-section="headerText" data-value="dropdown-position2-text" id="dropdown-position2-text" class="dropdown-item" href="#" data-lenguage="Français">
+                          Français</a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+    <main class="vw-100 vh-100">
+      <section class="w-100 h-100 d-flex justify-content-center align-items-center" id="translateReg">
+        <div id="container-register" class="w-100 h-75 d-flex justify-content-center align-items-center">
+          <div class="w-75 h-100 d-flex justify-content-between align-items-center">
+            <div class="w-50 h-90 d-flex flex-column align-items-center justify-content-center gap-4">
+              <h1 id="text-register" data-section="translateReg" data-value="muvitUser">
+                Register as a <span> MUVIT</span> user.
+              </h1>
+              <div id="imageUser" class="w-75 h-80">
+                <a href="inputRegUser.html">
+                  <article id="article1" class="w-100 h-100">
+                    <img src="img/imgUsers/registerUser1.jpeg" alt="imageRegisterUser">
+                    <img src="img/imgUsers/registerUser2.png" alt="imageRegisterUser2">
+                  </article>
+                </a>
+              </div>
+            </div>
+            <div class="w-50 h-90 d-flex flex-column align-items-center justify-content-center gap-4">
+              <h1 id="text-register" class="">
+                Register as a <span>MUVIT</span> driver.
+              </h1>
+              <div id="imageUser" class="w-75 h-80">
+                <a href="unputRegDriver.html">
+                  <article id="article1" class="w-100 h-100">
+                    <img src="img/imgUsers/registerDriver2.jpeg" alt="imageRegisterDriver">
+                    <img src="img/imgUsers/Driver1.png" alt="imageRegisterDriver2">
+                  </article>
+                </a>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

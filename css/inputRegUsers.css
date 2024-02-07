@@ -1,0 +1,163 @@
+@font-face {
+    font-family: "TT Fors";
+    src: url(../fonts/tt_fors/TTForsTrialBold.ttf);
+  }
+  @font-face {
+    font-family: "TT Fors Medium";
+    src: url(../fonts/tt_fors/Medium.ttf);
+  }
+  :root{
+    --textcolor:#000000;
+    --color-1: #ffcdb5;
+    --color0:#ff9767;
+    --color1:#f87538;
+    --bg-color1:#f8753862;
+    --color2:#d36135;
+    --color3:#bf3b0b;
+    --color4: #852a08;
+  }
+  * {
+  
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--textcolor);
+    overflow: hidden;
+
+  }
+  
+  
+  .h-10{
+    height: 10% !important;
+  }
+  .h-20{
+    height: 20% !important;
+  }
+  .h-30{
+    height: 30% !important;
+  }
+  .h-40{
+    height: 40% !important;
+  }
+  .h-60{
+    height: 60% !important;
+  }
+  .h-70{
+    height: 70% !important;
+  }
+  .h-80{
+    height: 80% !important;
+  }
+  .h-90{
+    height: 90% !important;
+  }
+  
+  .w-10{
+    width: 10% !important;
+  }
+  .w-20{
+    width: 20% !important;
+  }
+  .w-30{
+    width: 30% !important;
+  }
+  .w-40{
+    width: 40% !important;
+  }
+  .w-60{
+    width: 60% !important;
+  }
+  .w-70{
+    width: 70% !important;
+  }
+  .w-80{
+    width: 80% !important;
+  }
+  .w-90{
+    width: 90% !important;
+  }
+  
+  .container-fluid a{
+    font-family: "TT Fors"!important;
+  }
+
+  #mainReg{
+    font-family: "TT Fors Medium"!important;
+
+  }
+  span{
+    color: var(--color1);
+  }
+  #btn-signUp{
+    background-color: var(--color1);
+    color: white;
+    transition: .5s;
+  }
+
+  #btn-signUp:hover{
+    background-color: var(--color0);
+    color: #000000;
+  }
+  .bg-color1{
+    margin: 10px;
+    border-radius: 15px;  
+    backdrop-filter: blur(5px);
+    background-color: var(--bg-color1);
+  }
+  .bg-color2{
+    background-color: var(--color2);
+  }
+  .bg-color3{
+    background-color: var(--color3);
+  }
+
+
+
+  .no-border{
+    border: none;
+  }
+
+
+#submit:hover{
+  background-color: var(--color1);
+
+}
+
+/* Success Register */
+
+.container-success h1{
+  font-family: "TT Fors Medium";
+}
+
+.logIn-btn{
+  background: var(--color0);
+  color: var(--textcolor);
+  transition: .4s;
+}
+.logIn-btn:hover{
+  background: var(--color1);
+}
+
+  /* DRIVERS */
+.container{
+  font-family: "TT Fors Medium"!important;
+}
+
+
+
+.accordion-body  .btn {
+  --color: #ff7b00;
+  font-family: inherit;
+  display: inline-block;
+  width: 6em;
+  height: 2.6em;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 20px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+}

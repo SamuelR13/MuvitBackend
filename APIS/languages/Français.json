@@ -1,0 +1,105 @@
+{
+    "header": {
+        "home": "Accueil",
+        "users": "Utilisateurs",
+        "drivers": "Chauffeurs",
+        "login": "Connexion",
+        "signup": "Inscription"
+    },
+    "headerImg":{
+        "dropdown-main-img":"img/SVG/français.svg",
+        "dropdown-position1-img":"img/SVG/español.svg",
+        "dropdown-position2-img":"img/SVG/english.svg"
+    },
+    "headerText":{
+        "dropdown-main-text":"Français",
+        "dropdown-position1-text":"Español",
+        "dropdown-position2-text":"English"
+    },
+    "main":{
+        "main-text":"!Avec <span>MUVIT</span>, déménager est plus facile que jamais!",
+        "secundary-text":"Commandez votre service <span>maintenant</span>",
+        "serviceDetails": "Détails du service",
+        "serviceType": "type de service",
+        "type": "Basic",
+        "sizes": "Taille",
+        "assistant": "Assistants",
+        "distance": "Distance",
+        "prices": "Prix",
+        "welcome": "Bienvenue ! Connectez-vous en tant que conducteur.",
+        "login": "Se connecter"
+
+    },
+    "selection-block":{
+        "sizeSelection":"Sélectionnez la taille de camion dont vous avez besoin",
+        "howMany":"De combien d’assistants avez-vous besoin ?",
+        "prices": "Des prix",
+        "help": "Aide-moi"
+        
+    }, 
+    "info-carousel":{
+        "titleS": "Taille S",
+        "titleM": "Taille M",
+        "titleXL": "Taille XL",
+        "assistants": "Total d'assistants",
+        "paragraph-truck": "Notre petit camion, conçu pour rendre votre déménagement rapide et sans tracas.",
+        "little": "<span>1</span> Petite Chambre",
+        "package": "6-8 Paquet",
+        "household": "2 Appareils ménagers",
+        "living-room": "1 Salle de séjour",
+        "paragraph-truck2": "Ce camion de taille moyenne dispose d'un intérieur spacieux qui lui permet d'accueillir des meubles et des cartons de différentes dimensions.",
+        "rooms": "<span>1-2</span> Chambres",
+        "packages2": "6-9 Paquets",
+        "Household2": "4 Appareils ménagers",
+        "living2": "1-2 Salle de séjours",
+        "assistant2": "Total d'assistants",
+        "paragraph-truck3": "Le grand camion dispose d'un intérieur spacieux pour accueillir des meubles volumineux et de nombreux cartons.",
+        "room3": "10-18 Chambres",
+        "package3": "10-18 Paquets",
+        "household3": "8 Appareils ménagers",
+        "living3": "3-5 Salle de séjours",
+        "assistants3": "Total d'assistants"
+    },
+    "first-card":{
+        "first-paragraph": "Bienvenue dans notre service de déménagement, où nous rationalisons le processus pour faire de votre transition résidentielle une expérience sans tracas ! Avec nous, la gestion de votre déménagement se fait de manière rapide et efficace.",
+        "first-title": "Déplacez-vous avec nous <span>sans effort</span>.",
+        "learn1": "<span>Apprendre encore plus</span>"
+    },
+    "second-card":{
+        "second-paragraph": "Découvrez les avantages de choisir notre service de déménagement. Profitez d'un déménagement sans stress avec notre équipe dévouée, gérant tous les aspects, de l'emballage au transport et au déballage. Gagnez du temps et de l’énergie en nous confiant votre déménagement, où l’efficacité rencontre la sécurité de vos biens.",
+        "second-title": "Certains des <span>avantages</span> de déménager avec nous.",
+        "second": "Apprendre encore plus"
+    },
+    "third-card":{
+        "third-paragraph": "<p>Commencez à gagner de l'argent avec les services de transport, le tout avec une simple inscription et avec un service adapté à vos ressources.</p>",
+        "third-title": "Devenez un pilote <span>Muvit</span>.",
+        "learn3": "Apprendre encore plus"
+    },
+    "fourth-card":{
+        "fourth-paragraph": "With Muvit, you have the opportunity to perform at a personalized pace, adapting to the time availability of each individual. time availability of each individual. This flexible approach enables employees to manage their responsibilities efficiently, thus fostering a work environment that values autonomy and productivity. and thus fostering a work environment that values autonomy and productivity.",
+        "fourth-title": "Start enjoying our <span>benefits</span>.",
+        "learn4": "Apprendre encore plus"
+       
+    },
+    "translate-footer":{
+        "company": " Entreprise",
+        "meetUs": "Rencontrez-nous",
+        "aboutUs": "A propos de nous",
+        "offerings": "Notre offre",
+        "newRooms": "Salle de presse",
+        "inventors": "Inventeurs",
+        "servicesUs": "Nos services",
+        "contractUs": "Engagez-nous",
+        "workUS": "Travailler avec nous",
+        "request": "Commandez votre service maintenant",
+        "investOur": "Recherche sur notre entreprise",
+        "contactUs" : "Nous contacter",
+        "socialMedia" : "Nos réseaux sociaux"
+    }, 
+    "users":{
+
+    },
+    "drivers":{
+
+    }
+}

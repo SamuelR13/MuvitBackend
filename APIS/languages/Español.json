@@ -1,0 +1,102 @@
+{
+    "header":{
+        "home":"Inicio",
+        "users":"Usuarios",
+        "drivers":"Conductores",
+        "login":"Iniciar sesion",
+        "signup":"Registrarse"
+    },
+    "headerImg":{
+        "dropdown-main-img":"img/SVG/español.svg",
+        "dropdown-position1-img":"img/SVG/english.svg",
+        "dropdown-position2-img":"img/SVG/français.svg"
+    },
+    "headerText":{
+        "dropdown-main-text":"Español",
+        "dropdown-position1-text":"English",
+        "dropdown-position2-text":"Français"
+    },
+    "main":{
+        "main-text":"!Con <span>MUVIT</span>, mudarse es más fácil que nunca!",
+        "secundary-text":"Solicite su servicio <span>ahora</span>",
+        "serviceDetails": "Detalles del servicio",
+        "serviceType": "Tipo de servicio",
+        "type": "Básico",
+        "sizes": "Tamaño",
+        "assistant": "Asistentes",
+        "distance": "Distancia",
+        "prices": "Precio",
+        "welcome": "!Bienvenido! Inicia sesion como conductor.",
+        "login": "Iniciar sesion"
+    },
+    "selection-block":{
+        "sizeSelection":"Selecciona el tamaño del camion que necesitas",
+        "howMany":"¿Cuántos ayudantes necesitas?",
+        "help": "Ayudame",
+        "prices":"PRECIOS"
+    },
+    "info-carousel":{
+        "titleS": "Tamaño S",
+        "titleM": "Tamaño M",
+        "titleXL": "Tamaño XL",
+        "assistants": "Total de ayudantes",
+        "paragraph-truck": "Nuestro pequeño camión, diseñado para que su traslado sea rápido y sin complicaciones.",
+        "little": "<span>1</span> Pequeña habitación",
+        "package": "6-8 Paquetes",
+        "household": "2 Electrodomésticos",
+        "living-room": "1 Sala de estar",
+        "paragraph-truck2": "El camión de tamaño medio cuenta con un espacioso interior que le permite acomodar muebles y cajas de diversas dimensiones.",
+        "rooms": "<span>1-2</span> Habitaciones",
+        "packages2": "6-9 Paquetes",
+        "Household2": "4 Electrodomésticos",
+        "living2": "1-2 Salas de estar",
+        "assistant2": "Total de asistentes",
+        "paragraph-truck3": "El gran camión cuenta con un amplio interior que le permite acomodar muebles voluminosos y numerosas cajas.",
+        "room3": "10-18 Habitaciones",
+        "package3": "10-18 Paquetes",
+        "household3": "8 Electrodomésticos",
+        "living3": "3-5 Salas de estar",
+        "assistants3": "Total de asistentes"
+    },
+    "first-card":{
+        "first-paragraph": "Bienvenido a nuestro servicio de mudanzas, donde agilizamos el proceso para que la transición a su hogar sea una experiencia sin complicaciones. Con nosotros, la gestión de su mudanza se lleva a cabo de forma rápida y eficaz.",
+        "first-title": "Muévete con nosotros <span>Sin esfuerzo</span>.",
+        "learn1": "Aprende más"
+    },"second-card":{
+        "second-paragraph": "Descubra las ventajas de elegir nuestro servicio de mudanzas. Disfrute de una mudanza sin estrés con nuestro equipo especializado, que gestiona todos los aspectos, desde el embalaje hasta el transporte y desembalaje. Ahorre tiempo y energía confiándonos su mudanza, donde la eficiencia se une a la seguridad de sus pertenencias.",
+        "second-title": "Algunas de las <span>Ventajas</span> de mudarse con nosotros.",
+        "learn2": "Aprende más"
+    },
+    "third-card":{
+        "third-paragraph": "Empieza a ganar dinero con servicios de transporte, todo con un simple registro y con un servicio que se adapte a sus recursos",
+        "third-title": "Conviértete en un conductor de <span>Muvit</span>.",
+        "learn3": "Aprende más"
+    },
+    "fourth-card":{
+        "fourth-paragraph": "Con Muvit, tiene la oportunidad de rendir a un ritmo personalizado, adaptándose a la disponibilidad horaria de cada individuo. disponibilidad horaria de cada individuo. Este enfoque flexible permite a los empleados gestionar sus responsabilidades de forma eficaz, fomentando así un entorno de trabajo que valora la autonomía y la productividad. y fomentando así un entorno de trabajo que valora la autonomía y la productividad.",
+        "fourth-title": "Empieza a disfrutar de nuestras <span>Beneficios</span>.",
+        "learn4": "Aprende más"
+       
+    },
+    "translate-footer":{
+        "company": "Compañía",
+        "meetUs": "Reúnete con nosotros",
+        "aboutUs": "Sobre nosotros",
+        "offerings": "Nuestra oferta",
+        "newRooms": "Sala de prensa",
+        "inventors": "Inventores",
+        "servicesUs": "Nuestros servicios",
+        "contractUs": "Contrátanos",
+        "workUS": "Trabaja con nosotros",
+        "request": "Solicita tu servicio ahora",
+        "investOur": "Investiga nuestra Compañía",
+        "contactUs" : "Contacta con nosotros",
+        "socialMedia" : "Nuestras redes sociales"
+    }, 
+    "users":{
+
+    },
+    "drivers":{
+
+    }
+}

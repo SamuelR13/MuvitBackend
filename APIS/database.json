@@ -1,0 +1,244 @@
+{
+  "users": [
+    {
+      "id": "d123",
+      "numberUser": "3106410560",
+      "emailUser": "samuel@gmail.io",
+      "passUser": "@Samuel123",
+      "nameUser": "Samuel",
+      "lastNameUser": "Rodriguez",
+      "type": "User"
+    },
+    {
+      "id": "d124",
+      "numberUser": "3106410561",
+      "emailUser": "alejandra@gmail.com",
+      "passUser": "@Alejandra123",
+      "nameUser": "Alejandra",
+      "lastNameUser": "Valencia",
+      "type": "User"
+    },
+    {
+      "id": "d125",
+      "numberUser": "3106410562",
+      "emailUser": "santiago@gmail.com",
+      "passUser": "@Santiago123",
+      "nameUser": "Santiago",
+      "lastNameUser": "Restrepo",
+      "type": "User"
+    },
+    {
+      "id": "d126",
+      "numberUser": "3106410563",
+      "emailUser": "natalia@gmail.com",
+      "passUser": "@Natalia123",
+      "nameUser": "Natalia",
+      "lastNameUser": "Zuluaga",
+      "type": "User"
+    },
+    {
+      "id": "d127",
+      "numberUser": "3106410564",
+      "emailUser": "andres@gmail.com",
+      "passUser": "@Andres123",
+      "nameUser": "Andrés",
+      "lastNameUser": "Castañeda",
+      "type": "User"
+    },
+    {
+      "id": "d128",
+      "numberUser": "3106410565",
+      "emailUser": "camilo@gmail.com",
+      "passUser": "@Camilo123",
+      "nameUser": "Camilo",
+      "lastNameUser": "Ospina",
+      "type": "User"
+    },
+    {
+      "id": "d129",
+      "numberUser": "3106410566",
+      "emailUser": "manuela@gmail.com",
+      "passUser": "@Manuela123",
+      "nameUser": "Manuela",
+      "lastNameUser": "Arango",
+      "type": "User"
+    },
+    {
+      "id": "d130",
+      "numberUser": "3106410567",
+      "emailUser": "daniel@gmail.com",
+      "passUser": "@Daniel123",
+      "nameUser": "Daniel",
+      "lastNameUser": "Velez",
+      "type": "User"
+    },
+    {
+      "id": "d131",
+      "numberUser": "3106410568",
+      "emailUser": "valeria@gmail.com",
+      "passUser": "@Valeria123",
+      "nameUser": "Valeria",
+      "lastNameUser": "Jimenez",
+      "type": "User"
+    },
+    {
+      "id": "d132",
+      "numberUser": "3106410569",
+      "emailUser": "gabriel@gmail.com",
+      "passUser": "@Gabriel123",
+      "nameUser": "Gabriel",
+      "lastNameUser": "Marin",
+      "type": "User"
+    },
+    {
+      "id": "d133",
+      "numberUser": "3106410570",
+      "emailUser": "isabella@gmail.com",
+      "passUser": "@Isabella123",
+      "nameUser": "Isabella",
+      "lastNameUser": "Franco",
+      "type": "User"
+    },
+    {
+      "id": "c9c8",
+      "nameUser": "Antonio",
+      "lastName": "Gonzales",
+      "typeDoc": "cedula",
+      "numDoc": "4123432114",
+      "numberUser": "2134123421234",
+      "emailUser": "antonio@riwi.io",
+      "passUser": "@Samuel12345",
+      "type": "Driver"
+    },
+    {
+      "id": "849c",
+      "nameUser": "Hernan",
+      "lastName": "Gonzales",
+      "typeDoc": "cedula",
+      "numDoc": "23213213",
+      "numberUser": "1243124234",
+      "emailUser": "hernanconductor@riwi.io",
+      "passUser": "Hernan123!",
+      "type": "Driver"
+    }
+  ],
+  "services": [
+    {
+      "id": "bf2d",
+      "type": "Basic",
+      "size": "XL",
+      "assistants": 6,
+      "distance": "2.68",
+      "price": "$112.90",
+      "userId": "d128"
+    },
+    {
+      "id": "5c5b",
+      "type": "Basic",
+      "size": "XL",
+      "assistants": 6,
+      "distance": "2.68",
+      "price": "$112.90",
+      "userId": "d125"
+    },
+    {
+      "id": "7e6e",
+      "type": "Basic",
+      "size": "XL",
+      "assistants": 4,
+      "distance": "1.15",
+      "price": "$63.04",
+      "userId": "d129"
+    },
+    {
+      "id": "cb3b",
+      "type": "Basic",
+      "size": "XL",
+      "assistants": 6,
+      "distance": "9.69",
+      "price": "$247.49",
+      "userId": "d124"
+    },
+    {
+      "id": "b34e",
+      "type": "Basic",
+      "size": "M",
+      "assistants": 3,
+      "distance": "0.91",
+      "price": "$41.20",
+      "userId": "d123"
+    },
+    {
+      "id": "fb52",
+      "type": "Basic",
+      "size": "M",
+      "assistants": 4,
+      "distance": "1.20",
+      "price": "$54.78",
+      "userId": "d132"
+    },
+    {
+      "id": "db64",
+      "type": "Basic",
+      "size": "M",
+      "assistants": 2,
+      "distance": "2.57",
+      "price": "$50.09",
+      "userId": "d131"
+    },
+    {
+      "id": "441c",
+      "type": "Basic",
+      "size": "M",
+      "assistants": 2,
+      "distance": "1.92",
+      "price": "$42.60",
+      "userId": "d129"
+    },
+    {
+      "id": "0da1",
+      "type": "Basic",
+      "size": "XL",
+      "assistants": 6,
+      "distance": "1.31",
+      "price": "$86.59",
+      "userId": "d124"
+    },
+    {
+      "id": "1989",
+      "type": "Basic",
+      "size": "XL",
+      "assistants": 6,
+      "distance": "1.31",
+      "price": "$86.59",
+      "userId": "d124"
+    },
+    {
+      "id": "aa86",
+      "type": "Basic",
+      "size": "XL",
+      "assistants": 6,
+      "distance": "1.31",
+      "price": "$86.59",
+      "userId": "d124"
+    },
+    {
+      "id": "a959",
+      "type": "Basic",
+      "size": "M",
+      "assistants": 3,
+      "distance": "2.57",
+      "price": "$60.33",
+      "userId": "d133"
+    },
+    {
+      "id": "cfda",
+      "type": "Basic",
+      "size": "XL",
+      "assistants": 6,
+      "distance": "1.31",
+      "price": "$86.59",
+      "userId": "d124"
+    }
+  ]
+}

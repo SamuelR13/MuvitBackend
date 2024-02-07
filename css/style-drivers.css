@@ -1,0 +1,100 @@
+@font-face {
+    font-family: "TT Fors";
+    src: url(../fonts/tt_fors/TTForsTrialBold.ttf);
+  }
+  @font-face {
+    font-family: "TT Fors Medium";
+    src: url(../fonts/tt_fors/Medium.ttf);
+  }
+  @font-face {
+    font-family: "TT Fors Extralight";
+    src: url(../fonts/tt_fors/TT\ Fors\ Trial\ ExtraLight.ttf);
+  }
+  :root {
+    --textcolor: #000000;
+    /* --color-1: #ffc1a5; */
+    --color-1: #fdd8c7;
+    --color0: #ffc2a5;
+    --color1: #f87538;
+    --bg-color1: #f8753862;
+    --color2: #d36135;
+    --color3: #bf3b0b;
+    --color4: #852a08;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "TT Fors";
+    color: var(--textcolor);
+  }
+
+  
+/* HEADER */
+
+header nav {
+    margin: 10px;
+    border-radius: 15px;
+  }
+
+ 
+  
+  .navBtn {
+    border-radius: 15px;
+    transition: 0.5s;
+  }
+  
+  .navBtn:hover {
+    background-color: rgba(169, 169, 169, 0.348);
+  }
+  
+  .bg-color1 {
+    backdrop-filter: blur(5px);
+    background-color: var(--bg-color1);
+  }
+  .bg-color2 {
+    background-color: var(--color2);
+  }
+  .bg-color3 {
+    background-color: var(--color3);
+  }
+  
+  
+  .cont-cards{
+    margin: 5%;
+  }
+
+  .btn-primary {
+    background-color: var(--color1);
+    color: rgb(255, 255, 255);
+    transition: 0.6s;
+    border: none;
+  }
+  .btn-primary:hover {
+    background-color: var(--color3);
+    color: #ffffff;
+  }
+  .btn-delete{
+    background-color: var(--textcolor);
+    color: rgb(255, 255, 255);
+    transition: 0.6s;
+    border: none;
+  }
+  .btn-delete:hover{
+    background-color: gray;
+    color: #ffffff;
+  }
+  
+  .w-35 {
+    width: 35%;
+  }
+
+  .h-80{
+    height: 65%!important;
+
+  }
+  .h-90{
+    padding: 10px;
+    height: 90%!important;
+  }
+
