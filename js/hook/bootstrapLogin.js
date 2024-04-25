@@ -6,7 +6,7 @@
   const private = ["userHome.html"];
 
   if (private.includes(routeOn) && !isLoginUser) {
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
   } else {
     console.log("object");
   }

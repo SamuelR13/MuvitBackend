@@ -7,7 +7,7 @@ const tbody = document.querySelector("body")
 container.addEventListener("click", (event)=>{
 
     if (event.target.classList.contains('skip')) {
-    window.location.href = "unputRegDriver.html"
+    window.location.href = "../html/unputRegDriver.html"
 }
 });
 

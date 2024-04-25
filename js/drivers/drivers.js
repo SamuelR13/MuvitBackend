@@ -17,7 +17,7 @@ const confirmPasswordDriver = document.getElementById(
 
 container.addEventListener("click", (event) => {
   if (event.target.classList.contains("skip")) {
-    window.location.href = "unputRegDriver.html";
+    window.location.href = "../html/unputRegDriver.html";
   }
 });
 formDriver.addEventListener("submit", (event) => {
@@ -81,7 +81,7 @@ async function addInfo() {
       },
       body: JSON.stringify(obj),
     });
-    window.location.href = "unputRegDriver.html";
+    window.location.href = "../html/unputRegDriver.html";
   } catch (error) {
     showAlert(error);
   }

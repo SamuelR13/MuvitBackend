@@ -7,9 +7,9 @@
         "signup": "Inscription"
     },
     "headerImg":{
-        "dropdown-main-img":"img/SVG/français.svg",
-        "dropdown-position1-img":"img/SVG/español.svg",
-        "dropdown-position2-img":"img/SVG/english.svg"
+        "dropdown-main-img":"../assets/img/SVG/français.svg",
+        "dropdown-position1-img":"../assets/img/SVG/español.svg",
+        "dropdown-position2-img":"../assets/img/SVG/english.svg"
     },
     "headerText":{
         "dropdown-main-text":"Français",

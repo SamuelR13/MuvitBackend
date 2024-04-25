@@ -7,9 +7,9 @@
         "signup":"Registrarse"
     },
     "headerImg":{
-        "dropdown-main-img":"img/SVG/español.svg",
-        "dropdown-position1-img":"img/SVG/english.svg",
-        "dropdown-position2-img":"img/SVG/français.svg"
+        "dropdown-main-img":"../assets/img/SVG/español.svg",
+        "dropdown-position1-img":"../assets/img/SVG/english.svg",
+        "dropdown-position2-img":"../assets/img/SVG/français.svg"
     },
     "headerText":{
         "dropdown-main-text":"Español",

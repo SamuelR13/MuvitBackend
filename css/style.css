@@ -1,14 +1,14 @@
 @font-face {
   font-family: "TT Fors";
-  src: url(../fonts/tt_fors/TTForsTrialBold.ttf);
+  src: url(../assets/fonts/tt_fors/TTForsTrialBold.ttf);
 }
 @font-face {
   font-family: "TT Fors Medium";
-  src: url(../fonts/tt_fors/Medium.ttf);
+  src: url(../assets/fonts/tt_fors/Medium.ttf);
 }
 @font-face {
   font-family: "TT Fors Extralight";
-  src: url(../fonts/tt_fors/TT\ Fors\ Trial\ ExtraLight.ttf);
+  src: url(../assets/fonts/tt_fors/TT\ Fors\ Trial\ ExtraLight.ttf);
 }
 :root {
   --textcolor: #000000;

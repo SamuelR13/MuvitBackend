@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', showAccordion())
 container.addEventListener('click', event => {
 
     if (event.target.classList.contains('info-driver')) {
-        window.location.href = "drivers.html"
+        window.location.href = "../html/drivers.html"
     }
     if (event.target.classList.contains('mechanical-info')) {
       mainMessage.classList.add('d-none')
@@ -26,7 +26,7 @@ container.addEventListener('click', event => {
         loadInfoMechanical()
     }
     if (event.target.classList.contains('coworkers-info')){
-      window.location.href = "coworkers.html"
+      window.location.href = "../html/coworkers.html"
 
     }
 

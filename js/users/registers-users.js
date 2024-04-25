@@ -56,9 +56,9 @@ async function createUsers() {
             }),
         })
         const a = document.createElement('a')
-        a.href = 'success-register.html'
+        a.href = '../html/success-register.html'
         a.click()
-        window.location.href = 'success-register.html'
+        window.location.href = '../html/success-register.html'
     } catch (error) {
         mainAlert(error)
     }
@@ -149,5 +149,5 @@ function showAlert() {
     })
 }
 function replacePage() {
-    window.location.href = 'success-register.html'
+    window.location.href = '../html/success-register.html'
 }

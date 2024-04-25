@@ -43,10 +43,10 @@ async function loginUsers() {
                     userId: data[0].id,
                 }),
             })
-            window.location.href = 'index.html'
+            window.location.href = '../index.html'
         } else if (data[0].type === 'Driver') {
             console.log('Driver')
-            window.location.href = 'driverHome.html'
+            window.location.href = '../html/driverHome.html'
         }
 
         console.log('entré')

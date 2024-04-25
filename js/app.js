@@ -71,7 +71,7 @@ carousel.addEventListener('slid.bs.carousel', event => {
 muvit.addEventListener('click', () => {
     localStorage.setItem('confirmService', JSON.stringify(serviceDetails))
     if (!localStorage.getItem('isLoginUser')) {
-        window.location.href = 'login.html'
+        window.location.href = '../html/login.html'
     } else {
         window.location.href = 'userHome.html'
     }
@@ -99,7 +99,7 @@ saveBtn.addEventListener('click', () => {
 // -------------------------------------------------------------------------
 //Nos lleva al registro
 signUpBtn.addEventListener('click', () => {
-    window.location.replace('userRegister.html')
+    window.location.replace('../html/userRegister.html')
 })
 // --------------------------BOTONES DE ASISTENTES------------------
 //Aumenta o disminuye la cantidad de asistentes
@@ -197,7 +197,7 @@ function logOut() {
     localStorage.removeItem('isLoginUser')
     window.location.href = '.'
     btnLogReg.innerHTML = `<div class="navBtn">
-                            <a class="nav-link" href="login.html" data-section="header" data-value="login">Log In</a>
+                            <a class="nav-link" href="../../html/login.html" data-section="header" data-value="login">Log In</a>
                           </div>
                           <div class="navBtn">
                             <button class="signup-btn" data-section="header" data-value="signup">
@@ -270,7 +270,7 @@ function printAssis(size) {
         let random = Math.floor(Math.random() * (3 - 1) + 1)
         sizePosition[size].innerHTML += `
         <div id = "assis${contador}" class="h-100 w-12">
-          <img height="100%" width="100%" src="img/Trucks/assistant/assistant${random}.png" alt="">
+          <img height="100%" width="100%" src="../assets/img/Trucks/assistant/assistant${random}.png" alt="">
         </div>
         `
     }
@@ -492,7 +492,7 @@ div3.appendChild(renderer3.domElement)
 // Cargar el modelo GLTF
 const loader = new GLTFLoader()
 loader.load(
-    `model/sizeS.gltf`,
+    `assets/model/sizeS.gltf`,
     gltf => {
         const object3D = gltf.scene
         scene.add(object3D)
@@ -508,7 +508,7 @@ loader.load(
 )
 const loader2 = new GLTFLoader()
 loader2.load(
-    `model/sizeM.gltf`,
+    `assets/model/sizeM.gltf`,
     gltf => {
         const object3D2 = gltf.scene
         scene2.add(object3D2)
@@ -524,7 +524,7 @@ loader2.load(
 )
 const loader3 = new GLTFLoader()
 loader3.load(
-    `model/sizeXL.gltf`,
+    `assets/model/sizeXL.gltf`,
     gltf => {
         const object3D3 = gltf.scene
         scene3.add(object3D3)
