@@ -120,6 +120,15 @@
       "emailUser": "hernanconductor@riwi.io",
       "passUser": "Hernan123!",
       "type": "Driver"
+    },
+    {
+      "id": "5c1e",
+      "numberUser": "41234",
+      "emailUser": "samuel@eia",
+      "passUser": "@Samuel123",
+      "nameUser": "sa",
+      "lastNameUser": "sa",
+      "type": "User"
     }
   ],
   "services": [
