@@ -1,11 +1,11 @@
 
-const rolId = 0
+
 //Selectors`
-const URLbase = 'http://localhost:8080'
+const URLbase = 'http://localhost:8080/api/v1'
 const firstName = document.querySelector('#first-name')
 const lastName = document.querySelector('#last-name')
 const phoneUser = document.querySelector('#phone-number')
-const mailUser = document.querySelector('#email-user')
+const emailUser = document.querySelector('#email-user')
 const username = document.querySelector('#username-user')
 const passwordUser = document.querySelector('#password-user')
 const passwordConfirm = document.querySelector('#passCorfirm')
@@ -50,31 +50,21 @@ async function createUsers() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                nameUser:username.value,
-                password:passwordUser.value,
+                nameUser: username.value,
+                password: passwordUser.value,
                 rol: "User"
             }),
         })
-        const data = await response.json
-        rolId =  parseInt(data[0])
-        const a = document.createElement('a')
-        a.href = '../html/success-register.html'
-        a.click()
-        window.location.href = '../html/success-register.html'
-    } catch (error) {
-        mainAlert(error)
-    }
-
-    try {
+        const data = await response.json()
         await fetch(`${URLbase}/user`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                numberUser: phoneUser.value,
-                emailUser: mailUser.value,
-                nameUser: firstName.value,
-                lastNameUser: lastName.value,
-                rol: rolId,
+                phoneNumber: phoneUser.value,
+                email: emailUser.value,
+                name: firstName.value,
+                lastName: lastName.value,
+                rol: parseInt(data.id_rol),
             }),
         })
         const a = document.createElement('a')
@@ -83,6 +73,7 @@ async function createUsers() {
         window.location.href = '../html/success-register.html'
     } catch (error) {
         mainAlert(error)
+        console.log(error)
     }
 
 }
@@ -108,7 +99,7 @@ async function validatePassSafe() {
 
 async function validateEmail() {
     console.log('entré')
-    const response = await fetch(`${URLbase}/users?emailUser=${mailUser.value}`)
+    const response = await fetch(`${URLbase}/user?email=${emailUser.value}`)
     console.log(response)
     const data = await response.json()
     console.log(data)
