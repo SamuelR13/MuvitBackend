@@ -39,8 +39,8 @@ async function createUsers() {
         return
     }
 
-    if (await validateEmail()) {
-        console.log('Estoy en la condicion')
+    if (await validateEmail() > 1) {
+        console.log('Correo ya creado')
         showAlertEmail()
         return
     }
