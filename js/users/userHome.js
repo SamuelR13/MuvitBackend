@@ -7,51 +7,79 @@ const payment = document.querySelector('#payment')
 const notifications = document.querySelector('#notifications')
 const suggestions = document.querySelector('#suggestions')
 const chat = document.querySelector('#chat')
+const URLbase = "http://localhost:8080/api/v1/user/"
+let userData = ""
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    event.preventDefault()
+    getProfile()
+})
 
 const divs = {
-    preferences: `<div id="preferences" class="h-100 w-100">
-    <div class="max-w-4xl mx-auto p-6 bg-white dark:bg-zinc-800 shadow-md rounded-lg">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="md:col-span-2 space-y-4">
-            <div>
-                <label for="name" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Name</label>
-                <input type="text" id="name" name="name" value="Samuel Rodriguez" class="mt-1 block w-full px-3 py-2 border border-zinc-300 dark:border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-500 sm:text-sm">
+    preferences: `<div id="preferences" class="h-100 w-100 d-flex  align-items-center">     
+    <div class="row w-100">
+        <div class="col-8 d-flex flex-column">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="suggestionName" placeholder="Your name" value=${userData.name}>
+                <label for="suggestionName">Name</label>
             </div>
-            <div>
-            <label for="lastname" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Lastname</label>
-            <input type="text" id="lastname" name="lastname" value="Samuel Rodriguez" class="mt-1 block w-full px-3 py-2 border border-zinc-300 dark:border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-500 sm:text-sm">
-        </div>
-
-        <div>
-            <label for="email" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Email</label>
-            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-zinc-300 dark:border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-500 sm:text-sm">
-        </div>
-        <div>
-        <label for="phoneNumber" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">phoneNumber</label>
-        <input type="phoneNumber" id="phoneNumber" name="phoneNumber" class="mt-1 block w-full px-3 py-2 border border-zinc-300 dark:border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-500 sm:text-sm">
-        <button id="updateBtn" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md text-sm">Update All</button>
-        </div>
-    </div>
-
-    <div class="space-y-4">
-        <div class="flex flex-col items-center">
-            <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Profile picture</label>
-            <div class="mt-1">
-                <img class="w-32 h-32 rounded-full" src="https://placehold.co/128x128" alt="Profile Pictur  e">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="suggestionLastname" placeholder="Your name">
+                <label for="suggestionLastname">Lastname</label>
             </div>
-            <div class="relative mt-2">
-                <button id="editBtn" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm">Edit</button>
-                <div id="editDropdown" class="absolute hidden bg-white dark:bg-zinc-800 shadow-md dark:shadow-md rounded-md mt-2">
-                    <button class="block w-full px-4 py-2 text-left hover:bg-zinc-100 dark:hover:bg-zinc-700">Edit Photo</button>
-                    <button class="block w-full px-4 py-2 text-left hover:bg-zinc-100 dark:hover:bg-zinc-700">Remove Photo</button>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="userName" placeholder="Your name">
+                <label for="userName">User name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="suggestionEmail" placeholder="Your email">
+                <label for="suggestionEmail">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="suggestionsPhone" placeholder="Your phone number">
+                <label for="suggestionsPhone">Phone number</label>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" placeholder="Your phone number">
+                    <label for="password">Current Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="newPassword" placeholder="Your phone number">
+                    <label for="newPassword">New Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="newPasswordConfirmation" placeholder="">
+                    <label for="newPasswordConfirmation">New Password Confirmation</label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="form-floating mb-3">
+                    <button type="button" class="btn btn-outline-warning">Edit profile</button>
+                </div>
+                <div class="form-floating mb-3">
+                    <button type="button" class="btn btn-outline-warning2">DELETE profile</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="d-flex flex-column align-items-center">
+                <label class="block">Profile picture</label>
+                <div class="mt-3">
+                    <img class="rounded-full" height="200px" width="200px" src="https://placehold.co/200x200" alt="Profile Pictur  e">
+                </div>
+                <div class="relative mt-4">
+                    <button type="button" class="btn btn-outline-warning" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</button>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Edit photo</a></li>
+                    <li><a class="dropdown-item" href="#">Remove photo</a></li>
+                  </ul>
+                
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-
-    </div>`,
+</div>`,
     trips: `            <div id="trips" class="h-100 w-75 px-2">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -74,7 +102,58 @@ const divs = {
             tabindex="0">...</div>
     </div>
 </div>` ,
-    payment: `<div id="payment" class="h-100 w-75 px-2">PAYMENT</div>`,
+    payment: `<div id="payment" class="h-100 w-100">
+    <div class="card mt-5 mb-5">
+            <form>
+                <span id="card-header">Saved cards:</span>
+                <div class="row row-1">
+                    <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/mastercard-logo.png"/></div>
+                    <div class="col-7">
+                        <input type="text" placeholder="**** **** **** 3193">
+                    </div>
+                    <div class="col-3 d-flex justify-content-center">
+                        <a href="#">Remove card</a>
+                    </div>
+                </div>
+                <div class="row row-1">
+                    <div class="col-2"><img  class="img-fluid" src="https://img.icons8.com/color/48/000000/visa.png"/></div>
+                    <div class="col-7">
+                        <input type="text" placeholder="**** **** **** 4296">
+                    </div>
+                    <div class="col-3 d-flex justify-content-center">
+                        <a href="#">Remove card</a>
+                    </div>
+                </div>
+                <span id="card-header">Add new card:</span>
+                <div class="row-1">
+                    <div class="row row-2">
+                        <span id="card-inner">Card holder name</span>
+                    </div>
+                    <div class="row row-2">
+                        <input type="text" placeholder="Bojan Viner">
+                    </div>
+                </div>
+                <div class="row three">
+                    <div class="col-7">
+                        <div class="row-1">
+                            <div class="row row-2">
+                                <span id="card-inner">Card number</span>
+                            </div>
+                            <div class="row row-2">
+                                <input type="text" placeholder="5134-5264-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" placeholder="Exp. date">
+                    </div>
+                    <div class="col-2">
+                        <input type="text" placeholder="CVV">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-outline-warning">Add Card</button>
+                </form>
+        </div></div>`,
     notifications: `<div id="notifications" class="h-100 w-75 px-2">NOTIFICATRIONS</div>`,
     suggestions: `<div class="contact-form h-100 w-100">
     <form method="post">
@@ -93,9 +172,11 @@ const divs = {
           <input type="text" class="form-control" id="suggestionsPhone" placeholder="Your phone number">
           <label for="suggestionsPhone">Phone number</label>
             </div>
+
             <div class="form-group">
-            <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
-        </div>
+            <button type="button" class="btn btn-outline-warning">Send message</button>
+            </div>
+            
             </div>
             <div class="col-md-6">
             <div class="form-floating">
@@ -109,10 +190,19 @@ const divs = {
     chat: `<div id="chat" class="h-100 w-75 px-2">chat</div>`
 }
 
-menu.addEventListener("click", (event) => {
+menu.addEventListener("click", async (event) => {
     event.preventDefault()
     if (event.target.id == "home") window.location.href = '../index.html'
+    if (event.target.id == "undefined") pass
     console.log(event.target.id)
-    info.innerHTML = divs[event.target.id]
+    console.log(userData)
+    console.log(userData.name)
+    info.innerHTML = await divs[event.target.id]
 })
+
+async function getProfile() {
+    const response = await fetch(`${URLbase}ed980e41-19dc-4da4-8570-7646d5892ca0`)
+    const user = await response.json()
+    userData = await user
+}
 

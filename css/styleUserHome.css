@@ -149,44 +149,204 @@ header nav {
   padding: 10px;
   height: 90% !important;
 }
-.contact-form{
-  background: #fff;
+
+
+.contact-form .form-control {
+  border-radius: 1rem;
 }
-.contact-form .form-control{
-  border-radius:1rem;
-}
-.contact-form form{
+
+.contact-form form {
   padding: 14%;
 }
-.contact-form form .row{
+
+.contact-form form .row {
   margin-bottom: -7%;
 }
-.contact-form h3{
+
+.contact-form h3 {
   margin-bottom: 8%;
   margin-top: -10%;
   text-align: center;
   color: var(--color2);
 }
-.contact-form .btnContact {
-  width: 50%;
-  border: none;
-  border-radius: 1rem;
-  padding: 1.5%;
-  background: var(--color1);
-  font-weight: 600;
-  color: #fff;
+
+
+.btn-outline-warning {
+  color: var(--color1);
+  border-color: var(--color1);
+  --bs-btn-active-color: var(--color1);
+  --bs-btn-active-bg: #fff;
+  --bs-btn-active-border-color: var(--color1);
+  --bs-btn-border-color: var(--color1);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--color1);
+  --bs-btn-hover-border-color: var(--color1);
   cursor: pointer;
 }
-.btnContactSubmit
-{
-  width: 50%;
-  border-radius: 1rem;
-  padding: 1.5%;
-  color: #fff;
-  background-color: var(--color2);
-  border: none;
-  cursor: pointer;
+
+.btn-outline-warning2 {
+  color: red;
+  border-color: red;
+  --bs-btn-active-color: red;
+  --bs-btn-active-bg: #fff;
+  --bs-btn-active-border-color: red;
+  --bs-btn-border-color: red;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: red;
+  --bs-btn-hover-border-color: red;
 }
-.bg-blue-500{
-   background-color: var(--color2)!important;
+
+.dropdown-item {
+  --bs-dropdown-link-hover-bg: var(--color0);
+  --bs-dropdown-link-active-bg: var(--color2);
+  --bs-dropdown-link-active-color: black;
+
+}
+
+/* ------------------------------------------------PAYMENT---------------------- */
+.card {
+  width: 50%;
+  padding: 3rem 3.5rem;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav ul {
+  list-style-type: none;
+  display: flex;
+  padding-inline-start: unset;
+  margin-bottom: 6vh;
+}
+
+.nav li {
+  padding: 1rem;
+}
+
+.nav li a {
+  color: black;
+  text-decoration: none;
+}
+
+input {
+  border: none;
+  outline: none;
+  color: #000;
+  width: 100%;
+  min-width: unset;
+  background-color: transparent;
+  border-color: transparent;
+  margin: 0;
+}
+
+form a {
+  color: grey;
+  text-decoration: none;
+  font-size: 0.87rem;
+  font-weight: bold;
+}
+
+form a:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+form .row {
+  margin: 0;
+  overflow: hidden;
+}
+
+form .row-1 {
+  padding: 0.5rem;
+  outline: none;
+  width: 100%;
+  min-width: unset;
+  border-radius: 5px;
+  background-color: rgba(221, 228, 236, 0.301);
+  border-color: rgba(221, 228, 236, 0.459);
+  margin: 2vh 0;
+  overflow: hidden;
+}
+
+form .row-2 {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0 0.8rem;
+}
+
+form .row .row-2 {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0 0.8rem;
+}
+
+form .row .col-2,
+.col-7,
+.col-3 {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 1vh;
+}
+
+form .row .col-2 {
+  padding-right: 0;
+}
+
+#card-header {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+#card-inner {
+  font-size: 0.7rem;
+  color: gray;
+}
+
+.three .col-7 {
+  padding-left: 0;
+}
+
+.three {
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.three .col-2 {
+  padding: 0.5rem;
+  outline: none;
+  width: 100%;
+  min-width: unset;
+  border-radius: 5px;
+  background-color: rgba(221, 228, 236, 0.301);
+  border-color: rgba(221, 228, 236, 0.459);
+  margin: 2vh 0;
+  width: fit-content;
+  overflow: hidden;
+}
+
+.three .col-2 input {
+  font-size: 0.7rem;
+  margin-left: 1vh;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
 }

@@ -21,7 +21,7 @@ let serviceDetails = {
 }
 
 const URLData = 'http://localhost:3000/services'
-const URLbase = `http://localhost:3000/users`
+const URLbase = `http://localhost:3000/user`
 // --------------------------SELECTORES------------------------
 
 const dropdownMenu = document.querySelector('#dropdown-menu')
@@ -52,11 +52,10 @@ const serviceSpecification = document.querySelector("#specifications")
 
 // Verificamos cada que se recarga el INDEX si el usuario se encuetra logueado
 document.addEventListener('DOMContentLoaded', (event) => {
-    console.log("HOla putas");
     event.preventDefault()
     getProfile()
     serviceConfirm()
-    
+
 })
 //Escuchamos cuando el carrusel principal termina la animacion para cambiar el valor del Size y actualizamos algunas variables importantes
 carousel.addEventListener('slid.bs.carousel', event => {
@@ -151,8 +150,8 @@ async function serviceConfirm() {
     console.log(detailsService.user.id);
 
 
-    detailsService.forEach((service)=>{
-      serviceSpecification.innerHTML =`
+    detailsService.forEach((service) => {
+        serviceSpecification.innerHTML = `
       <p><span>Output:</span> Carrera 80 #79b-31</p>
       <p><span>Arrival:</span> Calle 56 #23A</p>
       <p><span>Service:</span> ${service.type}</p>
@@ -162,8 +161,8 @@ async function serviceConfirm() {
       <p><span>Vehicle plate</span> XFA333A</p>
       <p><span>Price</span> ${service.price}</p>
       `
-    })
-  }
+    })
+}
 
 //Obtenemos el perfil del usuario registrado para que se muestre su informcion en el index
 async function getProfile() {
@@ -325,8 +324,8 @@ function price() {
     //Hacemos la operacion para encontrar el precio p = km*(pkm*mT)+A*PA    (km=distancia,pkm=precio por kilometro,mT=multiplicador de tamaño,A=asistentes,PA=precio por asistente)
     let value =
         serviceDetails.distance *
-            (currencyPricesKilo[currency[lenguaje]] *
-                multiplicator[serviceDetails.size]) +
+        (currencyPricesKilo[currency[lenguaje]] *
+            multiplicator[serviceDetails.size]) +
         serviceDetails.assistants * currencyPricesAsis[currency[lenguaje]]
 
     serviceDetails.price = currencyFormatter({
