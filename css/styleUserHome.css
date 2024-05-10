@@ -182,7 +182,6 @@ header nav {
   --bs-btn-hover-bg: var(--color1);
   --bs-btn-hover-border-color: var(--color1);
   cursor: pointer;
-  pointer-events: none;
 }
 
 .btn-outline-warning2 {

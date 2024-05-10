@@ -42,10 +42,10 @@ export function preferencesUser(userData){
             </div>
             <div class="d-flex justify-content-between">
                 <div class="form-floating mb-3">
-                    <button type="submit"  id="editButton" class="btn btn-outline-warning">Edit profile</button>
+                    <button  id="editButton" class="btn btn-outline-warning">Edit profile</button>
                 </div>
                 <div class="form-floating mb-3">
-                    <button type="submit" id="deleteButton" class="btn btn-outline-warning2">DELETE profile</button>
+                    <button  id="deleteButton" class="btn btn-outline-warning2">DELETE profile</button>
                 </div>
             </div>
         </div>
@@ -67,7 +67,6 @@ export function preferencesUser(userData){
         </div>
     </div>
     </div>`
-}
 
 const editName = document.querySelector("#editName")
 const editLastname = document.querySelector("#editLastname")
@@ -80,25 +79,108 @@ const newPasswordConfirmation = document.querySelector("#newPasswordConfirmation
 const editButton = document.querySelector("#editButton")
 const deleteButton = document.querySelector("#deleteButton")
 
-editButton.addEventListener("submit",async (event)=>{
+editButton.addEventListener("click",async (event)=>{
+    const URLbase = "http://localhost:8080/api/v1/"
     event.preventDefault()
     if(!newPassword.value){
         try {
-            const response = await fetch(`${URLbase}/user/${userData.id}`, {
+            const response = await fetch(`${URLbase}user/${userData.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    phoneNumber: phoneUser.value,
-                    email: emailUser.value,
-                    name: firstName.value,
-                    lastName: lastName.value,
+                    phoneNumber: editPhone.value,
+                    email: editEmail.value,
+                    name: editName.value,
+                    lastName: editLastname.value,
                     rol: parseInt(userData.rol["id_rol"]),
                 }),
             })
+            const responseRol = await fetch(`${URLbase}rol/${userData.rol["id_rol"]}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nameUser: editUserName.value,
+                    password: newPassword.value,    
+                    rol: "User"
+                }),
+            })
             const data = await response.json()
+            const dataRol = await responseRol.json()
             console.log("actualizado");
+            showAlertEdit()
         } catch (error) {
             console.log(error)
         }
     }
 })
+
+deleteButton.addEventListener("click",event =>{
+    showAlertDelete()
+})
+
+function showAlertEdit() {
+    Swal.fire({
+        position: "top-start'",
+        icon: "success",
+        title: "Correctly edited, reload the page to see the changes.",
+        showConfirmButton: true,
+        timer: 3000,
+        confirmButtonText: 'Close',
+        confirmButtonColor: '#FF0000',
+    })
+}
+async function deleteUser (){
+    const URLbase = "http://localhost:8080/api/v1/"
+    try {
+        responseRol = await fetch(`${URLbase}rol/${userData.rol["id_rol"]}`, {
+            method: 'DELETE',
+        })
+        console.log("elimindo");
+    } catch (error) {
+        console.log(error)
+    }
+}
+function showAlertDelete(){
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+            deleteUser()
+          swalWithBootstrapButtons.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your imaginary file is safe :)",
+            icon: "error"
+          });
+        }
+      });
+}
+
+
+
+
+
+
+}
+

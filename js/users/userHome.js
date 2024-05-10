@@ -193,9 +193,6 @@ menu.addEventListener("click", async (event) => {
     }
     if (event.target.id == "home") window.location.href = '../index.html'
     if (event.target.id == "undefined") pass
-    console.log(event.target.id)
-    console.log(userData)
-    console.log(userData.name)
     switch (event.target.id){
         case "preferences":
            preferencesUser(userData)
@@ -209,6 +206,7 @@ async function getProfile() {
     const response = await fetch(`${URLbase}7469626a-b9e4-4b3f-be0b-3c9c1686fbba`)
     const user = await response.json()
     userData = await user
+    console.log(userData)
 }
 
 
