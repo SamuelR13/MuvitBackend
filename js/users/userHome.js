@@ -7,6 +7,7 @@ const notifications = document.querySelector('#notifications')
 const suggestions = document.querySelector('#suggestions')
 const chat = document.querySelector('#chat')
 const URLbase = "http://localhost:8080/api/v1/user/"
+const userPhoto = document.querySelector("#userPhoto")
 let userData = ""
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -68,7 +69,7 @@ menu.addEventListener("click", async (event) => {
                 <div class="d-flex flex-column align-items-center">
                     <label class="block">Profile picture</label>
                     <div class="mt-3">
-                        <img class="rounded-full" height="200px" width="200px" src="https://placehold.co/200x200" alt="Profile Pictur  e">
+                        <img class="rounded-full" height="200px" width="200px" src="https://placehold.co/200x200/EEE/31343C?font=oswald&text=SR" alt="Profile Pictur  e">
                     </div>
                     <div class="relative mt-4">
                         <button type="button" class="btn btn-outline-warning" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</button>
@@ -80,7 +81,7 @@ menu.addEventListener("click", async (event) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>gmail
     </div>`,
         trips: `            <div id="trips" class="h-100 w-75 px-2">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -193,17 +194,17 @@ menu.addEventListener("click", async (event) => {
     }
     if (event.target.id == "home") window.location.href = '../index.html'
     if (event.target.id == "undefined") pass
-    switch (event.target.id){
+    switch (event.target.id) {
         case "preferences":
-           preferencesUser(userData)
-           break
+            preferencesUser(userData)
+            break
     }
     // info.innerHTML = await divs[event.target.id]
-    
+
 })
 
 async function getProfile() {
-    const response = await fetch(`${URLbase}7469626a-b9e4-4b3f-be0b-3c9c1686fbba`)
+    const response = await fetch(`${URLbase}98757462-eab5-4817-b871-beecc513e295`)
     const user = await response.json()
     userData = await user
     console.log(userData)

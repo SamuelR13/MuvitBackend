@@ -1,7 +1,7 @@
 
 const info = document.querySelector("#info")
 
-export function preferencesUser(userData){
+export function preferencesUser(userData) {
     console.log(userData)
     info.innerHTML = `<div id="preferences" class="h-100 w-100 d-flex  align-items-center">     
     <div class="row w-100">
@@ -53,12 +53,12 @@ export function preferencesUser(userData){
             <div class="d-flex flex-column align-items-center">
                 <label class="block">Profile picture</label>
                 <div class="mt-3">
-                    <img class="rounded-full" height="200px" width="200px" src="https://placehold.co/200x200" alt="Profile Pictur  e">
+                    <img class="rounded-full" height="200px" width="200px" src=${userData.rol["userPhoto"]} alt="Profile Picture">
                 </div>
                 <div class="relative mt-4">
                     <button type="button" class="btn btn-outline-warning" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</button>
                     <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Edit photo</a></li>
+                    <li><a id="editPhoto" class="dropdown-item" href="#">Edit photo</a></li>
                     <li><a class="dropdown-item" href="#">Remove photo</a></li>
                   </ul>
                 
@@ -68,21 +68,38 @@ export function preferencesUser(userData){
     </div>
     </div>`
 
-const editName = document.querySelector("#editName")
-const editLastname = document.querySelector("#editLastname")
-const editUserName = document.querySelector("#editUserName")
-const editEmail = document.querySelector("#editEmail")
-const editPhone = document.querySelector("#editPhone")
-const password = document.querySelector("#password")
-const newPassword = document.querySelector("#newPassword")
-const newPasswordConfirmation = document.querySelector("#newPasswordConfirmation")
-const editButton = document.querySelector("#editButton")
-const deleteButton = document.querySelector("#deleteButton")
+    const editName = document.querySelector("#editName")
+    const editLastname = document.querySelector("#editLastname")
+    const editUserName = document.querySelector("#editUserName")
+    const editEmail = document.querySelector("#editEmail")
+    const editPhone = document.querySelector("#editPhone")
+    const password = document.querySelector("#password")
+    const newPassword = document.querySelector("#newPassword")
+    const newPasswordConfirmation = document.querySelector("#newPasswordConfirmation")
+    const editButton = document.querySelector("#editButton")
+    const deleteButton = document.querySelector("#deleteButton")
+    const currentPassword = ""
+    const editPhoto = document.querySelector("#editPhoto")
+    let urlPhoto = ""
 
-editButton.addEventListener("click",async (event)=>{
-    const URLbase = "http://localhost:8080/api/v1/"
-    event.preventDefault()
-    if(!newPassword.value){
+    var myWidget = cloudinary.createUploadWidget({
+        cloudName: 'dis8xzifs',
+        uploadPreset: 'default'
+    }, (error, result) => {
+        if (!error && result && result.event === "success") {
+            console.log('Done! Here is the image info: ', result.info);
+            urlPhoto = result.info["secure_url"]
+            console.log(urlPhoto)
+        }
+    }
+    )
+    editPhoto.addEventListener("click", () => {
+        myWidget.open()
+    })
+    editButton.addEventListener("click", async (event) => {
+        const URLbase = "http://localhost:8080/api/v1/"
+        event.preventDefault()
+
         try {
             const response = await fetch(`${URLbase}user/${userData.id}`, {
                 method: 'PUT',
@@ -100,8 +117,9 @@ editButton.addEventListener("click",async (event)=>{
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     nameUser: editUserName.value,
-                    password: newPassword.value,    
-                    rol: "User"
+                    password: currentPassword,
+                    rol: "User",
+                    userPhoto: urlPhoto
                 }),
             })
             const data = await response.json()
@@ -111,73 +129,147 @@ editButton.addEventListener("click",async (event)=>{
         } catch (error) {
             console.log(error)
         }
-    }
-})
 
-deleteButton.addEventListener("click",event =>{
-    showAlertDelete()
-})
-
-function showAlertEdit() {
-    Swal.fire({
-        position: "top-start'",
-        icon: "success",
-        title: "Correctly edited, reload the page to see the changes.",
-        showConfirmButton: true,
-        timer: 3000,
-        confirmButtonText: 'Close',
-        confirmButtonColor: '#FF0000',
     })
-}
-async function deleteUser (){
-    const URLbase = "http://localhost:8080/api/v1/"
-    try {
-        responseRol = await fetch(`${URLbase}rol/${userData.rol["id_rol"]}`, {
-            method: 'DELETE',
+
+    deleteButton.addEventListener("click", event => {
+        showAlertDelete()
+    })
+
+    function showAlertEdit() {
+        Swal.fire({
+            position: "top-start'",
+            icon: "success",
+            title: "Correctly edited, reload the page to see the changes.",
+            showConfirmButton: true,
+            timer: 3000,
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF0000',
         })
-        console.log("elimindo");
-    } catch (error) {
-        console.log(error)
     }
-}
-function showAlertDelete(){
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: "btn btn-success",
-          cancelButton: "btn btn-danger"
-        },
-        buttonsStyling: false
-      });
-      swalWithBootstrapButtons.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!",
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-            deleteUser()
-          swalWithBootstrapButtons.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success"
-          });
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire({
-            title: "Cancelled",
-            text: "Your imaginary file is safe :)",
-            icon: "error"
-          });
+    async function deleteUser() {
+        const URLbase = "http://localhost:8080/api/v1/"
+        try {
+            responseRol = await fetch(`${URLbase}rol/${userData.rol["id_rol"]}`, {
+                method: 'DELETE',
+            })
+            console.log("elimindo");
+        } catch (error) {
+            console.log(error)
         }
-      });
-}
+    }
+    function showAlertDelete() {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteUser()
+                swalWithBootstrapButtons.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: "Cancelled",
+                    text: "Your imaginary file is safe :)",
+                    icon: "error"
+                });
+            }
+        });
+    }
 
+    function validatePass() {
+        if (newPassword.value != newPasswordConfirmation.value) {
+            return {
+                validate: false,
+            }
+        }
+        return { validate: true }
+    }
 
+    async function validatePassSafe() {
+        const methodPass =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/
+
+        if (methodPass.test(newPassword.value)) {
+            console.log(newPassword.value)
+            return true
+        }
+        return false
+    }
+
+    function showAlertSafePass() {
+        Swal.fire({
+            title: `Password isn't safe...`,
+            text: 'The password is not secure. It must have at least one uppercase and lowercase letter, a special character, numbers, and a minimum range of 8 characters.',
+            icon: 'error',
+            toast: 'true',
+            timer: 10000,
+            showconfirmButton: false,
+            position: 'center',
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF0000',
+        })
+    }
+
+    function showAlertEmail() {
+        Swal.fire({
+            title: `There are similar email...`,
+            text: 'choose it!',
+            icon: 'error',
+            toast: 'true',
+            timer: 10000,
+            showconfirmButton: false,
+            position: 'center',
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF0000',
+        })
+    }
+
+    function mainAlert() {
+        Swal.fire({
+            title: 'Error!',
+            text: 'Algo salió mal',
+            icon: 'error',
+            toast: 'true',
+            timer: 4000,
+            showconfirmButton: false,
+            position: 'center',
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF0000',
+        })
+    }
+
+    function showAlert() {
+        Swal.fire({
+            title: 'Oops...!',
+            text: 'Passwords do not match!',
+            icon: 'error',
+            toast: 'true',
+            timer: 4000,
+            showconfirmButton: false,
+            position: 'center',
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF0000',
+        })
+    }
 
 
 

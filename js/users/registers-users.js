@@ -25,6 +25,7 @@ formReg.addEventListener('submit', event => {
 //Functions
 
 async function createUsers() {
+    const photoText = firstName.value[0] + lastName.value[0]
     const { validate } = validatePass()
     if (!validate) {
         showAlert()
@@ -52,7 +53,8 @@ async function createUsers() {
             body: JSON.stringify({
                 nameUser: username.value,
                 password: passwordUser.value,
-                rol: "User"
+                rol: "User",
+                userPhoto: `https://placehold.co/200x200/EEE/31343C?font=oswald&text=${photoText}`
             }),
         })
         const data = await response.json()
