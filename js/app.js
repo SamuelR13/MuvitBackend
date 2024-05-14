@@ -18,6 +18,8 @@ let serviceDetails = {
     assistants: 0,
     distance: 0,
     price: 0,
+    start: "",
+    final: ""
 }
 
 const URLData = 'http://localhost:3000/services'
@@ -306,7 +308,6 @@ function price() {
         Français: 'EUR',
     }
     console.log(lenguaje)
-    console.log(currency.lenguaje)
     //Configuramos el precio por kilometro en cada divisa
     const currencyPricesKilo = {
         COP: 30000,
@@ -395,6 +396,20 @@ if (!'geolocation' in navigator) {
                     routes.map(r => r.distance) / 1000
                 ).toFixed(2)
                 price()
+                let waypoints = e.waypoints
+                let lengthRoute = e.route[0]["legs"][0]["steps"]["length"]
+                let start = e.route[0]["legs"][0]["steps"][0]["maneuver"]["location"]
+                let final = e.route[0]["legs"][0]["steps"][lengthRoute - 1]["maneuver"]["location"]
+
+                serviceDetails.start = `${start[0]}/${start[1]}`
+                serviceDetails.final = `${final[0]}/${final[1]}`
+
+                console.log(serviceDetails)
+                // let puntoInicial = coordenadasRuta[0];
+                // let puntoFinal = coordenadasRuta[coordenadasRuta.length - 1];
+
+                // console.log("Punto inicial:", puntoInicial);
+                // console.log("Punto final:", puntoFinal);
             })
         },
         error => {

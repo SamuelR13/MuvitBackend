@@ -1,5 +1,5 @@
 import { preferencesUser } from "./userHome/preferencesUser.js"
-import { trips } from  "./userHome/trips.js"
+import { trips } from "./userHome/trips.js"
 
 const menu = document.querySelector("#menu")
 const URLbase = "http://localhost:8080/api/v1/user/"
@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     userDataGlobal = userData
     name.innerHTML = `${userData.name} ${userData.lastName}`
     username.innerHTML = `${userData.rol["nameUser"]}`
-    userPhoto.setAttribute("src" , `${userData.rol["userPhoto"]}`)
+    userPhoto.setAttribute("src", `${userData.rol["userPhoto"]}`)
+    trips(userDataGlobal)
 })
 
 
@@ -125,7 +126,7 @@ menu.addEventListener("click", async (event) => {
 })
 
 async function getProfile() {
-    const response = await fetch(`${URLbase}800cb041-8575-4daa-bf0f-078d28d1cfd4`)
+    const response = await fetch(`${URLbase}ed980e41-19dc-4da4-8570-7646d5892ca0`)
     const user = await response.json()
     const userData = await user
     return userData

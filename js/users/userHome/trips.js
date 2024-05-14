@@ -1,9 +1,9 @@
 const info = document.querySelector("#info")
 
 
-export function trips(userData){
+export function trips(userData) {
     console.log(userData)
-    info.innerHTML =`            
+    info.innerHTML = `            
     <div id="trips" class="h-100 w-75 px-2">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">

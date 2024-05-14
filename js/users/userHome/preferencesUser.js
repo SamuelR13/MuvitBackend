@@ -90,8 +90,8 @@ export function preferencesUser(userData) {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
             urlPhoto = result.info["secure_url"]
-            userPhotoEdit.setAttribute("src",`${urlPhoto}`)
-            editPhoto.setAttribute("src",`${urlPhoto}`)
+            userPhotoEdit.setAttribute("src", `${urlPhoto}`)
+            editPhoto.setAttribute("src", `${urlPhoto}`)
             console.log(urlPhoto)
         }
     }
@@ -104,13 +104,13 @@ export function preferencesUser(userData) {
     editButton.addEventListener("click", async (event) => {
         const URLbase = "http://localhost:8080/api/v1/"
         event.preventDefault()
-        if(newPassword.value != null && password != newPassword){
+        if (newPassword.value != null && password != newPassword) {
             const { validate } = validatePass()
             if (!validate) {
                 showAlert()
                 return
             }
-        
+
             const valido = validatePassSafe()
             console.log(valido)
             if (!valido) {
@@ -118,7 +118,7 @@ export function preferencesUser(userData) {
                 showAlertSafePass()
                 return
             }
-            currentPassword = newPassword 
+            currentPassword = newPassword
         }
         try {
             const response = await fetch(`${URLbase}user/${userData.id}`, {
@@ -201,7 +201,7 @@ export function preferencesUser(userData) {
                 deleteUser()
                 swalWithBootstrapButtons.fire({
                     title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    text: "Your profile has been deleted.",
                     timer: 3000,
                     icon: "success"
                 });
@@ -212,7 +212,7 @@ export function preferencesUser(userData) {
             ) {
                 swalWithBootstrapButtons.fire({
                     title: "Cancelled",
-                    text: "Your imaginary file is safe :)",
+                    text: "Your profile is safe :)",
                     icon: "error"
                 });
             }
