@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000/users";
+const URL = "'http://localhost:8080/api/v1";
 
 const formDriver = document.getElementById("form-driver");
 
@@ -74,7 +74,19 @@ async function addInfo() {
       passUser: passwordDriver.value,
       type: "Driver",
     };
-    const response = await fetch(URL, {
+    const responseRol = await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nameUser: nameDriver.value,   
+        password: passwordDriver.value,
+        rolEnum: "Driver",
+        userPhoto: `https://placehold.co/200x200/EEE/31343C?font=oswald&text=${photoText}`
+      }),
+    });
+    const responseDriver = await fetch(URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

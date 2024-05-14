@@ -53,7 +53,7 @@ export function preferencesUser(userData) {
             <div class="d-flex flex-column align-items-center">
                 <label class="block">Profile picture</label>
                 <div class="mt-3">
-                    <img class="rounded-full" height="200px" width="200px" src=${userData.rol["userPhoto"]} alt="Profile Picture">
+                    <img id="userPhotoEdit" class="rounded-full" height="200px" width="200px" src=${userData.rol["userPhoto"]} alt="Profile Picture">
                 </div>
                 <div class="relative mt-4">
                     <button type="button" class="btn btn-outline-warning" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</button>
@@ -78,9 +78,10 @@ export function preferencesUser(userData) {
     const newPasswordConfirmation = document.querySelector("#newPasswordConfirmation")
     const editButton = document.querySelector("#editButton")
     const deleteButton = document.querySelector("#deleteButton")
-    const currentPassword = ""
+    let currentPassword = password.value
     const editPhoto = document.querySelector("#editPhoto")
-    let urlPhoto = ""
+    const userPhotoEdit = document.querySelector("#userPhotoEdit")
+    let urlPhoto = userData.rol["userPhoto"]
 
     var myWidget = cloudinary.createUploadWidget({
         cloudName: 'dis8xzifs',
@@ -89,9 +90,13 @@ export function preferencesUser(userData) {
         if (!error && result && result.event === "success") {
             console.log('Done! Here is the image info: ', result.info);
             urlPhoto = result.info["secure_url"]
+            userPhotoEdit.setAttribute("src",`${urlPhoto}`)
+            editPhoto.setAttribute("src",`${urlPhoto}`)
             console.log(urlPhoto)
         }
     }
+
+
     )
     editPhoto.addEventListener("click", () => {
         myWidget.open()
@@ -99,7 +104,22 @@ export function preferencesUser(userData) {
     editButton.addEventListener("click", async (event) => {
         const URLbase = "http://localhost:8080/api/v1/"
         event.preventDefault()
-
+        if(newPassword.value != null && password != newPassword){
+            const { validate } = validatePass()
+            if (!validate) {
+                showAlert()
+                return
+            }
+        
+            const valido = validatePassSafe()
+            console.log(valido)
+            if (!valido) {
+                console.log(valido)
+                showAlertSafePass()
+                return
+            }
+            currentPassword = newPassword 
+        }
         try {
             const response = await fetch(`${URLbase}user/${userData.id}`, {
                 method: 'PUT',
@@ -116,10 +136,10 @@ export function preferencesUser(userData) {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    nameUser: editUserName.value,
-                    password: currentPassword,
-                    rol: "User",
-                    userPhoto: urlPhoto
+                    nameUser: `${editUserName.value}`,
+                    password: `${currentPassword.value}`,
+                    rolEnum: "User",
+                    userPhoto: `${urlPhoto}`
                 }),
             })
             const data = await response.json()
@@ -129,6 +149,7 @@ export function preferencesUser(userData) {
         } catch (error) {
             console.log(error)
         }
+
 
     })
 
@@ -150,10 +171,11 @@ export function preferencesUser(userData) {
     async function deleteUser() {
         const URLbase = "http://localhost:8080/api/v1/"
         try {
-            responseRol = await fetch(`${URLbase}rol/${userData.rol["id_rol"]}`, {
+            responseRol = await fetch(`${URLbase}user/${userData.id}`, {
                 method: 'DELETE',
             })
-            console.log("elimindo");
+            console.log("eliminado");
+
         } catch (error) {
             console.log(error)
         }
@@ -180,8 +202,10 @@ export function preferencesUser(userData) {
                 swalWithBootstrapButtons.fire({
                     title: "Deleted!",
                     text: "Your file has been deleted.",
+                    timer: 3000,
                     icon: "success"
                 });
+                window.location.href = 'index.html'
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
@@ -204,7 +228,7 @@ export function preferencesUser(userData) {
         return { validate: true }
     }
 
-    async function validatePassSafe() {
+    function validatePassSafe() {
         const methodPass =
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/
 

@@ -51,9 +51,9 @@ async function createUsers() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                nameUser: username.value,
+                nameUser: username.value,   
                 password: passwordUser.value,
-                rol: "User",
+                rolEnum: "User",
                 userPhoto: `https://placehold.co/200x200/EEE/31343C?font=oswald&text=${photoText}`
             }),
         })
