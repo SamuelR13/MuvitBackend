@@ -1,30 +1,28 @@
-import { preferencesUser } from "./userHome/preferencesUser.js"
-import { trips } from "./userHome/trips.js"
+import { preferencesUser } from "./userHome/preferencesUser.js";
+import { trips } from "./userHome/trips.js";
 
-const menu = document.querySelector("#menu")
-const URLbase = "http://localhost:8080/api/v1/user/"
-const userPhoto = document.querySelector("#userPhoto")
-const name = document.querySelector("#name")
-const username = document.querySelector("#username")
-let userDataGlobal = ""
+const menu = document.querySelector("#menu");
+const URLbase = "http://localhost:8080/api/v1/user/";
+const userPhoto = document.querySelector("#userPhoto");
+const name = document.querySelector("#name");
+const username = document.querySelector("#username");
+let userDataGlobal = "";
 
-
-document.addEventListener('DOMContentLoaded', async (event) => {
-    event.preventDefault()
-    const userData = await getProfile()
-    console.log(userData)
-    userDataGlobal = userData
-    name.innerHTML = `${userData.name} ${userData.lastName}`
-    username.innerHTML = `${userData.rol["nameUser"]}`
-    userPhoto.setAttribute("src", `${userData.rol["userPhoto"]}`)
-    trips(userDataGlobal)
-})
-
+document.addEventListener("DOMContentLoaded", async (event) => {
+  event.preventDefault();
+  const userData = await getProfile();
+  console.log(userData);
+  userDataGlobal = userData;
+  name.innerHTML = `${userData.name} ${userData.lastName}`;
+  username.innerHTML = `${userData.rol["nameUser"]}`;
+  userPhoto.setAttribute("src", `${userData.rol["userPhoto"]}`);
+  trips(userDataGlobal);
+});
 
 menu.addEventListener("click", async (event) => {
-    event.preventDefault()
-    const divs = {
-        payment: `<div id="payment" class="h-100 w-100">
+  event.preventDefault();
+  const divs = {
+    payment: `<div id="payment" class="h-100 w-100">
         <div class="card mt-5 mb-5">
                 <form>
                     <span id="card-header">Saved cards:</span>
@@ -76,8 +74,8 @@ menu.addEventListener("click", async (event) => {
                     <button type="button" class="btn btn-outline-warning">Add Card</button>
                     </form>
             </div></div>`,
-        notifications: `<div id="notifications" class="h-100 w-75 px-2">NOTIFICATRIONS</div>`,
-        suggestions: `<div class="contact-form h-100 w-100">
+    notifications: `<div id="notifications" class="h-100 w-75 px-2">NOTIFICATRIONS</div>`,
+    suggestions: `<div class="contact-form h-100 w-100">
         <form method="post">
             <h3>Drop Us a Message</h3>
            <div class="row">
@@ -109,27 +107,26 @@ menu.addEventListener("click", async (event) => {
             </div>
         </form>
     </div>`,
-        chat: `<div id="chat" class="h-100 w-75 px-2">chat</div>`
-    }
-    if (event.target.id == "home") window.location.href = '../index.html'
-    if (event.target.id == "undefined") pass
-    switch (event.target.id) {
-        case "preferences":
-            preferencesUser(userDataGlobal)
-            break
-        case "trips":
-            trips(userDataGlobal)
-            break
-    }
-    // info.innerHTML = await divs[event.target.id]
-
-})
+    chat: `<div id="chat" class="h-100 w-75 px-2">chat</div>`,
+  };
+  if (event.target.id == "home") window.location.href = "../index.html";
+  if (event.target.id == "undefined") pass;
+  switch (event.target.id) {
+    case "preferences":
+      preferencesUser(userDataGlobal);
+      break;
+    case "trips":
+      trips(userDataGlobal);
+      break;
+  }
+  // info.innerHTML = await divs[event.target.id]
+});
 
 async function getProfile() {
-    const response = await fetch(`${URLbase}ed980e41-19dc-4da4-8570-7646d5892ca0`)
-    const user = await response.json()
-    const userData = await user
-    return userData
+  const response = await fetch(
+    `${URLbase}800cb041-8575-4daa-bf0f-078d28d1cfd4`
+  );
+  const user = await response.json();
+  const userData = await user;
+  return userData;
 }
-
-
