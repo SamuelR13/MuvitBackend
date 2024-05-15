@@ -54,7 +54,7 @@ a {
 }
 
 .clamp2 {
-  font-size: clamp(0.625rem, 4vw - 0.75rem, 1.25rem);
+  font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
   ;
 }
 
