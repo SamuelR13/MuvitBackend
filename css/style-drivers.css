@@ -36,9 +36,6 @@ header nav {
     margin: 10px;
     border-radius: 15px;
   }
-
- 
-  
   .navBtn {
     border-radius: 15px;
     transition: 0.5s;
@@ -52,18 +49,7 @@ header nav {
     backdrop-filter: blur(5px);
     background-color: var(--bg-color1);
   }
-  .bg-color2 {
-    background-color: var(--color2);
-  }
-  .bg-color3 {
-    background-color: var(--color3);
-  }
-  
-  
-  .cont-cards{
-    margin: 5%;
-  }
-
+ 
   .btn-primary {
     background-color: var(--color1);
     color: rgb(255, 255, 255);
@@ -74,27 +60,25 @@ header nav {
     background-color: var(--color3);
     color: #ffffff;
   }
-  .btn-delete{
-    background-color: var(--textcolor);
-    color: rgb(255, 255, 255);
-    transition: 0.6s;
-    border: none;
-  }
+ 
   .btn-delete:hover{
     background-color: gray;
     color: #ffffff;
   }
-  
-  .w-35 {
-    width: 35%;
-  }
 
-  .h-80{
-    height: 65%!important;
+.btn-outline-primary{
+  background-color: #ffffff!important;
+  border: 2px solid var(--color1)!important;
+  color: var(--color1)!important;
+  transition: .5s;
+}
 
-  }
-  .h-90{
-    padding: 10px;
-    height: 90%!important;
-  }
+.btn-outline-primary:hover {
+  background-color: #f0f0f0!important; /* Cambiar color de fondo en hover */
+}
 
+.btn-check:checked + .btn.btn-outline-primary {
+  background-color: var(--color1)!important; /* Cambiar color de fondo cuando se selecciona */
+  border-color: var(--color1)!important; /* Cambiar color de borde cuando se selecciona */
+  color: #ffffff!important; /* Cambiar color de texto cuando se selecciona */
+}
