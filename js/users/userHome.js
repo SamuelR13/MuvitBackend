@@ -126,7 +126,7 @@ menu.addEventListener("click", async (event) => {
 })
 
 async function getProfile() {
-    const response = await fetch(`${URLbase}ed980e41-19dc-4da4-8570-7646d5892ca0`)
+    const response = await fetch(`${URLbase}30ecff9a-c4f3-4184-adfa-9c3445b9781d`)
     const user = await response.json()
     const userData = await user
     return userData
