@@ -25,7 +25,7 @@ export function trips(userData) {
                 <div id="mapaTrip" class="w-50 rounded-5 mx-5 my-5"></div>
                 
                 <div class = "w-50 h-100">
-                    <div class ="d-flex w-100 justify-content-around align-items-center mb-3 my-3 text-center clamp1">
+                    <div class ="d-flex w-100 justify-content-around align-items-center mb-2 my-3 text-center clamp1">
                         <p id="driver_name" class="d-flex text-center">Driver</p>
                         <img id="userPhoto" width="100px" height="100px" src="https://placehold.co/200x200/EEE/31343C?font=oswald&text=AM" alt="profile" class="rounded-circle">
                     </div>
@@ -37,6 +37,8 @@ export function trips(userData) {
                         <li class="list-group-item d-flex justify-content-between">Service<span>Item1</span></li>
                         <li class="list-group-item d-flex justify-content-between">Price<span>Item1</span></li>
                         <li class="list-group-item d-flex justify-content-between">Payment method<span>Item1</span></li>
+                        <li class="list-group-item d-flex justify-content-between">Date<span>Item1</span></li>
+                        <li class="list-group-item d-flex justify-content-between">Time<span>Item1</span></li>
                     </ul>
                     <div class="d-flex my-3 justify-content-between">
                     <div class="d-flex gap-3 clamp2">
