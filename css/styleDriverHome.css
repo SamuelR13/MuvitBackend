@@ -1,0 +1,355 @@
+@font-face {
+  font-family: "TT Fors";
+  src: url(../assets/fonts/tt_fors/TTForsTrialBold.ttf);
+}
+
+@font-face {
+  font-family: "TT Fors Medium";
+  src: url(../assets/fonts/tt_fors/Medium.ttf);
+}
+
+@font-face {
+  font-family: "TT Fors Extralight";
+  src: url(../assets/fonts/tt_fors/TT\ Fors\ Trial\ ExtraLight.ttf);
+}
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+:root {
+  font-size: 16px;
+  --textcolor: #000000;
+  /* --color-1: #ffc1a5; */
+  --color-1: #fdd8c7;
+  --color0: #ffc2a5;
+  --color1: #f87538;
+  --bg-color1: #f8753862;
+  --color2: #d36135;
+  --color3: #bf3b0b;
+  --color4: #852a08;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.nav-tabs .nav-item .nav-link {
+  color: var(--color2);
+}
+
+.nav-tabs .nav-item .nav-link.active {
+  color: #000000;
+}
+
+
+.tab-content .tab-pane {
+  background-color: #FFF;
+  color: #000000;
+  min-height: 200px;
+  height: auto;
+}
+
+.clamp1 {
+  font-size: clamp(0.625rem, 4vw - 0.75rem, 1.25rem);
+}
+
+.clamp2 {
+  font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
+  ;
+}
+
+.text-success {
+  color: var(--color2) !important;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "TT Fors";
+  color: var(--textcolor);
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+/* HEADER */
+
+header nav {
+  margin: 10px;
+  border-radius: 15px;
+}
+
+
+
+.navBtn {
+  border-radius: 15px;
+  transition: 0.5s;
+}
+
+.navBtn:hover {
+  background-color: rgba(169, 169, 169, 0.348);
+}
+
+.bg-color1 {
+  backdrop-filter: blur(5px);
+  background-color: var(--bg-color1);
+}
+
+.bg-color2 {
+  background-color: var(--color2);
+}
+
+.bg-color3 {
+  background-color: var(--color3);
+}
+
+
+.cont-cards {
+  margin: 5%;
+}
+
+.btn-primary {
+  background-color: var(--color1);
+  color: rgb(255, 255, 255);
+  transition: 0.6s;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--color3);
+  color: #ffffff;
+}
+
+.btn-delete {
+  background-color: var(--textcolor);
+  color: rgb(255, 255, 255);
+  transition: 0.6s;
+  border: none;
+}
+
+.btn-delete:hover {
+  background-color: gray;
+  color: #ffffff;
+}
+
+.w-35 {
+  width: 35%;
+}
+
+.h-80 {
+  height: 65% !important;
+
+}
+
+.h-90 {
+  padding: 10px;
+  height: 90% !important;
+}
+
+
+.contact-form .form-control {
+  border-radius: 1rem;
+}
+
+.contact-form form {
+  padding: 14%;
+}
+
+.contact-form form .row {
+  margin-bottom: -7%;
+}
+
+.contact-form h3 {
+  margin-bottom: 8%;
+  margin-top: -10%;
+  text-align: center;
+  color: var(--color2);
+}
+
+
+.btn-outline-warning {
+  color: var(--color1);
+  border-color: var(--color1);
+  --bs-btn-active-color: var(--color1);
+  --bs-btn-active-bg: #fff;
+  --bs-btn-active-border-color: var(--color1);
+  --bs-btn-border-color: var(--color1);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--color1);
+  --bs-btn-hover-border-color: var(--color1);
+  cursor: pointer;
+}
+
+.btn-outline-warning2 {
+  color: red;
+  border-color: red;
+  --bs-btn-active-color: red;
+  --bs-btn-active-bg: #fff;
+  --bs-btn-active-border-color: red;
+  --bs-btn-border-color: red;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: red;
+  --bs-btn-hover-border-color: red;
+}
+
+.dropdown-item {
+  --bs-dropdown-link-hover-bg: var(--color0);
+  --bs-dropdown-link-active-bg: var(--color2);
+  --bs-dropdown-link-active-color: black;
+
+}
+
+/* ------------------------------------------------PAYMENT---------------------- */
+.card {
+  width: 50%;
+  padding: 3rem 3.5rem;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav ul {
+  list-style-type: none;
+  display: flex;
+  padding-inline-start: unset;
+  margin-bottom: 6vh;
+}
+
+.nav li {
+  padding: 1rem;
+}
+
+.nav li a {
+  color: black;
+  text-decoration: none;
+}
+
+input {
+  border: none;
+  outline: none;
+  color: #000;
+  width: 100%;
+  min-width: unset;
+  background-color: transparent;
+  border-color: transparent;
+  margin: 0;
+}
+
+form a {
+  color: grey;
+  text-decoration: none;
+  font-size: 0.87rem;
+  font-weight: bold;
+}
+
+form a:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+form .row {
+  margin: 0;
+  overflow: hidden;
+}
+
+form .row-1 {
+  padding: 0.5rem;
+  outline: none;
+  width: 100%;
+  min-width: unset;
+  border-radius: 5px;
+  background-color: rgba(221, 228, 236, 0.301);
+  border-color: rgba(221, 228, 236, 0.459);
+  margin: 2vh 0;
+  overflow: hidden;
+}
+
+form .row-2 {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0 0.8rem;
+}
+
+form .row .row-2 {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0 0.8rem;
+}
+
+form .row .col-2,
+.col-7,
+.col-3 {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 1vh;
+}
+
+form .row .col-2 {
+  padding-right: 0;
+}
+
+#card-header {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+#card-inner {
+  font-size: 0.7rem;
+  color: gray;
+}
+
+.three .col-7 {
+  padding-left: 0;
+}
+
+.three {
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.three .col-2 {
+  padding: 0.5rem;
+  outline: none;
+  width: 100%;
+  min-width: unset;
+  border-radius: 5px;
+  background-color: rgba(221, 228, 236, 0.301);
+  border-color: rgba(221, 228, 236, 0.459);
+  margin: 2vh 0;
+  width: fit-content;
+  overflow: hidden;
+}
+
+.three .col-2 input {
+  font-size: 0.7rem;
+  margin-left: 1vh;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+.bottonSelect{
+  bottom: 4.5px;
+}

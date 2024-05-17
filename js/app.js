@@ -396,7 +396,7 @@ if (!'geolocation' in navigator) {
                     routes.map(r => r.distance) / 1000
                 ).toFixed(2)
                 price()
-                let waypoints = e.waypoints
+
                 let lengthRoute = e.route[0]["legs"][0]["steps"]["length"]
                 let start = e.route[0]["legs"][0]["steps"][0]["maneuver"]["location"]
                 let final = e.route[0]["legs"][0]["steps"][lengthRoute - 1]["maneuver"]["location"]
@@ -405,6 +405,7 @@ if (!'geolocation' in navigator) {
                 serviceDetails.final = `${final[0]}/${final[1]}`
 
                 console.log(serviceDetails)
+                console.log(e.route)
                 // let puntoInicial = coordenadasRuta[0];
                 // let puntoFinal = coordenadasRuta[coordenadasRuta.length - 1];
 

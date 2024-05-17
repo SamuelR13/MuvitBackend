@@ -3,6 +3,7 @@ const info = document.querySelector("#info")
 
 export function preferenceDriver(driverData) {
     console.log(driverData)
+    let dynamicTypes = dynamicSelect()
     info.innerHTML = `<div id="preferences" class="h-100 w-100 d-flex  align-items-center">     
     <div class="row w-100">
         <div class="col-8 d-flex flex-column">
@@ -27,34 +28,35 @@ export function preferenceDriver(driverData) {
                 </div>
             </div>
             <div class="d-flex my-3 gap-3">
-                <div class="mb-1 w-50">
-                    <select class="form-select mb-4" aria-label="Default select example">
-                        <option selected>Cédula Ciudadanía</option>
-                        <option value="Passport">Passport</option>
-                        <option value="Cedula_Extranjera">Cédula Extranjera</option>
+                <div class="mb-1 w-50 position-relative bottonSelect">
+                <label for="editDNItype">Your DNI type</label>
+                    <select id="editDNItype" class="form-select mb-4" aria-label="Default select example">
+                        <option value="${driverData.dni_type}">${driverData.dni_type}</option>
+                        <option value="${dynamicTypes[0]}">${dynamicTypes[0]}</option>
+                        <option value="${dynamicTypes[1]}">${dynamicTypes[1]}</option>
                     </select>
                 </div>
                 <div class="form-floating mb-1 w-50">
-                    <input type="text" class="form-control" id="driverDni" placeholder="Your DNI" value=${driverData.dni}>
+                    <input id="editDNI" type="text" class="form-control" id="driverDni" placeholder="Your DNI" value=${driverData.dni}>
                     <label for="driverDni">DNI</label>
                 </div>
             </div>
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-3 position-relative bottonSelect">
                 <input type="text" class="form-control" id="editPhone" placeholder="Your phone number" value=${driverData.phoneNumber}>
                 <label for="editPhone">Phone number</label>
             </div>
             <div class="d-flex justify-content-between mb-1">
-                <div class="form-floating mb-1">
+                <div class="form-floating mb-1 m-2">
                     <input type="password" class="form-control" id="password" placeholder="Your phone number" value=${driverData.rol["password"]}>
                     <label for="password">Current Password</label>
                 </div>
-                <div class="form-floating mb-1">
+                <div class="form-floating mb-1 m-2">
                     <input type="password" class="form-control" id="newPassword" placeholder="Your phone number">
                     <label for="newPassword">New Password</label>
                 </div>
-                <div class="form-floating mb-1">
+                <div class="form-floating mb-1 m-2">
                     <input type="password" class="form-control" id="newPasswordConfirmation" placeholder="">
-                    <label for="newPasswordConfirmation">New Password Confirmation</label>
+                    <label for="newPasswordConfirmation">Confirm Password</label>
                 </div>
             </div>
             <div class="d-flex justify-content-between">
@@ -98,6 +100,8 @@ export function preferenceDriver(driverData) {
     let currentPassword = password.value
     const editPhoto = document.querySelector("#editPhoto")
     const userPhotoEdit = document.querySelector("#userPhotoEdit")
+    const editDNItype = document.getElementById("editDNItype")
+    const editDNI = document.getElementById("editDNI")
     let urlPhoto = driverData.rol["userPhoto"]
 
     var myWidget = cloudinary.createUploadWidget({
@@ -113,7 +117,6 @@ export function preferenceDriver(driverData) {
         }
     }
 
-
     )
     editPhoto.addEventListener("click", () => {
         myWidget.open()
@@ -121,7 +124,16 @@ export function preferenceDriver(driverData) {
     editButton.addEventListener("click", async (event) => {
         const URLbase = "http://localhost:8080/api/v1/"
         event.preventDefault()
-        if (newPassword.value != null && password != newPassword) {
+        console.log(newPassword.value)
+        console.log(currentPassword)
+
+        if (newPassword.value != "") {
+            console.log(newPassword.value)
+            console.log(currentPassword)
+            if (newPassword.value == currentPassword) {
+                showAlertPassword()
+                return
+            }
             const { validate } = validatePass()
             if (!validate) {
                 showAlert()
@@ -135,10 +147,11 @@ export function preferenceDriver(driverData) {
                 showAlertSafePass()
                 return
             }
-            currentPassword = newPassword
+            currentPassword = newPassword.value
+            console.log(currentPassword)
         }
         try {
-            const response = await fetch(`${URLbase}driver/${driverData.id}`, {
+            const response = await fetch(`${URLbase}driver/${driverData.id_driver}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -146,7 +159,8 @@ export function preferenceDriver(driverData) {
                     email: editEmail.value,
                     name: editName.value,
                     lastName: editLastname.value,
-                    DNI_TYPE: null,
+                    dni_type: editDNItype.value,
+                    dni: editDNI.value,
                     rol: parseInt(driverData.rol["id_rol"]),
                 }),
             })
@@ -155,7 +169,7 @@ export function preferenceDriver(driverData) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     nameUser: `${editUserName.value}`,
-                    password: `${currentPassword.value}`,
+                    password: `${currentPassword}`,
                     rolEnum: "Driver",
                     userPhoto: `${urlPhoto}`
                 }),
@@ -175,6 +189,17 @@ export function preferenceDriver(driverData) {
         showAlertDelete()
     })
 
+    function dynamicSelect(){
+        let dniTypeDriver = driverData.dni_type
+        console.log(dniTypeDriver);
+        const listType = [
+            "cedulaCiudadania", "pasaporte", "cedulaExtranjera"
+        ]
+        listType.splice(listType.indexOf(driverData.dni_type), 1)
+        console.log(listType);
+        return listType;
+    }
+
     function showAlertEdit() {
         Swal.fire({
             position: "top-start'",
@@ -189,7 +214,7 @@ export function preferenceDriver(driverData) {
     async function deleteUser() {
         const URLbase = "http://localhost:8080/api/v1/"
         try {
-            responseRol = await fetch(`${URLbase}user/${driverData.id}`, {
+            responseRol = await fetch(`${URLbase}user/${userData.id}`, {
                 method: 'DELETE',
             })
             console.log("eliminado");
@@ -313,8 +338,18 @@ export function preferenceDriver(driverData) {
         })
     }
 
-
-
-
+    function showAlertPassword() {
+        Swal.fire({
+            title: 'Oops...!',
+            text: 'Password must be different from the current one',
+            icon: 'error',
+            toast: 'true',
+            timer: 4000,
+            showconfirmButton: false,
+            position: 'center',
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF0000',
+        })
+    }
 }
 

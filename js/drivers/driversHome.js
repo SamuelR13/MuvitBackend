@@ -1,4 +1,7 @@
+import { myWallet } from "./driverHome/myWallet.js"
+import { notifications } from "./driverHome/notifications.js"
 import { preferenceDriver } from "./driverHome/preferenceDriver.js"
+import { suggestions } from "./driverHome/suggestions.js"
 import { trips } from "./driverHome/tripsDriver.js"
 
 const menu = document.querySelector("#menu")
@@ -23,113 +26,61 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
 menu.addEventListener("click", async (event) => {
     event.preventDefault()
-    const divs = {
-        payment: `<div id="payment" class="h-100 w-100">
-        <div class="card mt-5 mb-5">
-                <form>
-                    <span id="card-header">Saved cards:</span>
-                    <div class="row row-1">
-                        <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/mastercard-logo.png"/></div>
-                        <div class="col-7">
-                            <input type="text" placeholder="**** **** **** 3193">
-                        </div>
-                        <div class="col-3 d-flex justify-content-center">
-                            <a href="#">Remove card</a>
-                        </div>
-                    </div>
-                    <div class="row row-1">
-                        <div class="col-2"><img  class="img-fluid" src="https://img.icons8.com/color/48/000000/visa.png"/></div>
-                        <div class="col-7">
-                            <input type="text" placeholder="**** **** **** 4296">
-                        </div>
-                        <div class="col-3 d-flex justify-content-center">
-                            <a href="#">Remove card</a>
-                        </div>
-                    </div>
-                    <span id="card-header">Add new card:</span>
-                    <div class="row-1">
-                        <div class="row row-2">
-                            <span id="card-inner">Card holder name</span>
-                        </div>
-                        <div class="row row-2">
-                            <input type="text" placeholder="Bojan Viner">
-                        </div>
-                    </div>
-                    <div class="row three">
-                        <div class="col-7">
-                            <div class="row-1">
-                                <div class="row row-2">
-                                    <span id="card-inner">Card number</span>
-                                </div>
-                                <div class="row row-2">
-                                    <input type="text" placeholder="5134-5264-4">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <input type="text" placeholder="Exp. date">
-                        </div>
-                        <div class="col-2">
-                            <input type="text" placeholder="CVV">
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-warning">Add Card</button>
-                    </form>
-            </div></div>`,
-        notifications: `<div id="notifications" class="h-100 w-75 px-2">NOTIFICATIONS</div>`,
-        suggestions: `<div class="contact-form h-100 w-100">
-        <form method="post">
-            <h3>Drop Us a Message</h3>
-           <div class="row">
-                <div class="col-md-6 gap-5">
-                <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="suggestionName" placeholder="Your name">
-                <label for="suggestionName">Name</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="suggestionEmail" placeholder="Your email">
-                <label for="suggestionEmail">Email</label>
-              </div>
-              <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="suggestionsPhone" placeholder="Your phone number">
-              <label for="suggestionsPhone">Phone number</label>
-                </div>
-    
-                <div class="form-group">
-                <button type="button" class="btn btn-outline-warning">Send message</button>
-                </div>
-                
-                </div>
-                <div class="col-md-6">
-                <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
-                <label for="floatingTextarea2">Comments</label>
-              </div>
-                </div>
-            </div>
-        </form>
-    </div>`,
-        chat: `<div id="chat" class="h-100 w-75 px-2">chat</div>`
-    }
-    if (event.target.id == "home") window.location.href = '../index.html'
+
     if (event.target.id == "undefined") pass
     switch (event.target.id) {
+        case "home":
+            showAlertHome()
+            break;
         case "preferences":
             preferenceDriver(driverDataGlobal)
             break
         case "trips":
             trips(driverDataGlobal)
             break
+            case "myWallet":
+                myWallet(driverDataGlobal)
+                break
+            case "notifications":
+                notifications(driverDataGlobal)
+                break
+              case "suggestions":
+                suggestions(driverDataGlobal)
+                break
     }
     // info.innerHTML = await divs[event.target.id]
-
 })
 
 async function getProfile() {
-    const response = await fetch(`${URLbase}prueba123`)
+    const response = await fetch(`${URLbase}36f5ed92-10a8-4492-b041-8f3a70c58e6c`)
     const driver = await response.json()
     const driverData = await driver
     return driverData
 }
 
+function showAlertHome() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure you want to exit to the main menu?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "../index.html";
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+      }
+    });
+  }
 

@@ -104,7 +104,15 @@ export function preferencesUser(userData) {
     editButton.addEventListener("click", async (event) => {
         const URLbase = "http://localhost:8080/api/v1/"
         event.preventDefault()
-        if (newPassword.value != null && password != newPassword) {
+        console.log(newPassword.value)
+        console.log(currentPassword)
+        if (newPassword.value != "") {
+            console.log(newPassword.value)
+            console.log(currentPassword)
+            if (newPassword.value == currentPassword) {
+                showAlertPassword()
+                return
+            }
             const { validate } = validatePass()
             if (!validate) {
                 showAlert()
@@ -118,7 +126,8 @@ export function preferencesUser(userData) {
                 showAlertSafePass()
                 return
             }
-            currentPassword = newPassword
+            currentPassword = newPassword.value
+            console.log(currentPassword)
         }
         try {
             const response = await fetch(`${URLbase}user/${userData.id}`, {
@@ -137,7 +146,7 @@ export function preferencesUser(userData) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     nameUser: `${editUserName.value}`,
-                    password: `${currentPassword.value}`,
+                    password: `${currentPassword}`,
                     rolEnum: "User",
                     userPhoto: `${urlPhoto}`
                 }),
@@ -285,6 +294,20 @@ export function preferencesUser(userData) {
         Swal.fire({
             title: 'Oops...!',
             text: 'Passwords do not match!',
+            icon: 'error',
+            toast: 'true',
+            timer: 4000,
+            showconfirmButton: false,
+            position: 'center',
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF0000',
+        })
+    }
+
+    function showAlertPassword() {
+        Swal.fire({
+            title: 'Oops...!',
+            text: 'Password must be different from the current one',
             icon: 'error',
             toast: 'true',
             timer: 4000,
