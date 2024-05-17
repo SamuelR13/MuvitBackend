@@ -405,7 +405,7 @@ if (!'geolocation' in navigator) {
                 serviceDetails.final = `${final[0]}/${final[1]}`
 
                 console.log(serviceDetails)
-                console.log(e.route)
+                console.log(e)
                 // let puntoInicial = coordenadasRuta[0];
                 // let puntoFinal = coordenadasRuta[coordenadasRuta.length - 1];
 

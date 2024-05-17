@@ -56,6 +56,23 @@ a {
   font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
 }
 
+.clamp3 {
+  font-size: clamp(0.625rem, 4vw - 0.75rem, 1rem);
+}
+
+.typeColor{
+  color: var(--color2);
+}
+
+.priceColor{
+  color: var(--color1);
+}
+.card:hover{
+   background-color: rgba(251, 230, 221, 0.922) ;
+}
+
+
+
 .text-success {
   color: var(--color2) !important;
 }
@@ -393,3 +410,5 @@ input:focus:-ms-input-placeholder {
     margin: 0 0 10px;
   }
 }
+/* -----------------------------------------CARD---------------------------------------- */
+

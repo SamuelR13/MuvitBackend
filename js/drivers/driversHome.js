@@ -13,74 +13,74 @@ let driverDataGlobal = ""
 
 
 document.addEventListener('DOMContentLoaded', async (event) => {
-    event.preventDefault()
-    const driverData = await getProfile()
-    console.log(driverData)
-    driverDataGlobal = driverData
-    name.innerHTML = `${driverData.name} ${driverData.lastName}`
-    username.innerHTML = `${driverData.rol["nameUser"]}`
-    driverPhoto.setAttribute("src", `${driverData.rol["userPhoto"]}`)
-    trips(driverDataGlobal)
+  event.preventDefault()
+  const driverData = await getProfile()
+  console.log(driverData)
+  driverDataGlobal = driverData
+  name.innerHTML = `${driverData.name} ${driverData.lastName}`
+  username.innerHTML = `${driverData.rol["nameUser"]}`
+  driverPhoto.setAttribute("src", `${driverData.rol["userPhoto"]}`)
+  trips(driverDataGlobal)
 })
 
 
 menu.addEventListener("click", async (event) => {
-    event.preventDefault()
+  event.preventDefault()
 
-    if (event.target.id == "undefined") pass
-    switch (event.target.id) {
-        case "home":
-            showAlertHome()
-            break;
-        case "preferences":
-            preferenceDriver(driverDataGlobal)
-            break
-        case "trips":
-            trips(driverDataGlobal)
-            break
-            case "myWallet":
-                myWallet(driverDataGlobal)
-                break
-            case "notifications":
-                notifications(driverDataGlobal)
-                break
-              case "suggestions":
-                suggestions(driverDataGlobal)
-                break
-    }
-    // info.innerHTML = await divs[event.target.id]
+  if (event.target.id == "undefined") pass
+  switch (event.target.id) {
+    case "home":
+      showAlertHome()
+      break;
+    case "preferences":
+      preferenceDriver(driverDataGlobal)
+      break
+    case "trips":
+      trips(driverDataGlobal)
+      break
+    case "myWallet":
+      myWallet(driverDataGlobal)
+      break
+    case "notifications":
+      notifications(driverDataGlobal)
+      break
+    case "suggestions":
+      suggestions(driverDataGlobal)
+      break
+  }
+  // info.innerHTML = await divs[event.target.id]
 })
 
 async function getProfile() {
-    const response = await fetch(`${URLbase}36f5ed92-10a8-4492-b041-8f3a70c58e6c`)
-    const driver = await response.json()
-    const driverData = await driver
-    return driverData
+  const response = await fetch(`${URLbase}0038316c-c6be-40ed-b3e2-d2b9e5ce27ed`)
+  const driver = await response.json()
+  const driverData = await driver
+  return driverData
 }
 
 function showAlertHome() {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger"
-      },
-      buttonsStyling: false
-    });
-    swalWithBootstrapButtons.fire({
-      title: "Are you sure you want to exit to the main menu?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes!",
-      cancelButtonText: "No, cancel!",
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = "../index.html";
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-      }
-    });
-  }
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Are you sure you want to exit to the main menu?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes!",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "../index.html";
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+    }
+  });
+}
 

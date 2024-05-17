@@ -10,7 +10,7 @@
   const routeActive = path.substring(path.lastIndexOf("/") + 1);
 
   //Creo una lista con el nombre de todas las vistas que quiero proteger
-  const privateRoutes = ["userHome.html"];
+  const privateRoutes = ["UserHome.html"];
 
   //Si la ruta actual está en la lista de la rutas protegidas y no está autorizado entonces lo redirige al login
   if (
