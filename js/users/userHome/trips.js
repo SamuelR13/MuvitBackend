@@ -1,60 +1,76 @@
 
 const info = document.querySelector("#info");
 
-export function trips(userData) {
-    console.log(userData);
-    info.innerHTML = `            
-    <div id="trips" class="h-100 w-75 px-2">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
-                aria-selected="true">In progress</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
-                data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
-                aria-selected="false">History</button>
-        </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active h-100 w-100" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
-            tabindex="0">
-            <div class = "d-flex w-100 h-100">
-                
-                <div id="mapaTrip" class="w-50 rounded-5 mx-5 my-5"></div>
-                
-                <div class = "w-50 h-100">
-                    <div class ="d-flex w-100 justify-content-around align-items-center mb-2 my-3 text-center clamp1">
-                        <p id="driver_name" class="d-flex text-center">Driver</p>
-                        <img id="userPhoto" width="100px" height="100px" src="https://placehold.co/200x200/EEE/31343C?font=oswald&text=AM" alt="profile" class="rounded-circle">
-                    </div>
-                    <ul class="list-group list-group-flush clamp1">
-                        <li class="list-group-item d-flex justify-content-between">Model<span>Item1</span></li>
-                        <li class="list-group-item d-flex justify-content-between">License plate<span>Item1</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Assitants<span>Item1</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Distancia<span>Item1</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Service<span>Item1</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Price<span>Item1</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Payment method<span>Item1</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Date<span>Item1</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Time<span>Item1</span></li>
-                    </ul>
-                    <div class="d-flex my-3 justify-content-between">
-                    <div class="d-flex gap-3 clamp2">
-                        <button type="button" class="btn btn-outline-primary clamp2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="+57 3106410560">Call <i class="bi bi-telephone"></i></button>
-                        <a href="https://wa.me/573106410560" target="_blank" type="button" class="btn btn-outline-success clamp2">WhatsApp <i class="bi bi-whatsapp"></i></a>
-                    </div>
-                    <button id="cancel_service" type="button" class="btn btn-outline-danger clamp2">Cancel service</button>
-                    </div>
-                </div> 
-           </div> 
-        </div>
-        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
-            tabindex="0">...</div>
+export async function trips(userData) {
 
-         </div>
-    </div>`
+    async function getService() {
+        const URLbase = `http://localhost:8080/api/v1/service/user/${userData.id}/active-service`;
+        const response = await fetch(
+            `${URLbase}`
+        );
+        if (response.status === 404) {
+            notFound()
+        }
+        const service = await response.json();
+        const serviceData = await service;
+        return serviceData;
+    }
+
+    const serviceData = await getService()
+
+    info.innerHTML = `            
+        <div id="trips" class="h-100 w-75 px-2">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                    data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                    aria-selected="true">In progress</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                    aria-selected="false">History</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active h-100 w-100" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <div class = "d-flex w-100 h-100">
+                    
+                    <div id="mapaTrip" class="w-50 rounded-5 mx-5 my-5"></div>
+                    
+                    <div class = "w-50 h-100">
+                        <div class ="d-flex w-100 justify-content-around align-items-center mb-2 my-3 text-center clamp1">
+                            <p id="driver_name" class="d-flex text-center">${serviceData["driver"]["name"]} ${serviceData["driver"]["lastName"]}</p>
+                            <img id="userPhoto" width="100px" height="100px" src="${serviceData["driver"]["rol"]["userPhoto"]}" alt="profile" class="rounded-circle">
+                        </div>
+                        <ul class="list-group list-group-flush clamp1">
+                            <li class="list-group-item d-flex justify-content-between">Model<span>${serviceData["driver"]["truck"][0]["model"]}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">License plate<span>${serviceData["driver"]["truck"][0]["licensePlate"]}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Assitants<span>${serviceData.assistant}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Distancia<span>${serviceData.distance}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Service<span>${serviceData.typeService}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Price<span>${serviceData.price}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Payment method<span>tarjeta</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Date<span>${serviceData.date}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Time<span>${serviceData.time}</span></li>
+                        </ul>
+                        <div class="d-flex my-3 justify-content-between">
+                        <div class="d-flex gap-3 clamp2">
+                            <button type="button" class="btn btn-outline-primary clamp2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="+57 ${serviceData["driver"]["phoneNumber"]}">Call <i class="bi bi-telephone"></i></button>
+                            <a href="https://wa.me/57${serviceData["driver"]["phoneNumber"]}" target="_blank" type="button" class="btn btn-outline-success clamp2">WhatsApp <i class="bi bi-whatsapp"></i></a>
+                        </div>
+                        <button id="cancel_service" type="button" class="btn btn-outline-danger clamp2">Cancel service</button>
+                        </div>
+                    </div> 
+               </div> 
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                tabindex="0">...</div>
+    
+             </div>
+        </div>`
+
 
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
     const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
@@ -263,4 +279,33 @@ export function trips(userData) {
         });
         // this is where the code from the next step will go
     });
+
+    function notFound() {
+        info.innerHTML = `            
+        <div id="trips" class="h-100 w-75 px-2">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                    data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                    aria-selected="true">In progress</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                    aria-selected="false">History</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active h-100 w-100" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <div class = "d-flex w-100 h-100">
+                    No tienes servicios activos
+               </div> 
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                tabindex="0">...</div>
+    
+             </div>
+        </div>`
+    }
 }
