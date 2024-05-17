@@ -107,7 +107,6 @@ export function preferencesUser(userData) {
         event.preventDefault()
         console.log(newPassword.value)
         console.log(currentPassword)
-
         if (newPassword.value != "") {
             console.log(newPassword.value)
             console.log(currentPassword)

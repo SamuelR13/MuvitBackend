@@ -1,58 +1,86 @@
-const containerCards = document.querySelector('.cont-cards')
-const URL = 'http://localhost:3000'
-const URLImg = './img/imgDrivers/customer.jpeg'
-document.addEventListener('DOMContentLoaded', showContent)
+import { myWallet } from "./driverHome/myWallet.js"
+import { notifications } from "./driverHome/notifications.js"
+import { preferenceDriver } from "./driverHome/preferenceDriver.js"
+import { suggestions } from "./driverHome/suggestions.js"
+import { trips } from "./driverHome/tripsDriver.js"
 
-async function showContent() {
-  const response = await fetch(`${URL}/services?_embed=user`)
+const menu = document.querySelector("#menu")
+const URLbase = "http://localhost:8080/api/v1/driver/"
+const driverPhoto = document.querySelector("#driverPhoto")
+const name = document.querySelector("#name")
+const username = document.querySelector("#username")
+let driverDataGlobal = ""
 
-  const data = await response.json()
 
- 
-  if (!data) {
-    
-    containerCards.innerHTML = `
-          <h1 class="d-flex align-items-center"> No services available <h1>
-      `
-    return
-
-  } else {
-    printUsers(data)
-  }
-
-}
-function printUsers(usuarios) {
- console.log(usuarios);
-  usuarios.forEach(element => {
-    containerCards.innerHTML += `
-  <div class="h-50 card rounded-3" style="width: 18rem;">
-    <img src="${URLImg}" class="card-img-top" alt="Customer">
-    <div class="card-body">
-      <h5 class="card-title">${element.user.nameUser} ${element.user.lastNameUser}</h5>
-     
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Distance: ${element.distance} KM</li>
-      <li class="list-group-item">Assitants required: ${element.assistants}</li>
-      <li class="list-group-item">Payment: ${element.price}</li>
-      <li class="list-group-item">Type of service: ${element.type}</li>
-    </ul>
-    <div class="card-body">
-      <button class="btn btn-primary" data-id="${element.id}">Accept offer</a>
-      <button class="btn btn-delete ms-1" data-id="${element.id}">Reject offer</a>
-    </div>
-  </div>
-  `
-  })
-}
-containerCards.addEventListener('click', event => {
-  if (event.target.classList.contains('btn-delete')) {
-
-    const id = event.target.getAttribute('data-id');
-    const card = event.target.parentElement.parentElement
-    card.classList.add("d-none")
-    console.log(card);
-    console.log(id)
-    0
-  }
+document.addEventListener('DOMContentLoaded', async (event) => {
+    event.preventDefault()
+    const driverData = await getProfile()
+    console.log(driverData)
+    driverDataGlobal = driverData
+    name.innerHTML = `${driverData.name} ${driverData.lastName}`
+    username.innerHTML = `${driverData.rol["nameUser"]}`
+    driverPhoto.setAttribute("src", `${driverData.rol["userPhoto"]}`)
+    trips(driverDataGlobal)
 })
+
+
+menu.addEventListener("click", async (event) => {
+    event.preventDefault()
+
+    if (event.target.id == "undefined") pass
+    switch (event.target.id) {
+        case "home":
+            showAlertHome()
+            break;
+        case "preferences":
+            preferenceDriver(driverDataGlobal)
+            break
+        case "trips":
+            trips(driverDataGlobal)
+            break
+            case "myWallet":
+                myWallet(driverDataGlobal)
+                break
+            case "notifications":
+                notifications(driverDataGlobal)
+                break
+              case "suggestions":
+                suggestions(driverDataGlobal)
+                break
+    }
+    // info.innerHTML = await divs[event.target.id]
+})
+
+async function getProfile() {
+    const response = await fetch(`${URLbase}36f5ed92-10a8-4492-b041-8f3a70c58e6c`)
+    const driver = await response.json()
+    const driverData = await driver
+    return driverData
+}
+
+function showAlertHome() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure you want to exit to the main menu?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "../index.html";
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+      }
+    });
+  }
+
