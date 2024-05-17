@@ -28,8 +28,8 @@ menu.addEventListener("click", async (event) => {
   if (event.target.id == "undefined") pass;
   switch (event.target.id) {
     case "home":
-      showAlertHome()
-      break
+      showAlertHome();
+      break;
     case "preferences":
       preferencesUser(userDataGlobal);
       break;
@@ -37,21 +37,21 @@ menu.addEventListener("click", async (event) => {
       trips(userDataGlobal);
       break;
     case "payment":
-      payment(userDataGlobal)
-      break
+      payment(userDataGlobal);
+      break;
     case "notifications":
-      notifications(userDataGlobal)
-      break
+      notifications(userDataGlobal);
+      break;
     case "suggestions":
-      suggestions(userDataGlobal)
-      break
+      suggestions(userDataGlobal);
+      break;
   }
   // info.innerHTML = await divs[event.target.id]
 });
 
 async function getProfile() {
   const response = await fetch(
-    `${URLbase}7da9a80f-b27a-426f-bc53-01efcf7a2576`
+    `${URLbase}86afbf17-3208-49e6-b09c-940c14842fbe`
   );
   const user = await response.json();
   const userData = await user;
@@ -62,24 +62,26 @@ function showAlertHome() {
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
-      cancelButton: "btn btn-danger"
+      cancelButton: "btn btn-danger",
     },
-    buttonsStyling: false
+    buttonsStyling: false,
   });
-  swalWithBootstrapButtons.fire({
-    title: "Are you sure you want to exit to the main menu?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes!",
-    cancelButtonText: "No, cancel!",
-    reverseButtons: true
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.href = "../index.html";
-    } else if (
-      /* Read more about handling dismissals below */
-      result.dismiss === Swal.DismissReason.cancel
-    ) {
-    }
-  });
+  swalWithBootstrapButtons
+    .fire({
+      title: "Are you sure you want to exit to the main menu?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "../index.html";
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+      }
+    });
 }

@@ -3,6 +3,7 @@ const info = document.querySelector("#info")
 
 export function preferencesUser(userData) {
     console.log(userData)
+    
     info.innerHTML = `<div id="preferences" class="h-100 w-100 d-flex  align-items-center">     
     <div class="row w-100">
         <div class="col-8 d-flex flex-column">

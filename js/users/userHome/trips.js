@@ -1,24 +1,20 @@
-
 const info = document.querySelector("#info");
 
 export async function trips(userData) {
-
-    async function getService() {
-        const URLbase = `http://localhost:8080/api/v1/service/user/${userData.id}/active-service`;
-        const response = await fetch(
-            `${URLbase}`
-        );
-        if (response.status === 404) {
-            notFound()
-        }
-        const service = await response.json();
-        const serviceData = await service;
-        return serviceData;
+  async function getService() {
+    const URLbase = `http://localhost:8080/api/v1/service/user/${userData.id}/active-service`;
+    const response = await fetch(`${URLbase}`);
+    if (response.status === 404) {
+      notFound();
     }
+    const service = await response.json();
+    const serviceData = await service;
+    return serviceData;
+  }
 
-    const serviceData = await getService()
+  const serviceData = await getService();
 
-    info.innerHTML = `            
+  info.innerHTML = `            
         <div id="trips" class="h-100 w-75 px-2">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -31,8 +27,8 @@ export async function trips(userData) {
                     data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
                     aria-selected="false">History</button>
             </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
+        </ul>   
+        <div class="tab-content w-100 h-75" id="myTabContent">
             <div class="tab-pane fade show active h-100 w-100" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                 tabindex="0">
                 <div class = "d-flex w-100 h-100">
@@ -65,223 +61,251 @@ export async function trips(userData) {
                     </div> 
                </div> 
             </div>
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
-                tabindex="0">...</div>
-    
-             </div>
-        </div>`
+                <div class="tab-pane fade h-100 w-100 d-flex" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                    tabindex="0">
+                    <div class ="d-flex flex-column h-100 w-100">
+                        <div class="w-100 h-90">
+                        </div>
+                        <div class="w-100 h-10 d-flex justify-content-center  bottom-0">
+                            <nav class="pagination-outer" aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
 
+  const popoverTriggerList = document.querySelectorAll(
+    '[data-bs-toggle="popover"]'
+  );
+  const popoverList = [...popoverTriggerList].map(
+    (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+  );
+  const cancelService = document.querySelector("#cancel_service");
 
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-    const cancelService = document.querySelector("#cancel_service")
+  cancelService.addEventListener("click", () => {
+    showAlertDelete();
+  });
 
-    cancelService.addEventListener("click", () => {
-        showAlertDelete()
-    })
-
-    function showAlertDelete() {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "btn btn-danger"
-            },
-            buttonsStyling: false
-        });
-        swalWithBootstrapButtons.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                swalWithBootstrapButtons.fire({
-                    title: "Deleted!",
-                    text: "Your service has been deleted.",
-                    timer: 3000,
-                    icon: "success"
-                });
-                deleteService()
-                window.location.href = 'index.html'
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire({
-                    title: "Cancelled",
-                    text: "Your service is safe :)",
-                    icon: "error"
-                });
-            }
-        });
-    }
-
-    async function deleteService() {
-        const URLbase = "http://localhost:8080/api/v1/"
-        try {
-            responseRol = await fetch(`${URLbase}service/${userData.id}`, {
-                method: 'DELETE',
-            })
-            console.log("eliminado");
-
-        } catch (error) {
-            console.log(error)
+  function showAlertDelete() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: "Deleted!",
+            text: "Your service has been deleted.",
+            timer: 3000,
+            icon: "success",
+          });
+          deleteService();
+          window.location.href = "index.html";
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your service is safe :)",
+            icon: "error",
+          });
         }
+      });
+  }
+
+  async function deleteService() {
+    const URLbase = "http://localhost:8080/api/v1/";
+    try {
+      responseRol = await fetch(`${URLbase}service/${userData.id}`, {
+        method: "DELETE",
+      });
+      console.log("eliminado");
+    } catch (error) {
+      console.log(error);
     }
+  }
 
+  // -------------------------------------------MAP------------------------
 
-    // -------------------------------------------MAP------------------------
-
-    mapboxgl.accessToken =
-        'pk.eyJ1Ijoia3dtZWppYSIsImEiOiJjbGl2eWk4eWwxb3dhM3Bxdm5kNGtpOXRrIn0.RaBQJtXzaW3dBHodhcQg2Q'
-    let map = new mapboxgl.Map({
-        //Configuramos el mapa segun lo que necesitamos
-        container: 'mapaTrip',
-        style: 'mapbox://styles/mapbox/streets-v12',
-        center: [-122.662323, 45.523751],
-        zoom: 15,
-        pitch: 45,
-        bearing: -17.6,
-    })
-    var puntos = {
-        'type': 'FeatureCollection',
-        'features': [
-            {
-                'type': 'Feature',
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-74.0090, 40.7128]
-                },
-                'properties': {
-                    'title': 'Punto 1'
-                }
-            },
-            {
-                'type': 'Feature',
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-73.9990, 40.7028]
-                },
-                'properties': {
-                    'title': 'Punto 2'
-                }
-            }
-        ]
-    };
-    //Introducimos una capa donde se muestran los edificos en 3D
-    map.on('load', function () {
-        map.addLayer({
-            id: '3d-buildings',
-            source: 'composite',
-            'source-layer': 'building',
-            filter: ['==', 'extrude', 'true'],
-            type: 'fill-extrusion',
-            minzoom: 15,
-            paint: {
-                'fill-extrusion-color': '#aaa',
-                'fill-extrusion-height': {
-                    type: 'identity',
-                    property: 'height',
-                },
-                'fill-extrusion-base': {
-                    type: 'identity',
-                    property: 'min_height',
-                },
-                'fill-extrusion-opacity': 0.6,
-            },
-        })
-    })
+  mapboxgl.accessToken =
+    "pk.eyJ1Ijoia3dtZWppYSIsImEiOiJjbGl2eWk4eWwxb3dhM3Bxdm5kNGtpOXRrIn0.RaBQJtXzaW3dBHodhcQg2Q";
+  let map = new mapboxgl.Map({
+    //Configuramos el mapa segun lo que necesitamos
+    container: "mapaTrip",
+    style: "mapbox://styles/mapbox/streets-v12",
+    center: [-122.662323, 45.523751],
+    zoom: 15,
+    pitch: 45,
+    bearing: -17.6,
+  });
+  var puntos = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-74.009, 40.7128],
+        },
+        properties: {
+          title: "Punto 1",
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-73.999, 40.7028],
+        },
+        properties: {
+          title: "Punto 2",
+        },
+      },
+    ],
+  };
+  //Introducimos una capa donde se muestran los edificos en 3D
+  map.on("load", function () {
+    map.addLayer({
+      id: "3d-buildings",
+      source: "composite",
+      "source-layer": "building",
+      filter: ["==", "extrude", "true"],
+      type: "fill-extrusion",
+      minzoom: 15,
+      paint: {
+        "fill-extrusion-color": "#aaa",
+        "fill-extrusion-height": {
+          type: "identity",
+          property: "height",
+        },
+        "fill-extrusion-base": {
+          type: "identity",
+          property: "min_height",
+        },
+        "fill-extrusion-opacity": 0.6,
+      },
+    });
+  });
+  // an arbitrary start will always be the same
+  // only the end or destination will change
+  const start = [-122.662323, 45.523751];
+  const end = [-122.662323, 45.6788];
+  getRoute(end);
+  // create a function to make a directions request
+  async function getRoute(end) {
+    // make a directions request using cycling profile
     // an arbitrary start will always be the same
     // only the end or destination will change
-    const start = [-122.662323, 45.523751]
-    const end = [-122.662323, 45.6]
-    getRoute(end)
-    // create a function to make a directions request
-    async function getRoute(end) {
-        // make a directions request using cycling profile
-        // an arbitrary start will always be the same
-        // only the end or destination will change
-        const query = await fetch(
-            `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
-            { method: 'GET' }
-        );
-        const json = await query.json();
-        const data = json.routes[0];
-        const route = data.geometry.coordinates;
-        console.log(data)
-        const geojson = {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-                type: 'LineString',
-                coordinates: route
-            }
-        };
-        // if the route already exists on the map, we'll reset it using setData
-        if (map.getSource('route')) {
-            map.getSource('route').setData(geojson);
-        }
-        // otherwise, we'll make a new request
-        else {
-            map.addLayer({
-                id: 'route',
-                type: 'line',
-                source: {
-                    type: 'geojson',
-                    data: geojson
-                },
-                layout: {
-                    'line-join': 'round',
-                    'line-cap': 'round'
-                },
-                paint: {
-                    'line-color': '#3887be',
-                    'line-width': 5,
-                    'line-opacity': 0.75
-                }
-            });
-        }
-        // add turn instructions here at the end
+    const query = await fetch(
+      `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+      { method: "GET" }
+    );
+    const json = await query.json();
+    const data = json.routes[0];
+    const route = data.geometry.coordinates;
+    console.log(data);
+    const geojson = {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "LineString",
+        coordinates: route,
+      },
+    };
+    // if the route already exists on the map, we'll reset it using setData
+    if (map.getSource("route")) {
+      map.getSource("route").setData(geojson);
     }
+    // otherwise, we'll make a new request
+    else {
+      map.addLayer({
+        id: "route",
+        type: "line",
+        source: {
+          type: "geojson",
+          data: geojson,
+        },
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#3887be",
+          "line-width": 5,
+          "line-opacity": 0.75,
+        },
+      });
+    }
+    // add turn instructions here at the end
+  }
 
-    map.on('load', () => {
-        // make an initial directions request that
-        // starts and ends at the same location
-        getRoute(start);
+  map.on("load", () => {
+    // make an initial directions request that
+    // starts and ends at the same location
+    getRoute(start);
 
-        // Add starting point to the map
-        map.addLayer({
-            id: 'point',
-            type: 'circle',
-            source: {
-                type: 'geojson',
-                data: {
-                    type: 'FeatureCollection',
-                    features: [
-                        {
-                            type: 'Feature',
-                            properties: {},
-                            geometry: {
-                                type: 'Point',
-                                coordinates: start
-                            }
-                        }
-                    ]
-                }
+    // Add starting point to the map
+    map.addLayer({
+      id: "point",
+      type: "circle",
+      source: {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: start,
+              },
             },
-            paint: {
-                'circle-radius': 10,
-                'circle-color': '#3887be'
-            }
-        });
-        // this is where the code from the next step will go
+          ],
+        },
+      },
+      paint: {
+        "circle-radius": 10,
+        "circle-color": "#3887be",
+      },
     });
+    // this is where the code from the next step will go
+  });
 
-    function notFound() {
-        info.innerHTML = `            
+  function notFound() {
+    info.innerHTML = `            
         <div id="trips" class="h-100 w-75 px-2">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -298,14 +322,19 @@ export async function trips(userData) {
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active h-100 w-100" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                 tabindex="0">
-                <div class = "d-flex w-100 h-100">
-                    No tienes servicios activos
+                <div class = "d-flex w-100 h-100 justify-content-center align-items-center flex-column my-5">
+                   <div class="clamp1"> You have no active services at this time </div>
+                   <div class="my-5"> <img id="userPhoto" width="300px" height="300px" src="../assets/img/imgUsers/UniversalUpscaler_7a916b19-aef7-424f-9206-cf8e51fe1352.jpg" alt="profile" class="rounded-circle"></div>
+                   <div class="mb-2">
+                        <div class="clamp1">Order your service </div>
+                        <div class="clamp1 d-flex justify-content-center my-2"><button  id="editButton" class="btn btn-outline-warning"><a href="../index.html">MUVIT!</a></button></div>
+                   </div>
                </div> 
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                 tabindex="0">...</div>
     
              </div>
-        </div>`
-    }
+        </div>`;
+  }
 }
