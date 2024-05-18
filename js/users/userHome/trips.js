@@ -1,6 +1,7 @@
 const info = document.querySelector("#info");
 
 export async function trips(userData) {
+
     async function getService() {
         const URLbase = `http://localhost:8080/api/v1/service/user/${userData.id}/active-service`;
         const response = await fetch(`${URLbase}`);
@@ -11,9 +12,17 @@ export async function trips(userData) {
         const serviceData = await service;
         return serviceData;
     }
-
+    async function getInactiveService() {
+        const URLbase = `http://localhost:8080/api/v1/service/user/${userData.id}/inactive-service`;
+        const response = await fetch(`${URLbase}`);
+        if (response.status === 404) {
+            notFound();
+        }
+        const inactiveService = await response.json();
+        const inactiveServiceData = await inactiveService;
+        return inactiveServiceData;
+    }
     const serviceData = await getService();
-
     info.innerHTML = `            
         <div id="trips" class="h-100 w-75 px-2">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -63,63 +72,15 @@ export async function trips(userData) {
                 <div class="tab-pane fade h-100 w-100 d-flex" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                     tabindex="0">
                     <div class ="d-flex flex-column h-100 w-100">
-                        <div class="w-100 h-100 d-flex flex-column justify-content-around p-4">
-                            <div class="card w-50 mb-3 p-1">
-                                <div class="card-body">
-                                    <div class="d-flex flex-column gap-2 align-content-around clamp3">
-                                        <div class="d-flex justify-content-between">
-                                            <div class ="typeColor">BASIC</div><div class ="priceColor">COP 215.000</div>
-                                        </div>
-                                        <div><i class="bi bi-clock"></i> 2024-06-18 / 14:00</div>
-                                        <div><i class="bi bi-geo-alt-fill" style="color:green"></i> Ubicacion 1</div>
-                                        <div><i class="bi bi-geo-alt-fill" style="color:#2dbaed"></i> Ubicacion 2</div>
-                                     </div>
-                                </div>
-                            </div>
-                            <div class="card w-50 mb-3 p-1">
-                                <div class="card-body">
-                                    <div class="d-flex flex-column gap-2 align-content-around clamp3">
-                                        <div class="d-flex justify-content-between">
-                                            <div class ="typeColor">BASIC</div><div class ="priceColor">COP 215.000</div>
-                                        </div>
-                                        <div><i class="bi bi-clock"></i> 2024-06-18 / 14:00</div>
-                                        <div><i class="bi bi-geo-alt-fill" style="color:green"></i> Ubicacion 1</div>
-                                        <div><i class="bi bi-geo-alt-fill" style="color:#2dbaed"></i> Ubicacion 2</div>
-                                     </div>
-                                </div>
-                            </div>
-                            <div class="card w-50 mb-3 p-1">
-                                <div class="card-body">
-                                    <div class="d-flex flex-column gap-2 align-content-around clamp3">
-                                        <div class="d-flex justify-content-between">
-                                            <div class ="typeColor">BASIC</div><div class ="priceColor">COP 215.000</div>
-                                        </div>
-                                        <div><i class="bi bi-clock"></i> 2024-06-18 / 14:00</div>
-                                        <div><i class="bi bi-geo-alt-fill" style="color:green"></i> Ubicacion 1</div>
-                                        <div><i class="bi bi-geo-alt-fill" style="color:#2dbaed"></i> Ubicacion 2</div>
-                                     </div>
-                                </div>
-                            </div>                            
+                        <div id="inactiveServices" class="w-100 h-100 d-flex flex-column justify-content-around p-4">                           
                         </div>
                         <div class="w-100 h-10 d-flex justify-content-center  bottom-0">
                             <nav class="pagination-outer" aria-label="Page navigation">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Previous">
-                                            <span aria-hidden="true">«</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Next">
-                                            <span aria-hidden="true">»</span>
-                                        </a>
-                                    </li>
+                                <div id="paginationContainer">
+                                <ul id="paginationControls" class="pagination">
+
                                 </ul>
+                                </div>
                             </nav>
                         </div>
                     </div>
@@ -134,6 +95,89 @@ export async function trips(userData) {
         (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
     );
     const cancelService = document.querySelector("#cancel_service");
+    const inactiveService = await getInactiveService()
+    displayInactiveService(inactiveService, userData)
+    function displayInactiveService(inactiveService, userData) {
+        const page = 0;
+        const size = 3;
+        const inactiveServiceList = inactiveService.content
+        const currentPage = inactiveService.number
+        const inactiveServices = document.querySelector("#inactiveServices")
+        inactiveServices.innerHTML = ""
+
+        inactiveServiceList.forEach(service => {
+            inactiveServices.innerHTML += `
+                <div class="card w-50 mb-3 p-1">
+                    <div class="card-body">
+                        <div class="d-flex flex-column gap-2 align-content-around clamp3">
+                            <div class="d-flex justify-content-between">
+                                <div class ="typeColor">${service.typeService}</div><div class ="priceColor">${service.price}</div>
+                            </div>
+                            <div><i class="bi bi-clock"></i> ${service.date} / ${service.time}</div>
+                            <div><i class="bi bi-geo-alt-fill" style="color:green"></i> ${service.startPoint}</div>
+                            <div><i class="bi bi-geo-alt-fill" style="color:#2dbaed"></i> ${service.finalPoint}</div>
+                         </div>
+                    </div>
+                </div>
+            `
+        });
+        updatePaginationControls(inactiveService.totalPages, currentPage, inactiveService.size, userData)
+    }
+    function updatePaginationControls(totalPages, currentPage, size, userData) {
+
+        const paginationControls = document.querySelector("#paginationControls")
+        paginationControls.innerHTML = `                                    <li class="page-item">
+        <a id="previus" href="" class="page-link" aria-label="Previous">
+            <span aria-hidden="true">«</span>
+        </a>
+    </li>`
+        for (let i = 1; i <= totalPages; i++) {
+            paginationControls.innerHTML += `<li id="page${i}" class="page-item currentPage"><a class="page-link" href="">${i}</a></li`
+        }
+        paginationControls.innerHTML += ` <li class="page-item">
+        <a id="next" href="" class="page-link" aria-label="Next">
+            <span aria-hidden="true">»</span>
+        </a>
+        </li>`
+        const prevButton = document.querySelector("#previus");
+        const nextButton = document.querySelector("#next");
+        const currentDiplayPage = document.querySelector("#paginationContainer")
+        const activePage = document.querySelector(`#page${currentPage + 1}`)
+
+        activePage.classList.add("active")
+
+        currentPage === 0 ? prevButton.classList.add("disabled") : "prev";
+
+        currentPage === totalPages - 1 ? nextButton.classList.add("disabled") : "next";
+
+        prevButton.addEventListener('click', (event) => {
+            event.preventDefault()
+            fetchPaginatedData(currentPage - 1, size, userData)
+        });
+        nextButton.addEventListener('click', (event) => {
+            event.preventDefault()
+            fetchPaginatedData(currentPage + 1, size, userData)
+        });
+
+        currentDiplayPage.addEventListener("click", (event) => {
+            event.preventDefault()
+            if (event.target.classList.contains("page-link")) {
+                fetchPaginatedData(event.target.textContent - 1, size, userData)
+            }
+        })
+
+    }
+    async function fetchPaginatedData(newPage, pageSize, userData) {
+        const URLbase = `http://localhost:8080/api/v1/service/user/${userData.id}/inactive-service?page=${newPage}&size=${pageSize}`;
+        const response = await fetch(`${URLbase}`);
+        if (response.status === 404) {
+            notFound();
+        }
+        const inactiveService = await response.json();
+        const inactiveServiceData = await inactiveService;
+        displayInactiveService(inactiveServiceData, userData)
+    }
+
 
     cancelService.addEventListener("click", () => {
         showAlertDelete();
@@ -270,7 +314,6 @@ export async function trips(userData) {
         const json = await query.json();
         const data = json.routes[0];
         const route = data.geometry.coordinates;
-        console.log(data);
         const geojson = {
             type: "Feature",
             properties: {},
