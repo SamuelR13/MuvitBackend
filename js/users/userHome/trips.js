@@ -43,12 +43,12 @@ export async function trips(userData) {
                 <div class = "d-flex w-100 h-100">
                     <div id="mapaTrip" class="w-50 rounded-5 mx-5 my-5"></div>
                     
-                    <div class = "w-50 h-100">
+                    <div id="historyContainer" class = "w-50 h-100">
                         <div class ="d-flex w-100 justify-content-around align-items-center mb-2 my-3 text-center clamp1">
                             <p id="driver_name" class="d-flex text-center">${serviceData["driver"]["name"]} ${serviceData["driver"]["lastName"]}</p>
                             <img id="userPhoto" width="100px" height="100px" src="${serviceData["driver"]["rol"]["userPhoto"]}" alt="profile" class="rounded-circle">
                         </div>
-                        <ul class="list-group list-group-flush clamp1">
+                        <ul id="activeServiceLarge" class="list-group list-group-flush clamp1">
                             <li class="list-group-item d-flex justify-content-between">Model<span>${serviceData["driver"]["truck"][0]["model"]}</span></li>
                             <li class="list-group-item d-flex justify-content-between">License plate<span>${serviceData["driver"]["truck"][0]["licensePlate"]}</span></li>
                             <li class="list-group-item d-flex justify-content-between">Assitants<span>${serviceData.assistant}</span></li>
@@ -59,6 +59,25 @@ export async function trips(userData) {
                             <li class="list-group-item d-flex justify-content-between">Date<span>${serviceData.date}</span></li>
                             <li class="list-group-item d-flex justify-content-between">Time<span>${serviceData.time}</span></li>
                         </ul>
+                        <ul id="activeServiceMedium" class="w-100 list-group list-group-flush clamp4 my-3">
+                            <div class ="d-flex w-100">
+                                <li class="w-50 list-group-item d-flex justify-content-between">Model<span>${serviceData["driver"]["truck"][0]["model"]}</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between">License plate<span>${serviceData["driver"]["truck"][0]["licensePlate"]}</span></li>
+                            </div>
+                            <div class ="d-flex w-100">
+                                <li class="w-50 list-group-item d-flex justify-content-between">Assitants<span>${serviceData.assistant}</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between">Distancia<span>${serviceData.distance}</span></li>
+                            </div>
+                            <div class ="d-flex w-100">                        
+                                <li class="w-50 list-group-item d-flex justify-content-between">Service<span>${serviceData.typeService}</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between">Price<span>${serviceData.price}</span></li>
+                            </div>
+                            <div class ="d-flex w-100">
+                                <li class="w-50 list-group-item d-flex justify-content-between">Payment method<span>tarjeta</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between"><span>${serviceData.date} / ${serviceData.time}</span></li>
+                            </div>
+                        </ul>
+                        
                         <div class="d-flex my-3 justify-content-between">
                         <div class="d-flex gap-3 clamp2">
                             <button type="button" class="btn btn-outline-primary clamp2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="+57 ${serviceData["driver"]["phoneNumber"]}">Call <i class="bi bi-telephone"></i></button>
@@ -107,16 +126,22 @@ export async function trips(userData) {
 
         inactiveServiceList.forEach(service => {
             inactiveServices.innerHTML += `
-                <div class="card w-50 mb-3 p-1">
+                <div id="inactiveCard" class="card w-50 mb-3 p-1">  
                     <div class="card-body">
-                        <div class="d-flex flex-column gap-2 align-content-around clamp3">
+                        <div id="inactiveCardInfo" class="d-flex flex-column gap-2 align-content-around inactiveServiceCard">
                             <div class="d-flex justify-content-between">
-                                <div class ="typeColor">${service.typeService}</div><div class ="priceColor">${service.price}</div>
+                                <div class ="typeColor inactiveServiceCard">${service.typeService}</div><div class ="priceColor">${service.price}</div>
                             </div>
-                            <div><i class="bi bi-clock"></i> ${service.date} / ${service.time}</div>
-                            <div><i class="bi bi-geo-alt-fill" style="color:green"></i> ${service.startPoint}</div>
-                            <div><i class="bi bi-geo-alt-fill" style="color:#2dbaed"></i> ${service.finalPoint}</div>
-                         </div>
+                            <div class="inactiveServiceCard"><i class="bi bi-clock"></i> ${service.date} / ${service.time}</div>
+                            <div id="ubicationsServiceLarge" class="d-none">
+                            <div class="inactiveServiceCard"><i class="bi bi-geo-alt-fill" style="color:green"></i> ${service.startPoint}</div>
+                            <div class="inactiveServiceCard"><i class="bi bi-geo-alt-fill" style="color:#2dbaed"></i> ${service.finalPoint}</div>
+                            </div>
+                            <div id="ubicationsServiceMedium" class="d-flex gap-1">
+                            <div class="inactiveServiceCard"><i class="bi bi-geo-alt-fill" style="color:green"></i> ${service.startPoint}</div>
+                            <div class="inactiveServiceCard"><i class="bi bi-geo-alt-fill" style="color:#2dbaed"></i> ${service.finalPoint}</div>
+                            </div>
+                            </div>
                     </div>
                 </div>
             `
