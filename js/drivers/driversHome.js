@@ -15,7 +15,6 @@ let driverDataGlobal = ""
 document.addEventListener('DOMContentLoaded', async (event) => {
   event.preventDefault()
   const driverData = await getProfile()
-  console.log(driverData)
   driverDataGlobal = driverData
   name.innerHTML = `${driverData.name} ${driverData.lastName}`
   username.innerHTML = `${driverData.rol["nameUser"]}`
@@ -52,7 +51,7 @@ menu.addEventListener("click", async (event) => {
 })
 
 async function getProfile() {
-  const response = await fetch(`${URLbase}0038316c-c6be-40ed-b3e2-d2b9e5ce27ed`)
+  const response = await fetch(`${URLbase}effdd194-3d89-495f-8f61-ca8c37df2369`)
   const driver = await response.json()
   const driverData = await driver
   return driverData
