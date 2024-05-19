@@ -41,9 +41,8 @@ a {
   color: #000000;
 }
 
-
 .tab-content .tab-pane {
-  background-color: #FFF;
+  background-color: #fff;
   color: #000000;
   min-height: 200px;
   height: auto;
@@ -55,8 +54,30 @@ a {
 
 .clamp2 {
   font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
-  ;
 }
+
+.clamp3 {
+  font-size: clamp(0.625rem, 4vw - 0.75rem, 1rem);
+}
+
+.inactiveServiceCard {
+  font-size: clamp(0.625rem, 4vw - 0.75rem, 1rem) !important;
+}
+
+.typeColor {
+  color: var(--color2);
+}
+
+.priceColor {
+  color: var(--color1);
+}
+
+.card:hover {
+  background-color: rgba(251, 230, 221, 0.922);
+  cursor: pointer;
+}
+
+
 
 .text-success {
   color: var(--color2) !important;
@@ -83,8 +104,6 @@ header nav {
   border-radius: 15px;
 }
 
-
-
 .navBtn {
   border-radius: 15px;
   transition: 0.5s;
@@ -106,7 +125,6 @@ header nav {
 .bg-color3 {
   background-color: var(--color3);
 }
-
 
 .cont-cards {
   margin: 5%;
@@ -140,16 +158,74 @@ header nav {
   width: 35%;
 }
 
+.w-10 {
+  width: 10% !important;
+}
+
+.w-20 {
+  width: 20% !important;
+}
+
+.w-30 {
+  width: 30% !important;
+}
+
+.w-40 {
+  width: 40% !important;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+.w-70 {
+  width: 70% !important;
+}
+
+.w-80 {
+  width: 80% !important;
+}
+
+.w-90 {
+  width: 90px !important;
+}
+
+.h-10 {
+  height: 10% !important;
+}
+
+.h-15 {
+  height: 15%;
+}
+
+.h-20 {
+  height: 20% !important;
+}
+
+.h-30 {
+  height: 30% !important;
+}
+
+.h-40 {
+  height: 40% !important;
+}
+
+.h-60 {
+  height: 60% !important;
+}
+
+.h-70 {
+  height: 70% !important;
+}
+
 .h-80 {
   height: 65% !important;
-
 }
 
 .h-90 {
   padding: 10px;
   height: 90% !important;
 }
-
 
 .contact-form .form-control {
   border-radius: 1rem;
@@ -169,7 +245,6 @@ header nav {
   text-align: center;
   color: var(--color2);
 }
-
 
 .btn-outline-warning {
   color: var(--color1);
@@ -200,156 +275,251 @@ header nav {
   --bs-dropdown-link-hover-bg: var(--color0);
   --bs-dropdown-link-active-bg: var(--color2);
   --bs-dropdown-link-active-color: black;
-
 }
 
-/* ------------------------------------------------PAYMENT---------------------- */
-.card {
-  width: 50%;
-  padding: 3rem 3.5rem;
+/* --------------------------------------HISTORY------------------------- */
+/* --------------------------------------PAGINATION------------------------------- */
+.pagination-outer {
+  text-align: center;
 }
 
-.nav {
-  display: flex;
+.pagination {
+  font-family: "Quicksand", sans-serif;
+  display: inline-flex;
+  position: relative;
 }
 
-.nav ul {
-  list-style-type: none;
-  display: flex;
-  padding-inline-start: unset;
-  margin-bottom: 6vh;
+.pagination li a.page-link {
+  color: #fff;
+  background-color: var(--color0);
+  font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
+  font-weight: 600;
+  line-height: 33px;
+  height: 33px;
+  width: 33px;
+  padding: 0;
+  margin: 0 5px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease 0s;
 }
 
-.nav li {
+.pagination li a.page-link:hover,
+.pagination li a.page-link:focus,
+.pagination li.active a.page-link:hover,
+.pagination li.active a.page-link {
+  color: #fff;
+  background: var(--color1);
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.2), 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination li:first-child a.page-link,
+.pagination li:last-child a.page-link {
+  color: var(--color1);
+  background-color: #fff;
+  line-height: 27px;
+  border: 2px solid var(--color0);
+}
+
+@media only screen and (max-width: 480px) {
+  .pagination {
+    font-size: 0;
+    display: inline-block;
+  }
+
+  .pagination li {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 10px;
+  }
+}
+
+#activeServiceMedium {
+  display: none;
+}
+
+#ubicationsServiceMedium {
+  display: none;
+}
+
+@media screen and (max-width:1400px) {
+  .clamp1 {
+    font-size: clamp(0.625rem, 4vw - 0.75rem, 1.25rem);
+  }
+
+  .clamp2 {
+    font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
+  }
+
+  .clamp3 {
+    font-size: clamp(0.625rem, 4vw - 0.75rem, 1rem);
+  }
+
+  .clamp4 {
+    font-size: clamp(0.5rem, 4vw - 0.5rem, 0.9rem);
+  }
+
+  #infoPreferences {
+    font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
+  }
+
+  .form-floating {
+    margin-bottom: 0.25rem !important;
+  }
+
+  #historyContainer {
+    width: 100% !important;
+  }
+
+  #activeServiceLarge {
+    display: none;
+  }
+
+  #activeServiceMedium {
+    display: block;
+  }
+
+  #ubicationsServiceLarge {
+    display: none;
+  }
+
+  #ubicationsServiceMedium {
+    display: block;
+  }
+
+  #mapaTrip {
+    width: 75% !important;
+    margin-left: .5rem !important;
+    margin-right: 1rem !important;
+  }
+
+  .inactiveServiceCard {
+    font-size: clamp(0.5rem, 4vw - 0.5rem, 0.9rem) !important;
+  }
+
+  #inactiveCard {
+    width: 100% !important;
+    margin-bottom: .25rem !important;
+    padding: .15rem !important;
+  }
+
+  #inactiveCardInfo {
+    gap: 0rem !important;
+  }
+}
+
+.bi-plus-circle {
+  color: var(--color2);
+  font-size: clamp(1rem, 4vw - 1rem, 1.5rem);
+}
+
+.cardPayment {
   padding: 1rem;
+  border: #00000044 solid 1px;
+  border-radius: 15px;
 }
 
-.nav li a {
-  color: black;
-  text-decoration: none;
+.cardPayment:hover {
+  background-color: #c4b6b18c;
+  cursor: pointer;
 }
 
-input {
-  border: none;
-  outline: none;
-  color: #000;
+.addPaymet:hover {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------CARD------------------------- */
+.visa-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 80%;
+  height: 50%;
+  background-image: radial-gradient(circle 897px at 9% 80.3%,
+      rgb(252, 85, 85) 0%,
+      rgba(230, 234, 15, 0.9) 100.2%);
+  border-radius: 10px;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  gap: 15px;
+}
+
+.logoContainer {
   width: 100%;
-  min-width: unset;
-  background-color: transparent;
-  border-color: transparent;
-  margin: 0;
-}
-
-form a {
-  color: grey;
-  text-decoration: none;
-  font-size: 0.87rem;
-  font-weight: bold;
-}
-
-form a:hover {
-  color: grey;
-  text-decoration: none;
-}
-
-form .row {
-  margin: 0;
-  overflow: hidden;
-}
-
-form .row-1 {
-  padding: 0.5rem;
-  outline: none;
-  width: 100%;
-  min-width: unset;
-  border-radius: 5px;
-  background-color: rgba(221, 228, 236, 0.301);
-  border-color: rgba(221, 228, 236, 0.459);
-  margin: 2vh 0;
-  overflow: hidden;
-}
-
-form .row-2 {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 0 0.8rem;
-}
-
-form .row .row-2 {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 0 0.8rem;
-}
-
-form .row .col-2,
-.col-7,
-.col-3 {
   display: flex;
   align-items: center;
-  text-align: center;
-  padding: 0 1vh;
+  justify-content: flex-end;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 18px;
 }
 
-form .row .col-2 {
-  padding-right: 0;
+
+.inputstyle::placeholder {
+  color: #ffffff;
 }
 
-#card-header {
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-#card-inner {
-  font-size: 0.7rem;
-  color: gray;
-}
-
-.three .col-7 {
-  padding-left: 0;
-}
-
-.three {
-  overflow: hidden;
-  justify-content: space-between;
-}
-
-.three .col-2 {
-  padding: 0.5rem;
+.inputstyle {
+  background-color: transparent;
+  border: none;
   outline: none;
+  color: white;
+  font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
+  height: 25px;
+  letter-spacing: 1.5px;
+}
+
+.number-container {
   width: 100%;
-  min-width: unset;
-  border-radius: 5px;
-  background-color: rgba(221, 228, 236, 0.301);
-  border-color: rgba(221, 228, 236, 0.459);
-  margin: 2vh 0;
-  width: fit-content;
-  overflow: hidden;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
-.three .col-2 input {
-  font-size: 0.7rem;
-  margin-left: 1vh;
+#cardNumber {
+  width: 100%;
+  height: 25px;
 }
 
-input:focus::-webkit-input-placeholder {
-  color: transparent;
+.name-date-cvv-container {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  gap: 10px;
 }
 
-input:focus:-moz-placeholder {
-  color: transparent;
+.name-wrapper {
+  width: 60%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
-input:focus::-moz-placeholder {
-  color: transparent;
+.expiry-wrapper,
+.cvv-wrapper {
+  width: 30%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
-input:focus:-ms-input-placeholder {
-  color: transparent;
+.cvv-wrapper {
+  width: 10%;
 }
-.bottonSelect{
-  bottom: 4.5px;
+
+#expiry,
+#cvv {
+  width: 100%;
+}
+
+.input-label {
+  font-size: clamp(0.1rem, 4vw - 0.2em, 0.5rem);
+  letter-spacing: 1.5px;
+  color: #e2e2e2;
+  width: 100%;
 }
