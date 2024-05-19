@@ -451,10 +451,6 @@ header nav {
   padding: 18px;
 }
 
-.svgLogo {
-  height: 75px;
-  width: auto;
-}
 
 .inputstyle::placeholder {
   color: #ffffff;
