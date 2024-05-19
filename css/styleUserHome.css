@@ -292,7 +292,7 @@ header nav {
 .pagination li a.page-link {
   color: #fff;
   background-color: var(--color0);
-  font-size: 22px;
+  font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
   font-weight: 600;
   line-height: 33px;
   height: 33px;
@@ -358,6 +358,14 @@ header nav {
 
   .clamp4 {
     font-size: clamp(0.5rem, 4vw - 0.5rem, 0.9rem);
+  }
+
+  #infoPreferences {
+    font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
+  }
+
+  .form-floating {
+    margin-bottom: 0.25rem !important;
   }
 
   #historyContainer {

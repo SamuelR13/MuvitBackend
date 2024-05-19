@@ -3,10 +3,10 @@ const info = document.querySelector("#info")
 
 export function preferencesUser(userData) {
     console.log(userData)
-    
+
     info.innerHTML = `<div id="preferences" class="h-100 w-100 d-flex  align-items-center">     
     <div class="row w-100">
-        <div class="col-8 d-flex flex-column">
+        <div id="infoPreferences" class="col-8 d-flex flex-column">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="editName" placeholder="Your name" value=${userData.name}>
                 <label for="editName">Name</label>
