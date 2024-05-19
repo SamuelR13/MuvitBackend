@@ -74,6 +74,7 @@ a {
 
 .card:hover {
   background-color: rgba(251, 230, 221, 0.922);
+  cursor: pointer;
 }
 
 
@@ -157,6 +158,66 @@ header nav {
   width: 35%;
 }
 
+.w-10 {
+  width: 10% !important;
+}
+
+.w-20 {
+  width: 20% !important;
+}
+
+.w-30 {
+  width: 30% !important;
+}
+
+.w-40 {
+  width: 40% !important;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+.w-70 {
+  width: 70% !important;
+}
+
+.w-80 {
+  width: 80% !important;
+}
+
+.w-90 {
+  width: 90px !important;
+}
+
+.h-10 {
+  height: 10% !important;
+}
+
+.h-15 {
+  height: 15%;
+}
+
+.h-20 {
+  height: 20% !important;
+}
+
+.h-30 {
+  height: 30% !important;
+}
+
+.h-40 {
+  height: 40% !important;
+}
+
+.h-60 {
+  height: 60% !important;
+}
+
+.h-70 {
+  height: 70% !important;
+}
+
 .h-80 {
   height: 65% !important;
 }
@@ -214,154 +275,6 @@ header nav {
   --bs-dropdown-link-hover-bg: var(--color0);
   --bs-dropdown-link-active-bg: var(--color2);
   --bs-dropdown-link-active-color: black;
-}
-
-/* ------------------------------------------------PAYMENT---------------------- */
-.card {
-  width: 50%;
-  padding: 3rem 3.5rem;
-}
-
-.nav {
-  display: flex;
-}
-
-.nav ul {
-  list-style-type: none;
-  display: flex;
-  padding-inline-start: unset;
-  margin-bottom: 6vh;
-}
-
-.nav li {
-  padding: 1rem;
-}
-
-.nav li a {
-  color: black;
-  text-decoration: none;
-}
-
-input {
-  border: none;
-  outline: none;
-  color: #000;
-  width: 100%;
-  min-width: unset;
-  background-color: transparent;
-  border-color: transparent;
-  margin: 0;
-}
-
-form a {
-  color: grey;
-  text-decoration: none;
-  font-size: 0.87rem;
-  font-weight: bold;
-}
-
-form a:hover {
-  color: grey;
-  text-decoration: none;
-}
-
-form .row {
-  margin: 0;
-  overflow: hidden;
-}
-
-form .row-1 {
-  padding: 0.5rem;
-  outline: none;
-  width: 100%;
-  min-width: unset;
-  border-radius: 5px;
-  background-color: rgba(221, 228, 236, 0.301);
-  border-color: rgba(221, 228, 236, 0.459);
-  margin: 2vh 0;
-  overflow: hidden;
-}
-
-form .row-2 {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 0 0.8rem;
-}
-
-form .row .row-2 {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 0 0.8rem;
-}
-
-form .row .col-2,
-.col-7,
-.col-3 {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  padding: 0 1vh;
-}
-
-form .row .col-2 {
-  padding-right: 0;
-}
-
-#card-header {
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-#card-inner {
-  font-size: 0.7rem;
-  color: gray;
-}
-
-.three .col-7 {
-  padding-left: 0;
-}
-
-.three {
-  overflow: hidden;
-  justify-content: space-between;
-}
-
-.three .col-2 {
-  padding: 0.5rem;
-  outline: none;
-  width: 100%;
-  min-width: unset;
-  border-radius: 5px;
-  background-color: rgba(221, 228, 236, 0.301);
-  border-color: rgba(221, 228, 236, 0.459);
-  margin: 2vh 0;
-  width: fit-content;
-  overflow: hidden;
-}
-
-.three .col-2 input {
-  font-size: 0.7rem;
-  margin-left: 1vh;
-}
-
-input:focus::-webkit-input-placeholder {
-  color: transparent;
-}
-
-input:focus:-moz-placeholder {
-  color: transparent;
-}
-
-input:focus::-moz-placeholder {
-  color: transparent;
-}
-
-input:focus:-ms-input-placeholder {
-  color: transparent;
 }
 
 /* --------------------------------------HISTORY------------------------- */
@@ -488,4 +401,121 @@ input:focus:-ms-input-placeholder {
   }
 }
 
-/* -----------------------------------------CARD---------------------------------------- */
+.bi-plus-circle {
+  color: var(--color2);
+  font-size: clamp(1rem, 4vw - 1rem, 1.5rem);
+}
+
+.cardPayment {
+  padding: 1rem;
+  border: #00000044 solid 1px;
+  border-radius: 15px;
+}
+
+.cardPayment:hover {
+  background-color: #c4b6b18c;
+  cursor: pointer;
+}
+
+.addPaymet:hover {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------CARD------------------------- */
+.visa-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 80%;
+  height: 50%;
+  background-image: radial-gradient(circle 897px at 9% 80.3%,
+      rgb(252, 85, 85) 0%,
+      rgba(230, 234, 15, 0.9) 100.2%);
+  border-radius: 10px;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  gap: 15px;
+}
+
+.logoContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 18px;
+}
+
+.svgLogo {
+  height: 75px;
+  width: auto;
+}
+
+.inputstyle::placeholder {
+  color: #ffffff;
+}
+
+.inputstyle {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: clamp(0.4rem, 4vw - 0.4rem, 0.75rem);
+  height: 25px;
+  letter-spacing: 1.5px;
+}
+
+.number-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+#cardNumber {
+  width: 100%;
+  height: 25px;
+}
+
+.name-date-cvv-container {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  gap: 10px;
+}
+
+.name-wrapper {
+  width: 60%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.expiry-wrapper,
+.cvv-wrapper {
+  width: 30%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.cvv-wrapper {
+  width: 10%;
+}
+
+#expiry,
+#cvv {
+  width: 100%;
+}
+
+.input-label {
+  font-size: clamp(0.1rem, 4vw - 0.2em, 0.5rem);
+  letter-spacing: 1.5px;
+  color: #e2e2e2;
+  width: 100%;
+}
