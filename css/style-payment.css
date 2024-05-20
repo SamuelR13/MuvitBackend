@@ -38,7 +38,7 @@
 
 body {
   overflow-x: hidden;
-  background-color: #fceee1;
+  background-color: #ffffff;
 }
 
 a {
@@ -1144,6 +1144,9 @@ main {
 
 #infoContainer {
   border-top: #414141 solid 1px;
+  border-bottom: #414141 solid 1px;
+}
+#infoPaymentContainer {
   border-bottom: #414141 solid 1px;
 }
 
