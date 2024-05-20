@@ -2,7 +2,7 @@
 const emailLogin = document.getElementById('emailLogin')
 const passwordLogin = document.getElementById('passwordLogin')
 const check = document.getElementById('checkBox')
-const URL = `http://localhost:3000/users`
+const URL = `http://localhost:8080/api/v1/user`
 const URLData = 'http://localhost:3000/services'
 const formLogin = document.getElementById('formLogin')
 
@@ -19,19 +19,19 @@ formLogin.addEventListener('submit', event => {
 //Functions
 
 async function loginUsers() {
-    const response = await fetch(`${URL}?emailUser=${emailLogin.value}`)
+    const response = await fetch(`${URL}/email/${emailLogin.value}`)
     const data = await response.json()
     console.log(data)
-    if (!data.length) {
+    if (data.status == 500) {
         console.log('no hay emails')
-        showAlert()
+        showAlertEmail()
         return
     }
 
-    if (data[0].passUser === passwordLogin.value) {
+    if (data.password === passwordLogin.value) {
         const serviceInfo = localStorage.getItem('confirmService')
-        console.log(data[0].type)
-        if (data[0].type === 'User') {
+        console.log(data.typeService)
+        if (data.rol["rolEnum"] === 'User') {
             console.log('Usuario')
             await fetch(URLData, {
                 method: 'POST',
@@ -44,7 +44,7 @@ async function loginUsers() {
                 }),
             })
             window.location.href = '../index.html'
-        } else if (data[0].type === 'Driver') {
+        } else if (data.rol["rolEnum"] === 'Driver') {
             console.log('Driver')
             window.location.href = '../html/driverHome.html'
         }
@@ -53,18 +53,31 @@ async function loginUsers() {
         localStorage.setItem('isLoginUser', JSON.stringify(data[0]))
     } else {
         console.log('falló')
-        showAlert()
+        showAlertPass()
         return
     }
 }
 
-function showAlert() {
+function showAlertEmail() {
     Swal.fire({
-        title: `Credentials do not match`,
-        text: 'Try again.',
+        title: 'Error!',
+        text: 'Email dont found',
         icon: 'error',
         toast: 'true',
-        timer: 1500,
+        timer: 4000,
+        showconfirmButton: false,
+        position: 'center',
+        confirmButtonText: 'Close',
+        confirmButtonColor: '#FF0000',
+    })
+}
+function showAlertPass() {
+    Swal.fire({
+        title: 'Error!',
+        text: 'Wrong Pass',
+        icon: 'error',
+        toast: 'true',
+        timer: 4000,
         showconfirmButton: false,
         position: 'center',
         confirmButtonText: 'Close',

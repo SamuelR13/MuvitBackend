@@ -13,13 +13,19 @@ let multiplicator = {
     XL: 2.5,
 }
 let serviceDetails = {
-    type: 'Basic',
-    size: 'S',
-    assistants: 0,
+    typeService: 'BASIC',
+    size: '',
+    assistant: 0,
     distance: 0,
     price: 0,
-    start: "",
-    final: ""
+    startPoint: "",
+    finalPoint: "",
+    paymentMethod: "",
+    driver: "",
+    user: "",
+    statusService: "",
+    date: "",
+    time: "",
 }
 
 const URLData = 'http://localhost:3000/services'
@@ -57,7 +63,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     event.preventDefault()
     getProfile()
     serviceConfirm()
-
 })
 //Escuchamos cuando el carrusel principal termina la animacion para cambiar el valor del Size y actualizamos algunas variables importantes
 carousel.addEventListener('slid.bs.carousel', event => {
@@ -67,15 +72,17 @@ carousel.addEventListener('slid.bs.carousel', event => {
     serviceDetails.size = carouselBtn.getAttribute('data-id')
     contador = 0
     assitNum.innerHTML = `${contador}`
+    serviceDetails.size = carouselBtn.getAttribute('data-id')
 })
 //Escuchamos el boton que confirma el servicio, guardamos los datos del servicioo en el local storage y verificamos si se encuentra logueado
 muvit.addEventListener('click', () => {
+    console.log(serviceDetails);
     localStorage.setItem('confirmService', JSON.stringify(serviceDetails))
-    if (!localStorage.getItem('isLoginUser')) {
-        window.location.href = '../html/login.html'
-    } else {
-        window.location.href = 'userHome.html'
-    }
+    // if (!localStorage.getItem('isLoginUser')) {
+    //     window.location.href = '../html/login.html'
+    // } else {
+    //     window.location.href = 'userHome.html'
+    // }
 })
 //Boton de cancelar reinicia la pagina INDEX
 cancelService.addEventListener('click', () => {
@@ -141,8 +148,6 @@ driverBtn.addEventListener('click', event => {
 })
 //----------------------------FUNCIONES------------------------
 
-
-
 //Enviamos al JSON-server toda la informacion de usuario y guardamos un token en el local storage
 async function serviceConfirm() {
     const service = localStorage.getItem("confirmService");
@@ -150,7 +155,6 @@ async function serviceConfirm() {
     const response = await fetch(`${URLData}?_embed=user`);
     const detailsService = await response.json();
     console.log(detailsService.user.id);
-
 
     detailsService.forEach((service) => {
         serviceSpecification.innerHTML = `
@@ -401,8 +405,8 @@ if (!'geolocation' in navigator) {
                 let start = e.route[0]["legs"][0]["steps"][0]["maneuver"]["location"]
                 let final = e.route[0]["legs"][0]["steps"][lengthRoute - 1]["maneuver"]["location"]
 
-                serviceDetails.start = `${start[0]}/${start[1]}`
-                serviceDetails.final = `${final[0]}/${final[1]}`
+                serviceDetails.startPoint = `${start[0]}/${start[1]}`
+                serviceDetails.finalPoint = `${final[0]}/${final[1]}`
 
                 console.log(serviceDetails)
                 console.log(e)
