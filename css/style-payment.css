@@ -1150,6 +1150,12 @@ main {
   border-bottom: #414141 solid 1px;
 }
 
+
+.form-check{
+  border: #414141 solid 1px;
+  border-radius: 15px;
+}
+
 @media screen and (max-width: 1400px) {
   p {
     font-size: clamp(0.525rem, 4vw - 0.65rem, 1rem) !important;
