@@ -130,7 +130,7 @@ export async function trips(userData) {
                     <div class="card-body">
                         <div id="inactiveCardInfo" class="d-flex flex-column gap-2 align-content-around inactiveServiceCard">
                             <div class="d-flex justify-content-between">
-                                <div class ="typeColor inactiveServiceCard">${service.typeService}</div><div class ="priceColor">${service.price}</div>
+                                <div class ="typeColor inactiveServiceCard">${service.typeService}</div><div class ="priceColor">$ ${service.price}</div>
                             </div>
                             <div class="inactiveServiceCard"><i class="bi bi-clock"></i> ${service.date} / ${service.time}</div>
                             <div id="ubicationsServiceLarge" class="d-none">
@@ -141,6 +141,7 @@ export async function trips(userData) {
                             <div class="inactiveServiceCard"><i class="bi bi-geo-alt-fill" style="color:green"></i> ${service.startPoint}</div>
                             <div class="inactiveServiceCard"><i class="bi bi-geo-alt-fill" style="color:#2dbaed"></i> ${service.finalPoint}</div>
                             </div>
+                            <div style="color: #f41414;" ><i class="bi bi-truck" style="color: #f87538"></i> <span>Service: </span>${service.statusService}</div>
                             </div>
                     </div>
                 </div>
