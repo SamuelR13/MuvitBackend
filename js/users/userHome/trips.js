@@ -23,6 +23,7 @@ export async function trips(userData) {
         return inactiveServiceData;
     }
     const serviceData = await getService();
+    console.log(serviceData)
     info.innerHTML = `            
         <div id="trips" class="h-100 w-75 px-2">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
