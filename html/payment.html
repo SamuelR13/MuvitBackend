@@ -112,7 +112,7 @@
                 <div class="h-50 clamp4 d-flex align-items-end justify-content-center colorText">
                   MUVIT
                 </div>
-                <div class="h-50 clamp1 d-flex align-items-start justify-content-center" data-section="main"
+                <div id="serviceTypeDetails" class="h-50 clamp1 d-flex align-items-start justify-content-center" data-section="main"
                   data-value="type">
                   Basic
                 </div>
@@ -161,18 +161,19 @@
 
           <div class="h-100 w-50 d-flex flex-column justify-content-center align-items-center">
             <div id="paymentSelectContainer"
-              class="w-80 h-100 d-flex flex-column align-items-center justify-content-center clamp3">
+              class="w-80 h-100 d-flex flex-column align-items-center justify-content-center clamp3 gap-2 my-3">
 
-              <div class="h-20 w-100 d-flex justify-content-around align-items-center text-center my-2">
-                <div id="sizeInfo" class="h-100 w-100 d-flex justify-content-center align-items-center ">
+              <div class="h-10 w-100 d-flex justify-content-around align-items-center text-center my-2">
+                <div id="userNameDetails" class="h-100 w-100 d-flex justify-content-center align-items-center ">
                   Samuel Rodriguez
                 </div>
               </div>
 
               <div class="h-20 w-100 d-flex justify-content-around align-items-center text-center">
-                <div id="sizeInfo" class="h-100 w-100 d-flex justify-content-center align-items-center ">
+                <div id="sizeInfo" class="h-100 w-100 d-flex flex-column justify-content-center align-items-center ">
+                  <div>Selecciona la fecha y hora del servicio</div>
                   <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
+                    <input id="DateTime" type='text' class="form-control" />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -186,31 +187,51 @@
               </div>
 
               <div id="checkContainer"
-                class="h-60 w-100 d-flex flex-column justify-content-start align-items-center gap-2 clamp3">
+                class="h-40 w-100 d-flex flex-column justify-content-center align-items-center gap-2 clamp3">
 
-                <div class="h-20 w-100 clamp2 d-flex">
-                  <input type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label class="form-check-label" for="flexRadioDefault1">
+                <div id="cashContainer" class="h-20 w-100 clamp2 d-flex">
+                  <input type="radio" value="cash" name="flexRadioDefault" id="cash">
+                  <label class="form-check-label w-100 d-flex" for="cash">
                     <span></span>
-                    Cash
+                    Cash <i class="bi bi-cash clamp1" style="color: rgb(255, 48, 4);"></i>
                   </label>
                 </div>
 
-                <div class="h-20 w-100 clamp2 d-flex">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                  <label class="form-check-label w-100" for="flexRadioDefault2">
+                <div id="bankContainer"  class="h-20 w-100 clamp2 d-flex">
+                  <input class="form-check-input" type="radio" value="bank" name="flexRadioDefault" id="bank" checked>
+                  <label class="form-check-label w-100 d-flex" for="bank">
                     <span></span>
-                    Bank transfer
+                    Bank transfer <i class="bi bi-credit-card clamp1" style="color: rgb(255, 48, 4);"></i>
                   </label>
                 </div>
-                <div class="h-20 w-100 clamp2 d-flex">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
-                  <label class="form-check-label" for="flexRadioDefault3">
+                <div id="cardContainer"  class="h-20 w-100 clamp2 d-flex">
+                  <input class="form-check-input" type="radio" value="card" name="flexRadioDefault" id="card" checked>
+                  <label class="form-check-label w-100 d-flex" for="card">
                     <span></span>
-                    Debit/Credit Card
+                    Debit/Credit Card <i class="bi bi-bank clamp1" style="color: rgb(255, 48, 4);"></i>
                   </label>
                 </div>
 
+              </div>
+              <div id="paymentMethodsSelecter" class="h-30 w-100 d-flex flex-column justify-content-center gap-1 d-none">
+                <select id="paymentMethodDetail" class="selectpicker h-40 w-100 text-center clamp3" data-size="4">
+                  <option value="">Select your Payment Method</option>
+                  <option value="nickname">
+                    <div id="card1" class="cardPayment h-20 w-100 d-flex align-items-center gap-2">
+                    <div class="pe-none">Mastercard</div>
+                    <div class="pe-none">****5612</div>
+                    </div>
+                  </option>
+                </select>
+                <div id="addPayment" class="d-flex w-100 gap-3 addPaymet clamp2 h-40">
+                  <div class="d-flex align-items-center">
+                      <i class="bi bi-plus-circle clamp3"></i>
+                  </div>
+                  <div class="d-flex flex-column justify-content-between clamp2">
+                     <div class="clamp3 typeColor ">Add Payment Method</div>
+                     <div class="clamp2 text-muted">Debit / Credit Card</div>
+                  </div>
+              </div>
               </div>
             </div>
           </div>
