@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   trips(driverDataGlobal)
 })
 
-
 menu.addEventListener("click", async (event) => {
   event.preventDefault()
 
@@ -51,7 +50,7 @@ menu.addEventListener("click", async (event) => {
 })
 
 async function getProfile() {
-  const response = await fetch(`${URLbase}c7f36be5-d608-4c72-a9ec-3aca9e36bfd8`)
+  const response = await fetch(`${URLbase}b6a74702-211e-4717-8fbf-08e122d5fe98`)
   const driver = await response.json()
   const driverData = await driver
   return driverData

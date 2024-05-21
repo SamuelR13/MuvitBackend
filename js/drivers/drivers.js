@@ -38,7 +38,6 @@ typeDocumentationDriver.addEventListener("change", function () {
 
 async function addInfo() {
   //1. La contraseñas tienen que ser iguales
-
   const { validated, message } = validatePassword();
   //2. Contraseña segura
   console.log(validated, message);

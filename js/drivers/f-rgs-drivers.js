@@ -4,16 +4,9 @@ const URL = "http://localhost:3002"
 const mainMessage = document.querySelector('.align-items-end')
 const header = document.querySelector('header')
 
-
-
-
-
 const container = document.querySelector(".container");
 
-
 document.addEventListener('DOMContentLoaded', showAccordion())
-
-
 
 container.addEventListener('click', event => {
 
@@ -40,108 +33,6 @@ container.addEventListener('click', event => {
     if (event.target.classList.contains('align-items-end')) {
     }
 })
-
-
-//  function loadInfoDriver() {
-//   deleteAccordion();
-
-//   container.innerHTML = `
-//   <div class="w-50 h-100 d-flex justify-content-center align-items-center">
-//   <form class="form-driver" id="form-driver">
-//           <div class="mb-3 row mt-2">
-//             <div class="col">
-//               <label for="name-driver">Your name</label>
-//               <input type="text" class="form-control" placeholder="First name" aria-label="" id="name-driver" required>
-//             </div>
-//             <div class="col">
-//               <label for="last-name-driver">Your last name</label>
-//               <input type="text" class="form-control" placeholder="Last name" aria-label="" id="last-name-driver" required>
-//             </div>
-//           </div>
-//         <div class="flex-column d-flex gender-check">
-//           <label for="">Gender</label>
-//           <div class="btn-group " role="group" aria-label="Basic radio toggle button group" id="gender">
-//             <input type="radio" class="btn-check" name="btnradio" id="male" autocomplete="off" checked>
-//             <label class="btn btn-outline-primary" for="male">Male</label>
-
-//             <input type="radio" class="btn-check" name="btnradio" id="female" autocomplete="off">
-//             <label class="btn btn-outline-primary" for="female">Female</label>
-
-//             <input type="radio" class="btn-check" name="btnradio" id="another" autocomplete="off">
-//             <label class="btn btn-outline-primary" for="another">Another</label>
-//           </div>
-//           </div>
-//       <label for="documentation">Your kind of documentation</label>
-//       <select class="form-select" aria-label="Default select example" id="documentation" required>
-//           <option selected>Select your type of ID</option>
-//           <option value="cedula">Cédula</option>
-//           <option value="pasaport">Pasaport</option>
-//           <option value="registro-civil">Registro civil</option>
-
-//       </select>
-//       <div class="col">
-//           <label for="num-documentation">Your ID</label>
-//           <input type="text" id="num-documentation" class="form-control" placeholder="Your ID" aria-label="num-documentation"
-//               disabled required>
-//       </div>
-//       <div class="mb-3">
-//           <label for="phone-number">Phone Number</label>
-//           <input type="tel" class="form-control" id="phone-number" placeholder="+57 301 000 000" required>
-//       </div>
-//       <div class="mb-3">
-//           <label for="email-driver" class="form-label">Email address</label>
-//           <input type="email" class="form-control" id="email-driver" aria-describedby="emailHelp" required>
-//           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-//       </div>
-//       <div class="mb-3">
-//           <label for="password-driver" class="form-label">Password</label>
-//           <input type="password" class="form-control password" id="password-driver" required>
-//       </div>
-//       <div class="mb-3">
-//           <label for="confirm-password" class="form-label">Confirm your password</label>
-//           <input type="password" class="form-control confirm-password" id="confirm-password-driver" required>
-//       </div>
-//       <div class="d-flex gap-5 justify-content-center ">
-// <button class="btn btn-secondary skip"> Skip </button>
-
-// <button type="submit"  class="btn btn-success done" > Done </button>
-
-// </div>
-//   </form>
-// </div>
-
-
-//     `;
-
-
-
-//     const formDriver = document.getElementById("form-driver")
-    
-//     const typeDocumentationDriver = document.getElementById("documentation");
-//     const documentationDriver = document.getElementById("num-documentation");
-    
-
-
-
-//     formDriver.addEventListener("submit", (event)=>{
-
-//     event.preventDefault()
-
-//     addInfo(typeDocumentationDriver, documentationDriver)
-// })
-// typeDocumentationDriver.addEventListener("change", function () {
-//     // Verifica si el valor seleccionado en el menú desplegable no es "Select your kind of ID"
-//      if (typeDocumentationDriver.value !== "Select your kind of ID") {
-//         // Habilita el campo de entrada
-//         documentationDriver.disabled = false;
-//     } else {
-//         // Deshabilita el campo de entrada si la opción seleccionada es "Select your kind of ID"
-//         documentationDriver.disabled = true;
-//     }
-// });
-
-// }
-
 
  function loadInfoMechanical() {
   deleteAccordion();
@@ -171,7 +62,7 @@ container.addEventListener('click', event => {
         </div>
         <div class="d-flex gap-5 justify-content-center ">
               <button class="btn btn-secondary skip"> Skip </button>
-              <button class="btn btn-success done"> Done </button>
+              <button class="btn btn-primary done"> Done </button>
               </div>
       </form>
     </div>`;
