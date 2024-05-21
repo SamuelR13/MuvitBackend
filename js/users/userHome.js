@@ -51,11 +51,7 @@ menu.addEventListener("click", async (event) => {
 
 async function getProfile() {
   const response = await fetch(
-<<<<<<< HEAD
     `${URLbase}1f6fc3f0-f8f9-438b-81c8-66401b7f5599`
-=======
-    `${URLbase}86afbf17-3208-49e6-b09c-940c14842fbe`
->>>>>>> 3ee49cab2a23fc1b8b39c47e233a94474659c16c
   );
   const user = await response.json();
   const userData = await user;
