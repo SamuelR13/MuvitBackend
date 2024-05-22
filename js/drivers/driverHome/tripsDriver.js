@@ -24,6 +24,21 @@ export async function trips(driverData) {
         const truckData = await truck
         return truckData
       }
+      async function getUser() {
+        const URLuser = "http://localhost:8080/api/v1/user"
+        const response = await fetch(`${URLuser}`)
+        const user = await response.json()
+        const userData = await user
+        return userData
+      }
+      async function getService() {
+        const URLuser = `http://localhost:8080/api/v1/service/user/${JSON.parse(localStorage.getItem("isLoginUser")).id}/active-service`
+        const response = await fetch(`${URLuser}`)
+        const service = await response.json()
+        const serviceData = await service
+        return serviceData
+      }
+    
       
     async function getInactivesServices() {
         const URLbase = `http://localhost:8080/api/v1/service/driver/${driverData.id_driver}/inactive-service`;
@@ -34,6 +49,10 @@ export async function trips(driverData) {
         console.log(serviceData);
         return serviceData;
     }
+    const service = await getService();
+    const user = await getUser();
+    console.log(service);
+    console.log(user);
     getPendingServices()
     getInactivesServices()
     getAvailableServices()
@@ -94,14 +113,55 @@ export async function trips(driverData) {
         </div>
         <div class="tab-pane fade" id="in-progress-tab" role="tabpanel" aria-labelledby="in-progress"
             tabindex="0">
-            <div>
-                <h1 class="sizeFont" >No services in progress</h1>
+            <div class = "d-flex w-100 h-100">
+                    <div id="mapaTrip" class="w-50 rounded-5 mx-5 my-5"></div>
+                    
+                    <div id="historyContainer" class = "w-50 h-100">
+                        <div class ="d-flex w-100 justify-content-around align-items-center mb-2 my-3 text-center clamp1">
+                            <p id="driver_name" class="d-flex text-center">${user.content[0]["name"]} ${user.content[0]["lastName"]}</p>
+                            <img id="userPhoto" width="100px" height="100px" src="${user.content[0]["rol"]["userPhoto"]}" alt="profile" class="rounded-circle">
+                        </div>
+                        <ul id="activeServiceLarge" class="list-group list-group-flush clamp1">
+                            <li class="list-group-item d-flex justify-content-between">Model<span>${service["driver"]["truck"][0]["model"]}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">License plate<span>${service["driver"]["truck"][0]["licensePlate"]}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Assitants<span>${service.assistant}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Distancia<span>${service.distance}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Service<span>${service.typeService}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Price<span>${service.price}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Payment method<span>tarjeta</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Date<span>${service.date}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Time<span>${service.time}</span></li>
+                        </ul>
+                        <ul id="activeServiceMedium" class="w-100 list-group list-group-flush clamp4 my-3">
+                            <div class ="d-flex w-100">
+                                <li class="w-50 list-group-item d-flex justify-content-between">Assitants<span>${service.assistant}</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between">Distancia<span>${service.distance}</span></li>
+                            </div>
+                            <div class ="d-flex w-100">                        
+                                <li class="w-50 list-group-item d-flex justify-content-between">Service<span>${service.typeService}</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between">Price<span>${service.price}</span></li>
+                            </div>
+                            <div class ="d-flex w-100">
+                                <li class="w-50 list-group-item d-flex justify-content-between">Payment method<span>tarjeta</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between"><span>${service.date} / ${service.time}</span></li>
+                            </div>
+                        </ul>
+                        
+                        <div class="d-flex my-3 justify-content-between">
+                        <div class="d-flex gap-3 clamp2">
+                            <button type="button" class="btn btn-outline-primary clamp2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="+57 ${service["driver"]["phoneNumber"]}">Call <i class="bi bi-telephone"></i></button>
+                            <a href="https://wa.me/57${service["driver"]["phoneNumber"]}" target="_blank" type="button" class="btn btn-outline-success clamp2">WhatsApp <i class="bi bi-whatsapp"></i></a>
+                        </div>
+                        <button id="cancel_service" type="button" class="btn btn-outline-danger clamp2">Cancel service</button>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="tab-pane fade" id="service-tab" role="tabpanel" aria-labelledby="service"
             tabindex="0"><div class="d-flex flex-column h-100 w-100">
             <div class ="d-flex flex-column h-100 w-100">
-                <div id="activeServices" class="w-100 h-100 d-flex flex-column justify-content-around p-4"></div>
+                <div id="activeServices" class="w-100 h-100 d-flex flex-column justify-content-around p-4">
+                </div>
                 <div class="w-100 h-10 d-flex justify-content-center  bottom-0">
                     <nav class="pagination-outer" aria-label="Page navigation">
                         <div id="paginationContainer">
@@ -426,4 +486,148 @@ export async function trips(driverData) {
              </div>
         </div>`;
     }
+    
+    mapboxgl.accessToken =
+        "pk.eyJ1Ijoia3dtZWppYSIsImEiOiJjbGl2eWk4eWwxb3dhM3Bxdm5kNGtpOXRrIn0.RaBQJtXzaW3dBHodhcQg2Q";
+    let map = new mapboxgl.Map({
+        //Configuramos el mapa segun lo que necesitamos
+        container: "mapaTrip",
+        style: "mapbox://styles/mapbox/streets-v12",
+        center: [-122.662323, 45.523751],
+        zoom: 15,
+        pitch: 45,
+        bearing: -17.6,
+    });
+    var puntos = {
+        type: "FeatureCollection",
+        features: [
+            {
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates: [-74.009, 40.7128],
+                },
+                properties: {
+                    title: "Punto 1",
+                },
+            },
+            {
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates: [-73.999, 40.7028],
+                },
+                properties: {
+                    title: "Punto 2",
+                },
+            },
+        ],
+    };
+    //Introducimos una capa donde se muestran los edificos en 3D
+    map.on("load", function () {
+        map.addLayer({
+            id: "3d-buildings",
+            source: "composite",
+            "source-layer": "building",
+            filter: ["==", "extrude", "true"],
+            type: "fill-extrusion",
+            minzoom: 15,
+            paint: {
+                "fill-extrusion-color": "#aaa",
+                "fill-extrusion-height": {
+                    type: "identity",
+                    property: "height",
+                },
+                "fill-extrusion-base": {
+                    type: "identity",
+                    property: "min_height",
+                },
+                "fill-extrusion-opacity": 0.6,
+            },
+        });
+    });
+    // an arbitrary start will always be the same
+    // only the end or destination will change
+    const start = [-122.662323, 45.523751];
+    const end = [-122.662323, 45.6788];
+    getRoute(end);
+    // create a function to make a directions request
+    async function getRoute(end) {
+        // make a directions request using cycling profile
+        // an arbitrary start will always be the same
+        // only the end or destination will change
+        const query = await fetch(
+            `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+            { method: "GET" }
+        );
+        const json = await query.json();
+        const data = json.routes[0];
+        const route = data.geometry.coordinates;
+        const geojson = {
+            type: "Feature",
+            properties: {},
+            geometry: {
+                type: "LineString",
+                coordinates: route,
+            },
+        };
+        // if the route already exists on the map, we'll reset it using setData
+        if (map.getSource("route")) {
+            map.getSource("route").setData(geojson);
+        }
+        // otherwise, we'll make a new request
+        else {
+            map.addLayer({
+                id: "route",
+                type: "line",
+                source: {
+                    type: "geojson",
+                    data: geojson,
+                },
+                layout: {
+                    "line-join": "round",
+                    "line-cap": "round",
+                },
+                paint: {
+                    "line-color": "#3887be",
+                    "line-width": 5,
+                    "line-opacity": 0.75,
+                },
+            });
+        }
+        // add turn instructions here at the end
+    }
+
+    map.on("load", () => {
+        // make an initial directions request that
+        // starts and ends at the same location
+        getRoute(start);
+
+        // Add starting point to the map
+        map.addLayer({
+            id: "point",
+            type: "circle",
+            source: {
+                type: "geojson",
+                data: {
+                    type: "FeatureCollection",
+                    features: [
+                        {
+                            type: "Feature",
+                            properties: {},
+                            geometry: {
+                                type: "Point",
+                                coordinates: start,
+                            },
+                        },
+                    ],
+                },
+            },
+            paint: {
+                "circle-radius": 10,
+                "circle-color": "#3887be",
+            },
+        });
+        // this is where the code from the next step will go
+    });
 }

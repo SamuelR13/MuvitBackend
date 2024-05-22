@@ -1,6 +1,7 @@
 const info = document.querySelector("#info");
 
 export async function trips(userData) {
+    console.log(userData)
 
     async function getService() {
         const URLbase = `http://localhost:8080/api/v1/service/user/${userData.id}/active-service`;
@@ -24,7 +25,9 @@ export async function trips(userData) {
     }
     const serviceData = await getService();
     console.log(serviceData)
-    info.innerHTML = `            
+
+    if (serviceData["driver"] != null) {
+        info.innerHTML = `            
         <div id="trips" class="h-100 w-75 px-2">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -107,6 +110,92 @@ export async function trips(userData) {
                 </div>
             </div>
         </div>`;
+    } else {
+        info.innerHTML = `            
+        <div id="trips" class="h-100 w-75 px-2">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                    data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                    aria-selected="true">In progress</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                    aria-selected="false">History</button>
+            </li>
+        </ul>   
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active h-100 w-100" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <div class = "d-flex w-100 h-100">
+                    <div id="mapaTrip" class="w-50 rounded-5 mx-5 my-5"></div>
+                    
+                    <div id="historyContainer" class = "w-50 h-100">
+                        <div class ="d-flex w-100 justify-content-around align-items-center mb-2 my-3 text-center clamp1">
+                            <p id="driver_name" class="d-flex text-center">Buscando Driver...</p>
+                            <img id="userPhoto" width="100px" height="100px" src="https://placehold.co/200x200/EEE/31343C?font=oswald&text=MUVIT" alt="profile" class="rounded-circle">
+                        </div>
+                        <ul id="activeServiceLarge" class="list-group list-group-flush clamp1">
+                            <li class="list-group-item d-flex justify-content-between">Model<span>****</span></li>
+                            <li class="list-group-item d-flex justify-content-between">License plate<span>****</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Assitants<span>${serviceData.assistant}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Distancia<span>${serviceData.distance}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Service<span>${serviceData.typeService}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Price<span>${serviceData.price}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Payment method<span>${serviceData.paymentMethod}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Date<span>${serviceData.date}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Time<span>${serviceData.time}</span></li>
+                        </ul>
+                        <ul id="activeServiceMedium" class="w-100 list-group list-group-flush clamp4 my-3">
+                            <div class ="d-flex w-100">
+                                <li class="w-50 list-group-item d-flex justify-content-between">Model<span>****</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between">License plate<span>*****</span></li>
+                            </div>
+                            <div class ="d-flex w-100">
+                                <li class="w-50 list-group-item d-flex justify-content-between">Assitants<span>${serviceData.assistant}</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between">Distancia<span>${serviceData.distance}</span></li>
+                            </div>
+                            <div class ="d-flex w-100">                        
+                                <li class="w-50 list-group-item d-flex justify-content-between">Service<span>${serviceData.typeService}</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between">Price<span>${serviceData.price}</span></li>
+                            </div>
+                            <div class ="d-flex w-100">
+                                <li class="w-50 list-group-item d-flex justify-content-between">Payment method<span>${serviceData.paymentMethod}</span></li>
+                                <li class="w-50 list-group-item d-flex justify-content-between"><span>${serviceData.date} / ${serviceData.time}</span></li>
+                            </div>
+                        </ul>
+                        
+                        <div class="d-flex my-3 justify-content-between">
+                        <div class="d-flex gap-3 clamp2">
+                            <button type="button" class="btn btn-outline-primary clamp2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="+57 ****">Call <i class="bi bi-telephone"></i></button>
+                            <a href="" target="_blank" type="button" class="btn btn-outline-success clamp2">WhatsApp <i class="bi bi-whatsapp"></i></a>
+                        </div>
+                        <button id="cancel_service" type="button" class="btn btn-outline-danger clamp2">Cancel service</button>
+                        </div>
+                    </div> 
+               </div> 
+            </div>
+                <div class="tab-pane fade h-100 w-100 d-flex" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                    tabindex="0">
+                    <div class ="d-flex flex-column h-100 w-100">
+                        <div id="inactiveServices" class="w-100 h-100 d-flex flex-column justify-content-around p-4">                           
+                        </div>
+                        <div class="w-100 h-10 d-flex justify-content-center  bottom-0">
+                            <nav class="pagination-outer" aria-label="Page navigation">
+                                <div id="paginationContainer">
+                                <ul id="paginationControls" class="pagination">
+
+                                </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
+
 
     const popoverTriggerList = document.querySelectorAll(
         '[data-bs-toggle="popover"]'

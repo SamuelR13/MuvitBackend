@@ -49,6 +49,11 @@ async function loginUsers() {
     }
     console.log("entré");
     localStorage.setItem("isLoginUser", JSON.stringify(data));
+    if(localStorage.getItem("confirmService")){
+      window.location.href = "payment.html"
+    }else{
+      window.location.href = "../index.html"
+    }
   } else {
     console.log("falló");
     showAlertPass();

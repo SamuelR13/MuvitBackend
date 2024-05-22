@@ -142,7 +142,7 @@ muvit.addEventListener("click", async event => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(service),
   })
-
+  showNewService()
 })
 
 
@@ -169,8 +169,7 @@ function showNewService() {
     confirmButtonColor: '#FF0000',
   })
   setTimeout(() => {
-    // window.location.href = "../index.html"
-    console.log("holi")
+    window.location.href = "../index.html"
   }, 3000);
 
 }
