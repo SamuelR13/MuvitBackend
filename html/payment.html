@@ -112,8 +112,8 @@
                 <div class="h-50 clamp4 d-flex align-items-end justify-content-center colorText">
                   MUVIT
                 </div>
-                <div id="serviceTypeDetails" class="h-50 clamp1 d-flex align-items-start justify-content-center" data-section="main"
-                  data-value="type">
+                <div id="serviceTypeDetails" class="h-50 clamp1 d-flex align-items-start justify-content-center"
+                  data-section="main" data-value="type">
                   Basic
                 </div>
               </div>
@@ -197,14 +197,14 @@
                   </label>
                 </div>
 
-                <div id="bankContainer"  class="h-20 w-100 clamp2 d-flex">
+                <div id="bankContainer" class="h-20 w-100 clamp2 d-flex">
                   <input class="form-check-input" type="radio" value="bank" name="flexRadioDefault" id="bank" checked>
                   <label class="form-check-label w-100 d-flex" for="bank">
                     <span></span>
                     Bank transfer <i class="bi bi-credit-card clamp1" style="color: rgb(255, 48, 4);"></i>
                   </label>
                 </div>
-                <div id="cardContainer"  class="h-20 w-100 clamp2 d-flex">
+                <div id="cardContainer" class="h-20 w-100 clamp2 d-flex">
                   <input class="form-check-input" type="radio" value="card" name="flexRadioDefault" id="card" checked>
                   <label class="form-check-label w-100 d-flex" for="card">
                     <span></span>
@@ -213,25 +213,63 @@
                 </div>
 
               </div>
-              <div id="paymentMethodsSelecter" class="h-30 w-100 d-flex flex-column justify-content-center gap-1 d-none">
+              <div id="paymentMethodsSelecter"
+                class="h-30 w-100 d-flex flex-column justify-content-center gap-1 d-none">
                 <select id="paymentMethodDetail" class="selectpicker h-40 w-100 text-center clamp3" data-size="4">
                   <option value="">Select your Payment Method</option>
-                  <option value="nickname">
-                    <div id="card1" class="cardPayment h-20 w-100 d-flex align-items-center gap-2">
-                    <div class="pe-none">Mastercard</div>
-                    <div class="pe-none">****5612</div>
-                    </div>
-                  </option>
                 </select>
                 <div id="addPayment" class="d-flex w-100 gap-3 addPaymet clamp2 h-40">
                   <div class="d-flex align-items-center">
-                      <i class="bi bi-plus-circle clamp3"></i>
+                    <i class="bi bi-plus-circle clamp3"></i>
                   </div>
-                  <div class="d-flex flex-column justify-content-between clamp2">
-                     <div class="clamp3 typeColor ">Add Payment Method</div>
-                     <div class="clamp2 text-muted">Debit / Credit Card</div>
+                  <button id="buttonModal" type="button" data-toggle="modal" data-target="#exampleModalCenter">
+                    <div class="d-flex flex-column justify-content-between clamp2">
+                      <div class="clamp3 typeColor ">Add Payment Method</div>
+                      <div class="clamp2 text-muted">Debit / Credit Card</div>
+                    </div>
+                  </button>
+
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">ADD PAYMENT METHOD</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body w-100">
+                          <div class="w-100 h-80 d-flex flex-column justify-content-center align-items-center mx-3">
+                            <div class="form-floating mb-2 w-100">
+                              <input type="text" class="form-control" id="cardName" placeholder="name">
+                              <label for="cardName">Card name (optional)</label>
+                            </div>
+                            <div class="form-floating mb-2 w-100">
+                              <input type="text" class="form-control" id="cardNumber" placeholder="Password">
+                              <label for="cardNumber">Number Card</label>
+                            </div>
+                            <div class="d-flex w-100 gap-2">
+                              <div class="form-floating w-50">
+                                <input type="text" class="form-control" id="cardExpiry" placeholder="Password">
+                                <label for="cardExpiry">Expiration Date</label>
+                              </div>
+                              <div class="form-floating w-50">
+                                <input type="text" class="form-control" id="cardCVV" placeholder="Password">
+                                <label for="cardCVV">CVV</label>
+                              </div>
+                            </div>
+                            <button id="addCard" type="button" class="btn btn-outline-success mt-3">Add Card</button>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-              </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -271,6 +309,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   <script src="../js/payment.js"></script>
 

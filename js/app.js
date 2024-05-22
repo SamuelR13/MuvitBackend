@@ -21,12 +21,12 @@ let serviceDetails = {
   startPoint: "",
   finalPoint: "",
   paymentMethod: "",
-  driver: "",
   user: "",
   statusService: "",
   date: "",
   time: "",
 };
+
 
 const URLData = "http://localhost:3000/services";
 const URLbase = `http://localhost:3000/user`;
@@ -331,8 +331,8 @@ function price() {
   //Hacemos la operacion para encontrar el precio p = km*(pkm*mT)+A*PA    (km=distancia,pkm=precio por kilometro,mT=multiplicador de tamaño,A=asistentes,PA=precio por asistente)
   let value =
     serviceDetails.distance *
-      (currencyPricesKilo[currency[lenguaje]] *
-        multiplicator[serviceDetails.size]) +
+    (currencyPricesKilo[currency[lenguaje]] *
+      multiplicator[serviceDetails.size]) +
     serviceDetails.assistant * currencyPricesAsis[currency[lenguaje]];
 
   serviceDetails.price = currencyFormatter({
@@ -407,7 +407,7 @@ if (!"geolocation" in navigator) {
         let start = e.route[0]["legs"][0]["steps"][0]["maneuver"]["location"];
         let final =
           e.route[0]["legs"][0]["steps"][lengthRoute - 1]["maneuver"][
-            "location"
+          "location"
           ];
 
         serviceDetails.startPoint = `${start[0]}/${start[1]}`;

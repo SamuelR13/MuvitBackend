@@ -1396,5 +1396,7 @@ label {
   cursor: pointer;
 }
 
-
-
+#buttonModal {
+  background-color: transparent;
+  border: none;
+}
