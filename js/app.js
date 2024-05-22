@@ -28,8 +28,8 @@ let serviceDetails = {
   time: "",
 };
 
-const URLData = "http://localhost:3000/services";
-const URLbase = `http://localhost:3000/user`;
+const URLData = "http://localhost:8080/api/v1/service";
+const URLbase = `http://localhost:8080/api/v1/user`;
 // --------------------------SELECTORES------------------------
 
 const dropdownMenu = document.querySelector("#dropdown-menu");
@@ -78,11 +78,11 @@ carousel.addEventListener("slid.bs.carousel", (event) => {
 muvit.addEventListener("click", () => {
   console.log(serviceDetails);
   localStorage.setItem("confirmService", JSON.stringify(serviceDetails));
-  // if (!localStorage.getItem('isLoginUser')) {
-  //     window.location.href = '../html/login.html'
-  // } else {
-  //     window.location.href = 'userHome.html'
-  // }
+  if (!localStorage.getItem('isLoginUser')) {
+      window.location.href = '../html/login.html'
+  } else {
+      window.location.href = 'userHome.html'
+  }
 });
 //Boton de cancelar reinicia la pagina INDEX
 cancelService.addEventListener("click", () => {
@@ -174,25 +174,23 @@ async function serviceConfirm() {
 async function getProfile() {
   const user = JSON.parse(localStorage.getItem("isLoginUser"));
   if (!user) return;
-  console.log(user.emailUser);
-  const response = await fetch(`${URLbase}?emailUser=${user.emailUser}`);
+  console.log(user);
+  const response = await fetch(`${URLbase}/${user.id}`);
   console.log(response);
   const users = await response.json();
   console.log(users);
-  users.forEach((user) => {
     btnLogReg.innerHTML = `
     <div id="btnLogReg" class="d-flex gap-3">
       <div class="navBtn">
-        <a id="logOut" href="userHome.html" class="signup-btn gap-2" data-section="header">
+        <a id="logOut" href="../html/UserHome.html" class="signup-btn gap-2" data-section="header">
           <i class='bx bxs-user fs-5' style='color:#ffffff'></i>
-          <span>${user.nameUser}</span>
+          <span>${user.name}</span>
         </a>
       </div>
       <div class="navBtn d-flex justify-content-center align-items-center">
         <a class="nav-link1" data-section="header" data-value="login" onclick="logOut()"><i class='bx bx-log-out fs-2' style='color:#5e5c5c'></i></a>
       </div>
     `;
-  });
   const logOutLink = document.querySelector('.nav-link1[data-value="login"]');
   logOutLink.addEventListener("click", logOut);
 }
